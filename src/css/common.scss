@@ -1,94 +1,9 @@
-@mixin light {
-  // 基色
-  --primary-white: #ffffff;
-  --primary-black: #1b1b1b;
-  --primary-dust: #6f6f6f;
-  --primary-red: #d30038;
-  --primary-green: #007936;
-  --primary-blue: #0069c2;
-  --primary-yellow: #746a00;
-  --primary-super-yellow: #ffff00;
-  // 文本色
-  --text-primary: #1b1b1b;
-  --text-secondary: #4e4e4e;
-  --text-invert: var(--primary-white); // 文本反转色
-  --text-muted: var(--primary-dust); // 温和文本色
-  // 链接文本色
-  --text-link: #0069c2;
-  --text-visited: #551a8b;
-  --text-hover: var(--primary-red);
-  --text-visited: #551a8b;
-  --text-active: #858585;
-  --text-inactive: #9e9e9ea6; // 无效链接色
-  // 背景色
-  --background-primary: var(--primary-white);
-  --background-tab-level-1: var(--primary-black);
-  --background-tab-level-2: var(--primary-dust);
-  --background-tab-transparent: #6666;
-  --table-border-color: #000;
-  --curriculum-shadow: 4px 4px 8px 0 #b3b3b32e, -4px 4px 8px 0 #b3b3b326;
-  --curriculum-shadow-landing-about-ul: 0 4px 10px 0 #e3642a0f, 0 -2px 4px 0 #b25c350f;
-  --box-shadow: 1px 1px 12px #6666;
-  --box-shadow-primary: 1px 1px 12px #6666;
-  --box-shadow-primary-small: 1px 1px 3px #6666;
-  --box-shadow-primary-large: 1px 1px 24px #6666;
-  color-scheme: light;
-}
+@use "./root";
+@use "./reset.scss";
+@use "./respond" as rp;
 
-@mixin dark {
-  // 基色
-  --primary-white: #ffffff;
-  --primary-black: #1b1b1b;
-  --primary-dust: #858585;
-  --primary-red: #ff97a0;
-  --primary-green: #00d061;
-  --primary-blue: #8cb4ff;
-  --primary-yellow: #c7b700;
-  // 文本色
-  --text-primary: #fff;
-  --text-secondary: #cdcdcd;
-  --text-invert: var(--primary-black); // 文本反转色
-  --text-muted: var(--primary-dust); // 温和文本色
-  // 普通链接文本色
-  --text-link: #8cb4ff;
-  --text-visited: #ffadff;
-  --text-hover: var(--primary-red);
-  --text-active: #858585;
-  --text-inactive: #cdcdcda6; // 无效链接色
-  //  背景色
-  --background-primary: var(--primary-black);
-  --background-tab-level-1: #666666;
-  --background-tab-level-2: var(--primary-dust);
-  --background-tab-transparent: #6666;
-  --table-border-color: #ff3663;
-  --box-shadow: 1px 1px 12px #6666;
-  --box-shadow-primary: 1px 1px 12px #6666;
-  --box-shadow-primary-small: 1px 1px 3px #6666;
-  --box-shadow-primary-large: 1px 1px 24px #6666;
-  color-scheme: dark;
-}
-
-:root {
-  @include light();
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not(.en-light):not(.en-dark) {
-    @include light();
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root:not(.en-light):not(.en-dark) {
-    @include dark();
-  }
-}
-
-.en-light {
-  @include light();
-}
-
-.en-dark {
-  @include dark();
+.en-relative {
+  position: relative;
 }
 
 .en-center {
@@ -96,6 +11,10 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.en-dust {
+  color: var(--primary-dust);
 }
 
 /** 文本显示一行，超出点点点 */
@@ -178,6 +97,19 @@
 .en-text-small {
   font-size: 0.6rem;
 }
+
+// 用户可操作
+.en-user-select-text {
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.en-cursor-pointer {
+  cursor: pointer;
+}
+
 @keyframes loading {
   //  45 - 25 * Math.sin((Math.PI * 5) / 12)
   //  位置公式 35 - 25 * Math.cos((Math.PI * 5) / 12)
@@ -312,22 +244,10 @@
   @for $i from 18 through 33 {
     #{calc($i / 50 * 100%)} {
       background-position:
-        #{(50 - (25 * cos(($Pi * ($i - 10)) / 12))) *
-          1%}
-          #{(45 - 25 * sin(($Pi * ($i - 10)) / 12)) *
-          1%},
-        #{(50 - (25 * cos(($Pi * ($i - 13)) / 12))) *
-          1%}
-          #{(45 - 25 * sin(($Pi * ($i - 13)) / 12)) *
-          1%},
-        #{(50 - (25 * cos(($Pi * ($i - 15)) / 12))) *
-          1%}
-          #{(45 - 25 * sin(($Pi * ($i - 15)) / 12)) *
-          1%},
-        #{(50 - (25 * cos(($Pi * ($i - 17)) / 12))) *
-          1%}
-          #{(45 - 25 * sin(($Pi * ($i - 17)) / 12)) *
-          1%};
+        #{(50 - (25 * cos(($Pi * ($i - 10)) / 12))) * 1%} #{(45 - 25 * sin(($Pi * ($i - 10)) / 12)) * 1%},
+        #{(50 - (25 * cos(($Pi * ($i - 13)) / 12))) * 1%} #{(45 - 25 * sin(($Pi * ($i - 13)) / 12)) * 1%},
+        #{(50 - (25 * cos(($Pi * ($i - 15)) / 12))) * 1%} #{(45 - 25 * sin(($Pi * ($i - 15)) / 12)) * 1%},
+        #{(50 - (25 * cos(($Pi * ($i - 17)) / 12))) * 1%} #{(45 - 25 * sin(($Pi * ($i - 17)) / 12)) * 1%};
     }
   }
 

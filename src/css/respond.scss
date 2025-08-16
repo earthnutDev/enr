@@ -1,0 +1,54 @@
+@use "./root.scss";
+
+//  响应式断点变量
+$breakpoints: (
+  // 手机竖屏
+  sm: 576px,
+  // 平板，大手机
+  md: 768px,
+  // 小桌面
+  lg: 992px,
+  // 标准桌面
+  xl: 1200px,
+  // 大桌面
+  xxl: 1400px
+);
+
+// 移动优先
+// 基础媒体查询混入
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value {
+    @media screen and (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @error "为定义的断点：`#{$breakpoint}`。";
+  }
+}
+
+// 悬停能力检测混入  - 移动优先
+@mixin hover-supported {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// 混合响应式和悬停的复合混入
+@mixin respond-with-hover($breakpoint) {
+  @include respond-to($breakpoint) {
+    @include hover-supported {
+      @content;
+    }
+  }
+}
+
+// 禁用动画
+@mixin hover-forbidden {
+  @media (hover: none) {
+    @content;
+  }
+}

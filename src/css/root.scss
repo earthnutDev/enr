@@ -1,0 +1,94 @@
+$color-white: #ffffff;
+
+@mixin light {
+  // 基色
+  --en-primary-white: $color-white;
+  --en-primary-black: #1b1b1b;
+  --en-primary-dust: #6f6f6f;
+  --en-primary-red: #d30038;
+  --en-primary-green: #007936;
+  --en-primary-blue: #0069c2;
+  --en-primary-yellow: #746a00;
+  --en-primary-super-yellow: #ffff00;
+  // 文本色
+  --en-text-primary: #1b1b1b;
+  --en-text-secondary: #4e4e4e;
+  --en-text-invert: var(--en-primary-white); // 文本反转色
+  --en-text-muted: var(--en-primary-dust); // 温和文本色
+  // 链接文本色
+  --en-text-link: #0069c2;
+  --en-text-visited: #551a8b;
+  --en-text-hover: var(--en-primary-red);
+  --en-text-visited: #551a8b;
+  --en-text-active: #858585;
+  --en-text-inactive: #9e9e9ea6; // 无效链接色
+  // 背景色
+  --en-background-primary: var(--en-primary-white);
+  --en-background-tab-level-1: var(--en-primary-black);
+  --en-background-tab-level-2: var(--en-primary-dust);
+  --en-background-tab-transparent: #6666;
+  --en-table-border-color: #000;
+  --en-curriculum-shadow: 4px 4px 8px 0 #b3b3b32e, -4px 4px 8px 0 #b3b3b326;
+  --en-curriculum-shadow-landing-about-ul: 0 4px 10px 0 #e3642a0f, 0 -2px 4px 0 #b25c350f;
+  --en-box-shadow: 1px 1px 12px #6666;
+  --en-box-shadow-primary: 1px 1px 12px #6666;
+  --en-box-shadow-primary-small: 1px 1px 3px #6666;
+  --en-box-shadow-primary-large: 1px 1px 24px #6666;
+  color-scheme: light;
+}
+
+@mixin dark {
+  // 基色
+  --en-primary-white: #ffffff;
+  --en-primary-black: #1b1b1b;
+  --en-primary-dust: #858585;
+  --en-primary-red: #ff97a0;
+  --en-primary-green: #00d061;
+  --en-primary-blue: #8cb4ff;
+  --en-primary-yellow: #c7b700;
+  // 文本色
+  --en-text-primary: #fff;
+  --en-text-secondary: #cdcdcd;
+  --en-text-invert: var(--en-primary-black); // 文本反转色
+  --en-text-muted: var(--en-primary-dust); // 温和文本色
+  // 普通链接文本色
+  --en-text-link: #8cb4ff;
+  --en-text-visited: #ffadff;
+  --en-text-hover: var(--en-primary-red);
+  --en-text-active: #858585;
+  --en-text-inactive: #cdcdcda6; // 无效链接色
+  //  背景色
+  --en-background-primary: var(--en-primary-black);
+  --en-background-tab-level-1: #666666;
+  --en-background-tab-level-2: var(--en-primary-dust);
+  --en-background-tab-transparent: #6666;
+  --en-table-border-color: #ff3663;
+  --en-box-shadow: 1px 1px 12px #6666;
+  --en-box-shadow-primary: 1px 1px 12px #6666;
+  --en-box-shadow-primary-small: 1px 1px 3px #6666;
+  --en-box-shadow-primary-large: 1px 1px 24px #6666;
+  color-scheme: dark;
+}
+
+:root {
+  @include light();
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not(.en-light):not(.en-dark) {
+    @include light();
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not(.en-light):not(.en-dark) {
+    @include dark();
+  }
+}
+
+.en-light {
+  @include light();
+}
+
+.en-dark {
+  @include dark();
+}

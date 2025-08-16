@@ -1,5 +1,9 @@
 # 版本日志
 
+## v0.2.0 (2025-8-17)
+
+- 我也没看到干了啥
+
 ## v0.2.0-rc.0 (2025-8-10)
 
 ## v0.1.7 (2025-8-9)
@@ -181,7 +185,3 @@
 - `ripple` 中 `touchmove`、`touchstart` 事件监听添加 `{ passive: true}`
 - 添加 `useTimeId`、`useAnimationFrameId`、`useRipples` 自定义 hooks
 - 添加 `earthnut/css`、`earthnut/scss` 样式表
-
-```
-
-```

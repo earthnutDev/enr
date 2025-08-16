@@ -1,4 +1,5 @@
 import defaultModule, { pathJoin } from './webpack.config.cjs.js';
+import CopyPlugin from 'copy-webpack-plugin';
 
 /**
  * 打包为 mjs 模式
@@ -50,5 +51,26 @@ export default function () {
     //     },
     //   },
     // },
+    plugins: [
+      ...defaultConfig.plugins,
+      // /// 文件复制
+      new CopyPlugin({
+        patterns: [
+          // 写入 scss
+          {
+            from: `src/css/`,
+            to: `styles/`,
+          },
+          {
+            from: 'README.md',
+            to: 'README.md',
+          },
+          {
+            from: 'LICENSE',
+            to: '',
+          },
+        ],
+      }),
+    ],
   };
 }

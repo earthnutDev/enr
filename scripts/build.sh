@@ -64,9 +64,7 @@ buildResult() {
 
   printf "\e[35m➠  构建 css \e[m\n" 
   # 编译 sass
-  pnpm exec  sass --no-source-map \
-          src/css/common.scss \
-          dist/styles/common.css
+  pnpm build:scss
   printf "\e[35m➠  css 构建完毕\e[m\n" 
 }
  

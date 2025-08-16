@@ -1,6 +1,5 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import defaultModule, { pathJoin } from './webpack.config.js';
-import CopyPlugin from 'copy-webpack-plugin';
 import AddUserClientPlugin from './scripts/add-use-client-webpack-plugin.js';
 export { pathJoin };
 
@@ -68,23 +67,6 @@ export default function () {
     1,
     // 移除测试用的 html 插件
     1,
-    // /// 文件复制
-    new CopyPlugin({
-      patterns: [
-        {
-          from: 'src/css/common.scss',
-          to: 'styles/common.scss',
-        },
-        {
-          from: 'README.md',
-          to: 'README.md',
-        },
-        {
-          from: 'LICENSE',
-          to: '',
-        },
-      ],
-    }),
     new AddUserClientPlugin(),
   );
 

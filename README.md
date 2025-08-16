@@ -63,3 +63,69 @@ export function Home () {
 ```ts
 import { useAnimationFrame } from 'earthnut';
 ```
+
+## scss 样式
+
+导出了一个 `common.css` 作为样式使用，还可以引用其中的 `scss` 文件使用其中的函数。
+
+如果使用 `common.css` 建议仅在跟下进行导入即可，避免在
+
+在使用 `webpack` 的应用中可以这样引入
+
+```javascript
+// webpack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, 'node_modules/ui-library-a/src/scss')], // UI 库 SCSS 路径
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+在使用 `vite` 的应用中可以这样引入
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite';
+import path from 'path';
+
+export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "${path.resolve(__dirname, 'node_modules/ui-library-a/src/scss')}" as lib;`,
+        includePaths: [path.resolve(__dirname, 'node_modules/ui-library-a/src/scss')],
+      },
+    },
+  },
+});
+```
+
+为了防止意外覆盖别人的自定义 css 属性，该样式皆以 `en-` 为前缀。譬如：
+
+```tsx
+import { xcn } from 'earthnut';
+
+export function Home() {
+  return (
+    <div>
+      <p className={xcn('en-text-in=one-line')}>无论我字数多少，仅会会在同一行就行打印。</p>
+    </div>
+  );
+}
+```

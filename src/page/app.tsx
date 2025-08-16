@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import MainTab from 'page/tab';
 import 'css/common.scss';
-import 'css/product.scss';
+import './product.scss';
 import styles from 'page/index.module.scss';
 import {
   Layout,
