@@ -99,6 +99,11 @@ export class RipplesRenderData {
         if (mutation.target !== this.parentElement) return;
         if (mutation.type === 'attributes' && _Ripples.options.visible) {
           dog('父级元素的属性变更');
+          dog('当前父级元素', this.parentElement);
+          dog('当前属性监听者', this.mutationObserver);
+          dog('当前尺寸变化监听者', this.resizeObserver);
+          dog('当前执行的环境', this);
+          dog('当前执行的上级', _Ripples, _Ripples.renderData, _Ripples.renderData === this);
           /**  上一次使用的值  */
           const lastStyleValues = Object.values(this.lastUseStyle);
           /**  现在的样式  */
@@ -156,21 +161,27 @@ export class RipplesRenderData {
     Reflect.apply(restoreCssBackground, { renderData: this }, []);
     // 移除事件监听
     if (this.parentElement && this.events) {
-      const { parentElement, events } = this;
-      /// 移除监听的事件
-      (Object.keys(events) as []).forEach(
-        e => parentElement.removeEventListener && parentElement.removeEventListener(e, events[e]),
-      );
-      /// 移除属性
-      if (parentElement.removeAttribute) parentElement.removeAttribute('data-ripples');
-      {
-        // 移除父级元素的监听，防止内存泄露
-        this.mutationObserver?.takeRecords();
-        this.mutationObserver?.disconnect();
-        this.mutationObserver = null;
-        // this.resizeObserver?.unobserve(this.parentElement);
-        this.resizeObserver?.disconnect();
-        this.resizeObserver = null;
+      dog.error('移除监听的事件');
+
+      try {
+        const { parentElement, events } = this;
+        /// 移除监听的事件
+        (Object.keys(events) as []).forEach(
+          e => parentElement.removeEventListener && parentElement.removeEventListener(e, events[e]),
+        );
+        /// 移除属性
+        if (parentElement.removeAttribute) parentElement.removeAttribute('data-ripples');
+        {
+          // 移除父级元素的监听，防止内存泄露
+          this.mutationObserver?.takeRecords();
+          this.mutationObserver?.disconnect();
+          this.mutationObserver = null;
+          dog(this.mutationObserver);
+          this.resizeObserver?.disconnect();
+          this.resizeObserver = null;
+        }
+      } catch (error) {
+        dog.error('移除监听者失败', error);
       }
     }
   }

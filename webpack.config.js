@@ -1,14 +1,14 @@
 import webpack from 'webpack';
 import path from 'node:path';
-import { readFileToJsonSync } from 'a-node-tools';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import process from 'node:process';
 
 const __dirname = import.meta.dirname;
 
 export const pathJoin = str => path.join(__dirname, str);
 
 /**  读取本地的数据配置  */
-const mode = readFileToJsonSync('./.env.config')?.env ?? 'production';
+const mode = process.env.dev_mode ?? 'production';
 
 /**
  *

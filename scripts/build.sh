@@ -8,8 +8,6 @@ found=0
 
 # 执行打包
 build() {
-  # node ./scripts/build-env.js $1
-
   if  ! pnpm exec webpack --config webpack.config.$1.js; then 
     exit 1
   fi 

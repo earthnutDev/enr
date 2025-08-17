@@ -9,6 +9,7 @@
  ****************************************************************************/
 
 import { isBoolean, isPlainObject } from 'a-type-of-js';
+import { dog } from 'dog';
 import { useCallback, useEffect, useRef } from 'react';
 
 /**  使用动画结果  */
@@ -35,6 +36,10 @@ interface UseAnimationFrame {
   noun: boolean;
   /**  是否仅执行一次  */
   once: boolean;
+  /**  是否首次执行 effect  */
+  firstRunEffect: boolean;
+  /**  是否已卸载  */
+  isUnmounted: boolean;
 }
 
 export type AnimationFrameOption =
@@ -111,9 +116,12 @@ export function useAnimationFrame(
     noun: false,
     time: 0,
     cancelTime: 0,
+    firstRunEffect: true,
+    isUnmounted: true,
     result: {
       cancel() {
         const { id } = animationFrame.current;
+        dog('执行取消');
         if (id) window.cancelAnimationFrame(id);
         animationFrame.current.result.canceled = true;
       },
@@ -144,17 +152,48 @@ export function useAnimationFrame(
   );
 
   // 首次执行
-  if (current.immediately && !current.noun) {
+  if (current.immediately && !current.noun && current.result.canceled) {
+    console.log('重复执行');
+
     current.noun = true;
     current.result.render();
   }
 
   useEffect(() => {
-    /// 非仅执行一次再次这里需要执行
-    if (!current.once) current.result.render();
+    dog(
+      '回调更替',
+      '此时的是否为第一次执行状态为',
+      current.firstRunEffect,
+      '当前取消执行状态',
+      current.result.canceled,
+    );
 
-    return () => current.result.cancel();
+    /// 非仅执行一次再次这里需要执行
+    if (!current.once) {
+      if (current.firstRunEffect) {
+        current.result.render();
+        current.firstRunEffect = false; //  标记为不允许执行
+        dog('第一次执行', '，执行后状态', current.result.canceled);
+      } else if (!current.firstRunEffect && !current.result.canceled) {
+        /**  非第一次执行  */
+        current.result.render();
+        dog('非首次执行', '，执行后状态', current.result.canceled);
+      }
+    }
   }, [callback]);
+
+  /// 在组件退出时保证能正确的退出
+  useEffect(() => {
+    dog('执行');
+    current.isUnmounted = false;
+    return () => {
+      current.isUnmounted = true;
+      setTimeout(() => {
+        dog.warn('退出执行取消');
+        if (current.isUnmounted) current.result.cancel();
+      }, 0);
+    };
+  }, []);
 
   return current.result;
 }

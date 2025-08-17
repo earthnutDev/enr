@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import { NavLink } from 'react-router';
+import { xcn } from 'xcn';
 
 /**
  * 左侧导航栏
@@ -11,6 +12,7 @@ export default function MainTab() {
   const urlList: {
     text: string;
     url: string;
+    type?: 'link';
   }[] = [
     {
       text: '首页',
@@ -32,6 +34,15 @@ export default function MainTab() {
       text: '跑马灯',
       url: '/marquee',
     },
+    {
+      text: '使用关键帧',
+      url: '/useAnimationFrame',
+    },
+    {
+      text: '主题',
+      url: '/theme',
+      type: 'link',
+    },
   ];
 
   return (
@@ -42,7 +53,10 @@ export default function MainTab() {
             <NavLink
               to={e.url}
               className={({ isActive, isPending }) =>
-                isPending ? 'pending' : isActive ? styles.active : ''
+                xcn(
+                  isPending ? 'pending' : isActive ? styles.active : '',
+                  e.type === 'link' && styles.link,
+                )
               }
             >
               {e.text}

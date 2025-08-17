@@ -1,10 +1,10 @@
-import { readFileToJsonSync } from 'a-node-tools';
+import process from 'node:process';
 
 /**  babel 配置文件  */
 export default function (api) {
   api.cache(true);
   /**  读取本地的数据配置  */
-  const env = readFileToJsonSync('./.env.config')?.env ?? 'production';
+  const env = process.env.dev_mode ?? 'production';
   /**  是否为生产环境  */
   const isProduction = env === 'production';
 

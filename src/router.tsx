@@ -16,6 +16,8 @@ import { createHashRouter } from 'react-router';
 import { MarqueePage } from 'page/marquee';
 import { LazyRipplePage } from 'page/lazy-ripples';
 import { ImagePage } from 'page/image';
+import { UseAnimationFramePage } from 'page/use-animation-frame';
+import { ThemePage } from 'page/theme';
 
 /** 路由 */
 const router = createHashRouter(
@@ -42,9 +44,20 @@ const router = createHashRouter(
               path: '/image',
               element: <ImagePage />,
             },
+            {
+              path: '/useAnimationFrame',
+              element: <UseAnimationFramePage />,
+            },
+            {
+              path: './use',
+            },
           ],
         },
       ],
+    },
+    {
+      path: '/theme',
+      element: <ThemePage />,
     },
   ],
   {

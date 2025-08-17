@@ -1,5 +1,9 @@
 import webpack from 'webpack';
-/**  头添加 'use client';  */
+/**
+ * 头添加 'use client';
+ *
+ *  以支持在云上使用
+ */
 export default class AddUserClientPlugin {
   /**  执行和姓  */
   apply(compiler) {

@@ -4,11 +4,12 @@ import { dog } from 'dog';
 
 /**  注销  */
 export function destroy(this: Ripples) {
-  dog.type = false;
+  dog.type = true;
   const { renderData, fadeData } = this;
-  dog('执行销毁');
+  dog.warn('执行销毁');
 
   if (!isNull(renderData)) {
+    dog('销毁 render 数据');
     renderData.destroy();
     /// 销毁执行上下文本身
     Object.keys(renderData).forEach(e => (renderData[e as never] = null as never));
@@ -16,6 +17,7 @@ export function destroy(this: Ripples) {
   }
 
   {
+    dog('销毁 fade 数据');
     fadeData.destroy();
     Object.keys(fadeData).forEach(e => (fadeData[e as never] = null as never));
     this.fadeData = null as never;

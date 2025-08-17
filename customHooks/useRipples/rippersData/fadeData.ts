@@ -63,8 +63,10 @@ export class FadeData {
   }
   /**  销毁  */
   destroy() {
-    if (this.transparentId) clearTimeout(this.transparentId);
+    dog.type = true;
     this.#mediaQuery.removeEventListener('change', this.#mediaQueryChange);
+    dog('退出后取消执行', this.transparentId);
+    if (this.transparentId) clearTimeout(this.transparentId);
   }
   /**  创建背景渐变的数据  */
   constructor(_Ripples: Ripples) {

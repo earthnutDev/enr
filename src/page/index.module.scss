@@ -46,6 +46,16 @@
             cursor: not-allowed;
           }
         }
+        &.link {
+          cursor: ne-resize;
+          &::after {
+            content: "🔗";
+            position: absolute;
+            top: 0px;
+            right: 8px;
+            opacity: 0.5;
+          }
+        }
       }
     }
   }

@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "name": "earthnut",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "earthnut 的 react ui",
   "scripts": {
     "test": "pnpm run dev",
@@ -14,13 +14,12 @@
     "prepare": "husky",
     "build:scss": "sass --no-source-map src/css/common.scss dist/styles/common.css",
     "prettier": "jja cls && prettier --write src && prettier --write  components && prettier --write  customHooks",
-    "production": "node ./scripts/env.js env=production",
-    "development": "node ./scripts/env.js env=development",
     "eslint": "jja cls && eslint --fix src &&  eslint --fix components  &&  eslint --fix customHooks",
-    "build": "chmod +x ./scripts/build.sh && pnpm run production && ./scripts/build.sh",
-    "umd": "pnpm run production && webpack --env t=js",
-    "local": "pnpm run production && node ./scripts/build-local",
-    "dev": "jja clear && pnpm run development && webpack-dev-server --env dev"
+    "build:view": "jja cls run webpack-dev-server",
+    "build": "chmod +x ./scripts/build.sh && ./scripts/build.sh",
+    "umd": "webpack --env t=js",
+    "local": "node ./scripts/build-local",
+    "dev": "jja clear run dev_mode=development webpack-dev-server --env dev"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,jsx,md,mdx}": [
