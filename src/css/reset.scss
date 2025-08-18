@@ -8,24 +8,14 @@
 }
 
 /* 移除默认的 margin 外边距 */
+html,
 body,
-h1,
-h2,
-h3,
-h4,
 p,
 figure,
 blockquote,
 dl,
 dd {
   margin: 0;
-}
-
-ul,
-ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 /* 设置根元素 html 默认样式 */

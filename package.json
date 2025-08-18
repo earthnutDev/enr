@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "name": "earthnut",
-  "version": "0.2.2",
+  "version": "0.2.3-alpha.0",
   "description": "earthnut 的 react ui",
   "scripts": {
     "test": "pnpm run dev",
