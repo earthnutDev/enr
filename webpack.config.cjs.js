@@ -42,13 +42,13 @@ export default function () {
       minimizer: [
         new TerserPlugin({
           terserOptions: {
-            compress: {
-              directives: true, // 禁止删除顶级指令
-            },
             format: {
               comments: false,
             },
             mangle: true,
+            compress: {
+              directives: true, // 禁止删除顶级指令
+            },
           },
           extractComments: false,
         }),

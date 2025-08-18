@@ -3,6 +3,9 @@ import webpack from 'webpack';
  * 头添加 'use client';
  *
  *  以支持在云上使用
+ *
+ *
+ * 但是，在打包压缩时会移除该标志
  */
 export default class AddUserClientPlugin {
   /**  执行和姓  */
@@ -25,7 +28,6 @@ export default class AddUserClientPlugin {
               const source = assets[filename].source();
               // 在原始资源的开头添加 'use client;'
               const newSource = '"use client";\n'.concat(source);
-
               // 替换原始资源
               compilation.updateAsset(filename, new webpack.sources.RawSource(newSource));
             }

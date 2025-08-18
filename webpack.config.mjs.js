@@ -7,6 +7,28 @@ import CopyPlugin from 'copy-webpack-plugin';
 export default function () {
   const defaultConfig = defaultModule();
 
+  defaultConfig.plugins.splice(
+    defaultConfig.plugins.length - 1,
+    0,
+    new CopyPlugin({
+      patterns: [
+        // 写入 scss
+        {
+          from: `src/css/`,
+          to: `styles/`,
+        },
+        {
+          from: 'README.md',
+          to: 'README.md',
+        },
+        {
+          from: 'LICENSE',
+          to: '',
+        },
+      ],
+    }),
+  );
+
   return {
     ...defaultConfig,
     // 入口
@@ -51,26 +73,5 @@ export default function () {
     //     },
     //   },
     // },
-    plugins: [
-      ...defaultConfig.plugins,
-      // /// 文件复制
-      new CopyPlugin({
-        patterns: [
-          // 写入 scss
-          {
-            from: `src/css/`,
-            to: `styles/`,
-          },
-          {
-            from: 'README.md',
-            to: 'README.md',
-          },
-          {
-            from: 'LICENSE',
-            to: '',
-          },
-        ],
-      }),
-    ],
   };
 }

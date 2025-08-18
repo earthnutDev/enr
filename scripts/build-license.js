@@ -33,10 +33,16 @@ function addLicense(dir) {
     }
     if (['.mjs', '.js', '.cjs', '.d.ts'].some(e => file.endsWith(e))) {
       const content = readFileSync(filePath, 'utf8');
+
       if (!content.includes('@license')) {
-        /**  协议路径  */
-        const licensePath = filePath.replace(distDir, '').replace('/', '@');
-        writeFileSync(filePath, licenseHeader(licensePath) + content);
+        writeFileSync(
+          filePath,
+          licenseHeader(filePath.replace(distDir, '').replace('/', '@')) +
+            (file.endsWith('js') ? '\n"use client";\n' : '') +
+            content,
+        );
+      } else if (file.endsWith('js')) {
+        writeFileSync(filePath, '\n"use client";\n' + content);
       }
     }
   });
