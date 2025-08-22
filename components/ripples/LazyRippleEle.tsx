@@ -14,7 +14,6 @@ import { RippleEle } from './types';
 import { isUndefined } from 'a-type-of-js';
 import { Content } from './Content';
 import { useLazyRipples } from '../../customHooks/useRipples/use-lazy-ripple';
-import * as React from 'react';
 
 /**
  *

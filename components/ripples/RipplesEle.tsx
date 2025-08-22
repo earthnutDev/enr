@@ -14,7 +14,6 @@ import { useOptionUpdate } from './useOptionUpdate';
 import { RippleEle } from './types';
 import { isUndefined } from 'a-type-of-js';
 import { Content } from './Content';
-import * as React from 'react';
 
 /**
  *

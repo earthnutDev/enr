@@ -1,5 +1,5 @@
 import { isString } from 'a-type-of-js';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import defaultImg from './default.png';
 
 /**  图片最终的地址  */
@@ -7,7 +7,7 @@ type ImageSource = [
   /**  图片最终渲染的地址  */
   string,
   /** 更新图片地址的派发方法  */
-  React.Dispatch<React.SetStateAction<string>>,
+  Dispatch<SetStateAction<string>>,
 ];
 
 /** 当地址触发变更 */

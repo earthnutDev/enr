@@ -7,6 +7,8 @@
  * @Description BackgroundRipples 的类型声明文件
  ****************************************************************************/
 
+import { HTMLAttributes } from 'react';
+
 export type ImageCrossOrigin = 'anonymous' | 'use-credentials' | 'no-cors';
 
 /**
@@ -30,7 +32,7 @@ export type ImageCrossOrigin = 'anonymous' | 'use-credentials' | 'no-cors';
  *    - darkMode 暗黑模式，仅用于在默认的背景图时更改默认背景图的背景色，如果使用了 `imgUrl` 配置，请执行处理色差异常
  *
  */
-export type BackgroundRipplesProps = React.HTMLAttributes<HTMLDivElement> & {
+export type BackgroundRipplesProps = HTMLAttributes<HTMLDivElement> & {
   /**
    * ## 可设定涟漪的参数
    *

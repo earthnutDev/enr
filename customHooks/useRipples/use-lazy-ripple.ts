@@ -1,14 +1,14 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { Ripples } from './ripplesClass';
 import { RipplesOptions } from './types';
 import { isNull } from 'a-type-of-js';
 import { dog } from 'dog';
 /**  动态加载包含的自定义的钩子  */
 export function useLazyRipples(
-  canvas: React.RefObject<HTMLCanvasElement | null>,
+  canvas: RefObject<HTMLCanvasElement | null>,
   option?: RipplesOptions,
-): { ripples: React.RefObject<Ripples | null>; isLoading: boolean; error: unknown } {
+): { ripples: RefObject<Ripples | null>; isLoading: boolean; error: unknown } {
   /**  react dom  */
   const ripples = useRef<Ripples>(null);
   /**  当前是否被卸载  */

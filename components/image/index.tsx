@@ -1,10 +1,11 @@
 'use client';
-import React from 'react';
+
 import styled from 'styled-components';
 import { EnImageProps } from './types';
 import defaultImgSrc from './default.png';
 import { useSrcChange } from './useSrcChange';
 import { xcn } from 'xcn';
+import { forwardRef } from 'react';
 
 /**  片  */
 const Content = styled.img`
@@ -14,7 +15,7 @@ const Content = styled.img`
 `;
 
 /**  简单的图像  */
-const Image = React.forwardRef<HTMLImageElement, EnImageProps>(
+const Image = forwardRef<HTMLImageElement, EnImageProps>(
   ({ loadingSrc = defaultImgSrc, className, src, ...props }, ref) => {
     const { resultSrc, loadComplete } = useSrcChange(src ?? loadingSrc);
 

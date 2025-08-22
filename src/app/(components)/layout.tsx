@@ -1,7 +1,8 @@
 import MainTab from '@/component/bar';
 import { Layout, LayoutContent, LayoutFooter, LayoutHeader, LayoutSideBar } from '../../../index';
+import { ReactNode } from 'react';
 
-export default function ComponentsLayout({ children }: { children: React.ReactNode }) {
+export default function ComponentsLayout({ children }: { children: ReactNode }) {
   return (
     <Layout>
       <LayoutFooter>页脚</LayoutFooter>

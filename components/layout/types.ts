@@ -1,7 +1,9 @@
+import { CSSProperties, HTMLAttributes } from 'react';
+
 /**
  * 布局
  */
-export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
   classes?: string | string[];
   /**  布局的  */
   /**
@@ -23,13 +25,13 @@ export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: string | number;
   /**  其他的组件样式  */
   /**  样式  */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /**  其他的组件样式  */
   theme?: LayoutTheme;
 }
 
 /**  侧边 sideBar 的参数  */
-export interface LayoutSideBarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LayoutSideBarProps extends HTMLAttributes<HTMLDivElement> {
   classes?: string | string[];
   /**
    * 侧边栏的宽度
@@ -52,7 +54,7 @@ export interface LayoutSideBarProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 /**  Header 的 props   */
-export interface LayoutHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LayoutHeaderProps extends HTMLAttributes<HTMLDivElement> {
   classes?: string | string[];
   /**
    * header 的高度
@@ -69,7 +71,7 @@ export interface LayoutHeaderProps extends React.HTMLAttributes<HTMLDivElement> 
 }
 
 /**  脚组件的参数类型  */
-export interface LayoutFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LayoutFooterProps extends HTMLAttributes<HTMLDivElement> {
   classes?: string | string[];
   /**
    * footer 的高度

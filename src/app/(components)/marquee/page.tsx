@@ -1,5 +1,5 @@
 import { Marquee } from 'components/marquee';
-import React from 'react';
+
 import { CreateMarqueeContent } from './createConten';
 
 /**  跑马灯的页面展示  */

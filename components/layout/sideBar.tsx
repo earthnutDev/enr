@@ -1,7 +1,7 @@
-import React from 'react';
 import { LayoutSideBarProps } from './types';
 import { xcn } from 'xcn';
 import { LayoutSideBarContent } from 'components/shared/EnLayoutContent';
+import { forwardRef } from 'react';
 
 /**
  *
@@ -20,10 +20,10 @@ import { LayoutSideBarContent } from 'components/shared/EnLayoutContent';
  *  缺省值为 `false`
  * @param full 是否占用所有空间
  *  缺省值为 `false`
- * @returns `React.ReactElement`;
+ * @returns `ReactElement`;
  *
  */
-const InternalValueS = React.forwardRef<
+const InternalValueS = forwardRef<
   HTMLDivElement,
   LayoutSideBarProps
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,7 +1,7 @@
 'use client';
 import { _en } from 'customHooks/use-xcn';
 import { useAnimationFrame } from 'customHooks/useAnimationFrame';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { xcn } from 'xcn';
 

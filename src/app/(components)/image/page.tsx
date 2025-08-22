@@ -1,5 +1,5 @@
 import { Image } from 'components/image/';
-import React from 'react';
+
 import styles from './index.module.scss';
 import { xcn } from 'xcn';
 

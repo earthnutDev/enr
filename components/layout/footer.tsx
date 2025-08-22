@@ -1,7 +1,7 @@
-import React from 'react';
 import { LayoutFooterProps } from './types';
 import { xcn } from 'xcn';
 import { LayoutFooterContent } from 'components/shared/EnLayoutContent';
+import { forwardRef } from 'react';
 
 /**
  *
@@ -12,10 +12,10 @@ import { LayoutFooterContent } from 'components/shared/EnLayoutContent';
  * @param className 自定义类名
  * @param height 自定义高度
  * @param props 其他属性
- * @returns React.ReactElement
+ * @returns ReactElement
  *
  */
-const InternalValueF = React.forwardRef<
+const InternalValueF = forwardRef<
   HTMLDivElement,
   LayoutFooterProps
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

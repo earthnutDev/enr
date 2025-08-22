@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { TabList } from './types';
 import { TabItem } from './TabItem';
 import { xcn } from 'xcn';

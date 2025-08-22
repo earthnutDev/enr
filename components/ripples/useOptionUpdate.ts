@@ -1,13 +1,13 @@
 import { isArray } from 'a-type-of-js';
 import { Ripples, RipplesOptions } from '../../customHooks/useRipples/index';
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import { dog } from 'dog';
 
 /**
  * 更新参数数据
  */
 export function useOptionUpdate(
-  ripplesRef: React.RefObject<Ripples | null>,
+  ripplesRef: RefObject<Ripples | null>,
   option: RipplesOptions | undefined,
 ) {
   const oldOption = useRef({ ...option });

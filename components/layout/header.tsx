@@ -1,7 +1,7 @@
-import React from 'react';
 import { LayoutHeaderProps } from './types';
 import { xcn } from 'xcn';
 import { LayoutHeaderContent } from 'components/shared/EnLayoutContent';
+import { forwardRef } from 'react';
 
 /**
  *
@@ -15,9 +15,9 @@ import { LayoutHeaderContent } from 'components/shared/EnLayoutContent';
  * @param noSticky 是否取消悬挂粘连
  *    缺省值为 false
  * @param props 其他属性
- * @returns React.ReactElement
+ * @returns ReactElement
  */
-const InternalValueH = React.forwardRef<
+const InternalValueH = forwardRef<
   HTMLDivElement,
   LayoutHeaderProps
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

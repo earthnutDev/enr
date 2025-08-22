@@ -8,15 +8,15 @@
  * @Description 使用输入框是否完成输入状态
  ****************************************************************************/
 'use client';
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 /**
  *
  * ### 导出一个使用 `useRef` 创建的 `boolean`
  *
- *  *由于是包裹在 React.RefObject 之中，判断时务必使用 `isComposing.current` 进行判断*
+ *  *由于是包裹在 RefObject 之中，判断时务必使用 `isComposing.current` 进行判断*
  * @description 用于判断当前的输入状态是否结束
- * @param inputRef [React.RefObject<HTMLInputElement | HTMLTextAreaElement>] 输入框的 ref
- * @returns  React.RefObject<boolean>
+ * @param inputRef [RefObject<HTMLInputElement | HTMLTextAreaElement>] 输入框的 ref
+ * @returns  RefObject<boolean>
  * @version 0.0.4
  * @see   https://earthnut.dev/custom-hooks/use-input-is-composing
  * @example
@@ -46,8 +46,8 @@ import { useEffect, useRef } from 'react';
  * ```
  */
 export function useInputIsComposing(
-  inputRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>,
-): React.RefObject<boolean> {
+  inputRef: RefObject<HTMLInputElement | HTMLTextAreaElement | null>,
+): RefObject<boolean> {
   /** 当前输入框是否输入模式结束 */
   const isComposing = useRef<boolean>(false);
 

@@ -1,7 +1,6 @@
 import { Layout, LayoutContent, LayoutHeader } from 'components/layout';
 import { _en } from 'customHooks/use-xcn';
 import Link from 'next/link';
-import React from 'react';
 
 /**  主题页面测试  */
 export default function ThemePage() {

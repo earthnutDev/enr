@@ -1,6 +1,6 @@
-import React from 'react';
 import { xcn } from 'xcn';
 import { LayoutContentContainer } from 'components/shared/EnLayoutContent';
+import { forwardRef, HTMLAttributes } from 'react';
 
 /**
  *
@@ -10,7 +10,7 @@ import { LayoutContentContainer } from 'components/shared/EnLayoutContent';
  * @param {string} className  布局的类名
  *
  */
-const InternalValueC = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const InternalValueC = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
     return (
       <LayoutContentContainer

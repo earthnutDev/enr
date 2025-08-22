@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { forwardRef } from 'react';
+
+import { forwardRef, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { MarqueeProps } from './type';
 import './index.scss';
@@ -31,7 +31,7 @@ const Content = styled.div`
  *  一个跑马灯一样的东东
  *
  */
-const MarqueeEle = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & MarqueeProps>(
+const MarqueeEle = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & MarqueeProps>(
   ({ borderRadius = '8px', children, ...props }, ref) => {
     return (
       <HoverContainer {...props} ref={ref} $borderRadius={borderRadius}>

@@ -7,7 +7,7 @@
  *  @Description 使用 ripple 的主要核心逻辑
  ****************************************************************************/
 'use client';
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import { BackgroundRipplesProps, RippleImgUrl, RipplesOptions } from './types';
 import { Ripples } from './ripplesClass';
 import { isNull } from 'a-type-of-js';
@@ -47,9 +47,9 @@ import { isNull } from 'a-type-of-js';
  *
  */
 export function useRipples(
-  canvas: React.RefObject<HTMLCanvasElement | null>,
+  canvas: RefObject<HTMLCanvasElement | null>,
   option?: RipplesOptions,
-): React.RefObject<Ripples | null> {
+): RefObject<Ripples | null> {
   /**  react dom  */
   const ripples = useRef<Ripples>(null);
 
