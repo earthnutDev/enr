@@ -36,23 +36,28 @@ npm install  --save earthnut
 就是 `useRef` 和 `useEffect` 的简单使用。
 
 ```ts
-import { useTimeId } from 'earthnut';
+import { useTimeId } from "earthnut";
 
-export function Home () {
-
+export function Home() {
   const timeId = useTimeId();
 
-  return <>
+  return (
+    <>
       <button
-      onclick = { () => {
-          timeId.current = setTimeout(() =>
-            console.log('没有感情的按钮 A 打印了一条没有感情的消息'), 2500);
-          }
-      }>
-          没有感情的按钮 A
+        onclick={() => {
+          timeId.current = setTimeout(
+            () => console.log("没有感情的按钮 A 打印了一条没有感情的消息"),
+            2500
+          );
+        }}
+      >
+        没有感情的按钮 A
       </button>
-      <button onclick={()=> clearTimeout(timeId.current)}>没有感情的按钮 B</button>
-  </>
+      <button onclick={() => clearTimeout(timeId.current)}>
+        没有感情的按钮 B
+      </button>
+    </>
+  );
 }
 ```
 
@@ -108,7 +113,10 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "${path.resolve(__dirname, 'node_modules/ui-library-a/src/scss')}" as lib;`,
+        additionalData: `@use "${path.resolve(
+          __dirname,
+          'node_modules/ui-library-a/src/scss',
+        )}" as lib;`,
         includePaths: [path.resolve(__dirname, 'node_modules/ui-library-a/src/scss')],
       },
     },

@@ -7,7 +7,7 @@
  * @CreateDate  周二  01/07/2025
  * @Description 使用输入框是否完成输入状态
  ****************************************************************************/
-
+'use client';
 import { useEffect, useRef } from 'react';
 /**
  *

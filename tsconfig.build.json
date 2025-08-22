@@ -4,12 +4,15 @@
     "declaration": true,
     "declarationDir": "dist/",
     "emitDeclarationOnly": true,
+    "noEmit": false,
     "sourceMap": true
   },
   "include": [
     "env.d.ts",
     "dog.ts",
     "index.ts",
+    "index.client.ts",
+    "index.server.ts",
     "customHooks/**/**/*.ts",
     "customHooks/**/*.ts",
     "components/**/**/*.d.ts",
@@ -19,5 +22,9 @@
     "components/**/*.ts",
     "components/**/*.tsx"
   ],
-  "exclude": ["node_modules/", "src/", "public/"]
+  "exclude": [
+    "node_modules/",
+    "src/",
+    "public/"
+  ]
 }

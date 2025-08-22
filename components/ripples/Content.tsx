@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 /**  内容组件  */
 export const Content = styled.div`

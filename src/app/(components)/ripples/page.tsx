@@ -1,3 +1,5 @@
+'use client';
+
 import { BackgroundRipple } from 'components/ripples';
 import React, { useRef, useState } from 'react';
 import styles from './index.module.scss';
@@ -40,8 +42,8 @@ export default function RipplesPage() {
       onContextMenu={togglePlayingState}
       data-alias="ripple 外壳"
       style={{
-        padding: '5rem 0rem',
-        margin: '2rem',
+        padding: '0rem 0rem',
+        margin: '0rem',
         boxSizing: 'border-box',
       }}
     >
@@ -62,7 +64,7 @@ export default function RipplesPage() {
           // perturbance: 0.01,
           raindropsTimeInterval: 4800,
           imgUrl: background,
-          // darkMode,
+          darkMode,
         }}
       >
         <div className={xcn('en-center')}>
@@ -86,9 +88,9 @@ export default function RipplesPage() {
               {e}
             </div>
           ))}
-          <div>
+          <div className={xcn(styles.buttons)}>
             {['纯色', '渐变', '图片', '没有值'].map((e, i) => (
-              <button key={e} data-index={i} style={{}} onClick={setBackgroundValue}>
+              <button key={e} data-index={i} onClick={setBackgroundValue}>
                 {e}
               </button>
             ))}

@@ -7,7 +7,7 @@
  * @CreateDate  周二  01/07/2025
  * @Description 使用 animationFrame
  ****************************************************************************/
-
+'use client';
 import { isBoolean, isPlainObject } from 'a-type-of-js';
 import { dog } from 'dog';
 import { useCallback, useEffect, useRef } from 'react';
@@ -153,7 +153,7 @@ export function useAnimationFrame(
 
   // 首次执行
   if (current.immediately && !current.noun && current.result.canceled) {
-    console.log('重复执行');
+    dog('重复执行');
 
     current.noun = true;
     current.result.render();

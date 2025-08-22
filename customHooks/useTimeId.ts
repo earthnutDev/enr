@@ -7,6 +7,7 @@
  * @CreateDate  周二  01/07/2025
  * @Description 使用定时器返回的时间戳
  ****************************************************************************/
+'use client';
 import { useEffect, useRef } from 'react';
 /**
  *

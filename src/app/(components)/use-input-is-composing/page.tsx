@@ -1,11 +1,8 @@
+'use client';
 import { useInputIsComposing } from 'customHooks/useInputIsComposing';
-import * as React from 'react';
 import { useEffect, useRef } from 'react';
 
-/**
- * 使用输入框输入完成状态的测试页面
- */
-export default function UseInputIsComposing() {
+export default function Page() {
   const inputRef = useRef<HTMLInputElement>(null);
   const isOver = useInputIsComposing(inputRef);
 

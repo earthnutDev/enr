@@ -13,16 +13,8 @@ import {
 } from './types';
 import { xcn } from 'xcn';
 import { isTrue } from 'a-type-of-js';
-import styled from 'styled-components';
-import { EnLayoutContent } from './EnLayoutContent';
+import { EnLayoutContent, LayoutContentWrapper } from 'components/shared/EnLayoutContent';
 import { getValue } from './get-value';
-import { generateClass } from './generate-class';
-
-/**  内容区域容器  */
-const LayoutContentWrapper = styled.div`
-  grid-area: content;
-  overflow: auto;
-`;
 
 /**
  *
@@ -100,15 +92,15 @@ const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
       /**  侧边是否占据所有尺寸（发生于 side bar 的 full 为 true 和仅有 side bar 时）   */
       sideFull: boolean = false;
     /**  头字符串样式类  */
-    const $header: string = generateClass('header'),
+    const $header: string = 'en-layout-header',
       /**  内容字符串样式类  */
-      $content: string = generateClass('content'),
+      $content: string = 'en-layout-content',
       /**  主区字符串样式类  */
-      $main: string = generateClass('main'),
+      $main: string = 'en-layout-main',
       /**  侧边字符串样式类  */
-      $sidebar: string = generateClass('sidebar'),
+      $sidebar: string = 'en-layout-sidebar',
       /**  页脚字符串样式类  */
-      $footer: string = generateClass('footer');
+      $footer: string = 'en-layout-footer';
 
     /// 校验所有的子元素，并修改特定的 props
     React.Children.forEach(children, child => {
@@ -180,6 +172,7 @@ const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
       (hasHeader && hasSideBar && hasContent && hasFooter && `${layout}-all`) ||
       (hasHeader && hasContent && hasSideBar && `${layout}-no-footer`) ||
       (hasSideBar && hasContent && hasFooter && `${layout}-no-header`) ||
+      (hasHeader && hasContent && hasFooter && 'no-sidebar') ||
       (hasContent && hasFooter && 'only-footer') ||
       (hasContent && hasHeader && 'only-header') ||
       (hasContent && hasSideBar && (sideFull = true) && `${layout}-only-side`) ||

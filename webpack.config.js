@@ -68,7 +68,7 @@ export default function () {
               presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
             },
           },
-          pathJoin('loaders/add-use-client-loader.js'),
+          // pathJoin('loaders/add-use-client-loader.js'),
         ],
       },
       // 配置 scss

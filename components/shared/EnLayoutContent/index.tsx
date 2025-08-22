@@ -1,12 +1,56 @@
-import { css, styled } from 'styled-components';
+'use client';
+import styled, { css } from 'styled-components';
 import { EnLayoutContentProps } from './types';
+
+/**  创建带样式的组件  */
+export const LayoutContentContainer = styled.main`
+  grid-area: content;
+  position: relative;
+`;
+/**  带样式的组件  */
+export const LayoutFooterContent = styled.div`
+  grid-area: footer;
+  position: relative;
+  height: var(--layout-footer-height);
+  box-shadow: 0 -1px 13px 0px #0000001a;
+  overflow: hidden;
+`;
+
+/**  带样式的头部  */
+export const LayoutHeaderContent = styled.div`
+  grid-area: header;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  height: var(--layout-header-height);
+  box-shadow: 0 4px 13px -3px #0000001a;
+  overflow: hidden;
+`;
+
+/**  带样式的组件  */
+export const LayoutSideBarContent = styled.div`
+  position: sticky;
+  left: 0;
+  z-index: 8;
+  grid-area: side;
+  overflow-x: hidden;
+  overflow-y: auto;
+`;
+
+/**  内容区域容器  */
+export const LayoutContentWrapper = styled.div`
+  position: relative;
+  grid-area: content;
+  overflow: auto;
+`;
 
 /**  元始的外壳  */
 export const EnLayoutContent = styled.div<EnLayoutContentProps>`
   position: relative;
   top: 0px;
-  width: var(--layout-width);
   height: var(--layout-height);
+  width: var(--layout-width);
   overflow-x: hidden;
   overflow-y: auto;
 
@@ -40,6 +84,17 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
         }
       `}
     `}
+
+  ${({ $layoutType, $content }) =>
+    $layoutType === 'no-sidebar' &&
+    css`
+      & > .${$content} {
+        min-height: calc(
+          var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
+        );
+      }
+    `}
+
   // 侧边栏全屏样式
   ${({ $layoutType, $sidebar }) =>
     $layoutType === 'side-full' &&
@@ -62,7 +117,9 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
         grid-template-rows:
           calc(var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height))
           auto;
-        min-height: calc(100% - var(--layout-header-height) - var(--layout-footer-height));
+        min-height: calc(
+          var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
+        );
 
         // side bar 块保持粘连，且在 content height 不足时支撑页面
         & > .${$sidebar} {
@@ -92,6 +149,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     css`
       & > .${$content} {
         grid-template-columns: auto var(--layout-side-bar-width);
+        grid-template-rows: 100% max-content;
         grid-template-areas:
           'content side'
           'content .';
@@ -114,6 +172,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     $layoutType === 'side-full-all' &&
     css`
       grid-template-columns: var(--layout-side-bar-width) auto;
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'side header'
         'side content'
@@ -125,6 +184,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     $layoutType === 'side-right-full-all' &&
     css`
       grid-template-columns: auto var(--layout-side-bar-width);
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'header side'
         'content side'
@@ -165,6 +225,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     $layoutType === 'side-full-no-header' &&
     css`
       grid-template-columns: var(--layout-side-bar-width) auto;
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'side content'
         'side footer';
@@ -175,6 +236,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     $layoutType === 'side-right-full-no-header' &&
     css`
       grid-template-columns: auto var(--layout-side-bar-width);
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'content side'
         'footer side';
@@ -188,7 +250,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     css`
       display: grid;
       grid-template-rows: var(--layout-header-height) auto;
-      min-height: calc(100% - var(--layout-header-height));
+      min-height: calc(var(--layout-height) - var(--layout-header-height));
       gap: 0px;
       // side bar 块保持粘连，且在 content height 不足时支撑页面
       & > .${$sidebar} {
@@ -203,6 +265,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     $layoutType === 'simple-no-footer' &&
     css`
       grid-template-columns: var(--layout-side-bar-width) auto;
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'header header'
         'side content'
@@ -215,6 +278,7 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
     $layoutType === 'side-right-no-footer' &&
     css`
       grid-template-columns: auto var(--layout-side-bar-width);
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'header header'
         'content side'
@@ -242,6 +306,7 @@ ${({ $layoutType, $main }) =>
     $layoutType === 'side-full-no-footer' &&
     css`
       grid-template-columns: var(--layout-side-bar-width) auto;
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'side header'
         'side content';
@@ -253,6 +318,7 @@ ${({ $layoutType, $main }) =>
     $layoutType === 'side-right-full-no-footer' &&
     css`
       grid-template-columns: auto var(--layout-side-bar-width);
+      grid-template-rows: 100% max-content;
       grid-template-areas:
         'header side'
         'content side';
@@ -299,6 +365,7 @@ ${({ $layoutType, $main }) =>
       grid-template-rows: 100%;
       // 横向空间占比设置
       grid-template-columns: var(--layout-side-bar-width) auto;
+      grid-template-rows: 100% max-content;
       gap: 0px;
       grid-template-areas:
         'side content'
@@ -313,5 +380,6 @@ ${({ $layoutType, $main }) =>
         'content side'
         'content .';
       grid-template-columns: auto var(--layout-side-bar-width);
+      grid-template-rows: 100% max-content;
     `}
 `;

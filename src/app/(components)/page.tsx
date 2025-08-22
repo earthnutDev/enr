@@ -1,0 +1,20 @@
+'use client';
+
+import { EnLayout } from 'components/layout';
+import { LazyBackgroundRipple } from 'components/ripples';
+import { _en } from 'customHooks/use-xcn';
+import { usePathname } from 'next/navigation';
+
+export default function WebHomePage() {
+  const path = usePathname();
+
+  const isHome = path === '' || path === '/';
+
+  return (
+    <LazyBackgroundRipple>
+      <EnLayout className={_en('en-center')}>
+        {isHome ? '欢迎回到首页' : '抱歉，页面未找到'}
+      </EnLayout>
+    </LazyBackgroundRipple>
+  );
+}

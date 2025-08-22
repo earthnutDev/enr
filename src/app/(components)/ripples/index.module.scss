@@ -1,0 +1,27 @@
+@use "../../../css/vars" as *;
+
+.page {
+  position: static;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-size: 100% 100%;
+  .buttons {
+    button {
+      display: inline-block;
+      margin: 2rem 0.68rem;
+      padding: 0.36rem 0.68rem;
+      border-radius: 12px;
+      border: none;
+      background-color: $en-color-ads;
+      color: $en-color-dark-theme-blue-60;
+    }
+  }
+}
+
+.p {
+  text-shadow: -1px 1px 0.01px #fff;
+  margin: 10px 2px;
+  letter-spacing: 5px;
+  font-size: 1.2rem;
+}

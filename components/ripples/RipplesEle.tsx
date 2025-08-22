@@ -6,6 +6,7 @@
  * @CreateDate  周四  12/12/2024
  * @Description 涟漪
  ****************************************************************************/
+'use client';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { BackgroundRipplesProps, RipplesOptions } from '../../customHooks/useRipples/types';
 import { useRipples } from '../../customHooks/useRipples';

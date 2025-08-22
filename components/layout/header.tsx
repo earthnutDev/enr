@@ -1,19 +1,8 @@
 import React from 'react';
 import { LayoutHeaderProps } from './types';
 import { xcn } from 'xcn';
-import styled from 'styled-components';
+import { LayoutHeaderContent } from 'components/shared/EnLayoutContent';
 
-/**  带样式的头部  */
-const EnLayoutHeader = styled.div`
-  grid-area: header;
-  position: sticky;
-  top: 0px;
-  left: 0px;
-  z-index: 10;
-  height: var(--layout-header-height);
-  box-shadow: 0 4px 13px -3px #0000001a;
-  overflow: hidden;
-`;
 /**
  *
  * layout header
@@ -34,14 +23,14 @@ const InternalValueH = React.forwardRef<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, children, height, noSticky, ...props }, ref) => {
   return (
-    <EnLayoutHeader
+    <LayoutHeaderContent
       ref={ref}
       className={xcn(['en-layout-header'], className)}
       {...props}
       data-earthnut-ui="layout-header"
     >
       {children}
-    </EnLayoutHeader>
+    </LayoutHeaderContent>
   );
 });
 

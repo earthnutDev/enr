@@ -7,8 +7,10 @@ export { pathJoin };
  * 打包为 mjs 模式
  */
 export default function () {
+  const commonConfig = defaultModule();
+
   const config = {
-    ...defaultModule(),
+    ...commonConfig,
     entry: {
       index: {
         import: './index.ts',
@@ -28,6 +30,7 @@ export default function () {
       xcn: 'xcn',
       'a-js-tools': 'a-js-tools',
       'a-type-of-js': 'a-type-of-js',
+      'styled-components': 'styled-components',
     },
     // 打包模式
     mode: 'production',
@@ -35,30 +38,20 @@ export default function () {
     devtool: false,
     // 打包配置
     optimization: {
-      usedExports: true, // 启用 tree shaking
-      // 代码压缩
-      // 生产模式默认为 true
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            format: {
-              comments: false,
-            },
-            mangle: true,
-            compress: {
-              directives: true, // 禁止删除顶级指令
-            },
-          },
-          extractComments: false,
-        }),
-      ],
-      sideEffects: true, /// 告诉 webpack 这个库没有副作用，以便有效的 tree shaking
+      chunkIds: 'named',
+      mangleExports: false,
+      minimize: false,
       // 代码分割
-      // splitChunks: {
-      //   chunks: 'all',
-      //   cacheGroup: {},
-      // },
+      runtimeChunk: false, // 关闭 runtime 文件单独打包
+      sideEffects: false,
+    },
+    resolve: {
+      ...commonConfig.resolve,
+      alias: {
+        ...commonConfig.resolve.alias,
+        /**  在正式环境添加自定义的 dog 进行不执行打印  */
+        '@qqi/log': pathJoin('./mocks/log.ts'),
+      },
     },
   };
 
@@ -69,9 +62,6 @@ export default function () {
     1,
     new AddUserClientPlugin(),
   );
-
-  /**  在正式环境添加自定义的 dog 进行不执行打印  */
-  config.resolve.alias['@qqi/log'] = pathJoin('./mocks/log.ts');
 
   return config;
 }

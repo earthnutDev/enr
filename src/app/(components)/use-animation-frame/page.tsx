@@ -1,3 +1,4 @@
+'use client';
 import { _en } from 'customHooks/use-xcn';
 import { useAnimationFrame } from 'customHooks/useAnimationFrame';
 import React, { useEffect, useRef, useState } from 'react';
@@ -12,7 +13,7 @@ const Example = styled.div`
 `;
 
 /**  测试使用关键帧  */
-export function UseAnimationFramePage() {
+export default function UseAnimationFramePage() {
   const [data, setData] = useState({
     state: false,
     time1: 0,

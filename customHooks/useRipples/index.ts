@@ -6,6 +6,7 @@
  *  @CreateDate  周五  06/20/2025
  *  @Description 使用 ripple 的主要核心逻辑
  ****************************************************************************/
+'use client';
 import { useEffect, useRef } from 'react';
 import { BackgroundRipplesProps, RippleImgUrl, RipplesOptions } from './types';
 import { Ripples } from './ripplesClass';

@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Ripples } from './ripplesClass';
 import { RipplesOptions } from './types';
@@ -50,7 +51,7 @@ export function useLazyRipples(
           dog('当前状态值不准确，执行');
           return;
         }
-        dog.error('加载了该项异步，并初始化了值');
+        dog.warn('加载了该项异步，并初始化了值');
         ripples.current = new module.Ripples(canvas.current, option);
       })
       .catch(err => {

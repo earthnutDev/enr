@@ -2,10 +2,12 @@ import { pathJoin, readFileToJsonSync, getDirectoryBy, writeJsonFile } from 'a-n
 
 let packageJson = readFileToJsonSync('./package.json');
 
-['scripts', 'devDependencies', 'lint-staged', 'private'].forEach(key => delete packageJson[key]);
+['scripts', 'devDependencies', 'lint-staged', 'private', 'override'].forEach(
+  key => delete packageJson[key],
+);
 
 packageJson = {
-  main: 'index.cjs',
+  // main: 'index.cjs',
   module: 'index.mjs',
   types: 'index.d.ts',
   author: {
@@ -14,12 +16,32 @@ packageJson = {
     url: 'https://earthnut.dev',
   },
   ...packageJson,
-  files: ['components', 'customHooks', 'index.cjs', 'index.mjs', 'index.d.ts', 'styles'],
+  files: [
+    'components',
+    'customHooks',
+    'styles',
+    'client.mjs',
+    'index.client.d.ts',
+    'index.d.ts',
+    'index.mjs',
+    'index.server.d.ts',
+    'layoutUtil.mjs',
+    'server.mjs',
+    'vendors.mjs',
+  ],
   exports: {
     '.': {
       types: './index.d.ts',
-      require: './index.cjs',
+      // require: './index.cjs',
       import: './index.mjs',
+    },
+    './client': {
+      types: './index.client.d.ts',
+      import: './client.mjs',
+    },
+    './server': {
+      types: './index.server.d.ts',
+      import: './server.mjs',
     },
     './scss': './styles/common.scss',
     './css': './styles/common.css',
@@ -42,6 +64,7 @@ packageJson = {
   peerDependencies: {
     react: '>= 17',
     'react-dom': '>= 17',
+    'styled-components': '>= 6',
   },
 };
 {

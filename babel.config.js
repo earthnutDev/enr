@@ -19,6 +19,13 @@ export default function (api) {
       // },
     ],
     plugins: [
+      [
+        'styled-components',
+        {
+          ssr: true,
+          displayName: true,
+        },
+      ],
       '@babel/plugin-proposal-class-properties',
       isProduction && '@qqi/babel-plugin-remove-dog-calls',
       isProduction && ['transform-remove-console', { exclude: ['error', 'warn'] }],

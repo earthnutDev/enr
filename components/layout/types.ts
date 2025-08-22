@@ -3,9 +3,6 @@
  */
 export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   classes?: string | string[];
-
-  /**  样式  */
-  style?: React.CSSProperties;
   /**  布局的  */
   /**
    * 布局的宽
@@ -24,6 +21,9 @@ export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
    * 为具体值。当为 100% 时 side bar 渲染不正确
    */
   height?: string | number;
+  /**  其他的组件样式  */
+  /**  样式  */
+  style?: React.CSSProperties;
   /**  其他的组件样式  */
   theme?: LayoutTheme;
 }
@@ -98,6 +98,7 @@ export type EnLayoutContentType =
   | 'simple'
   | 'only-footer'
   | 'only-header'
+  | 'no-sidebar'
   | 'side-full'
   | 'side-right-full-all'
   | 'side-right-full-no-footer'
@@ -115,14 +116,3 @@ export type EnLayoutContentType =
   | 'simple-no-footer'
   | 'simple-no-header'
   | 'simple-only-side';
-
-/**  组件的样式  */
-export interface EnLayoutContentProps {
-  $header: string;
-  $content: string;
-  $sidebar: string;
-  $footer: string;
-  $main: string;
-  $headerNoSticky: boolean;
-  $layoutType: EnLayoutContentType;
-}
