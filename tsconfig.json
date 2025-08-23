@@ -37,12 +37,12 @@
       "@/*": [
         "./src/*"
       ],
-      "page/*": [
-        "src/page/*"
+      "storage/": [
+        "storage/*"
       ],
-      "css/*": [
-        "src/css/*"
-      ],
+      "utilities": [
+        "utilities/*"
+      ]
     }
   },
   "include": [

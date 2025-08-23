@@ -161,7 +161,7 @@ export class RipplesRenderData {
     Reflect.apply(restoreCssBackground, { renderData: this }, []);
     // 移除事件监听
     if (this.parentElement && this.events) {
-      dog.error('移除监听的事件');
+      dog.warn('移除监听的事件');
 
       try {
         const { parentElement, events } = this;
@@ -181,7 +181,7 @@ export class RipplesRenderData {
           this.resizeObserver = null;
         }
       } catch (error) {
-        dog.error('移除监听者失败', error);
+        dog.warn('移除监听者失败', error);
       }
     }
   }

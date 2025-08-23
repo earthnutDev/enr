@@ -1,6 +1,6 @@
 'use client';
 
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { EnImageProps } from './types';
 import defaultImgSrc from './default.png';
 import { useSrcChange } from './useSrcChange';

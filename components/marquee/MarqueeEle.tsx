@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, HTMLAttributes } from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { MarqueeProps } from './type';
 import './index.scss';
 

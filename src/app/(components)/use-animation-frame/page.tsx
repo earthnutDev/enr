@@ -2,7 +2,7 @@
 import { _en } from 'customHooks/use-xcn';
 import { useAnimationFrame } from 'customHooks/useAnimationFrame';
 import { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { xcn } from 'xcn';
 
 const Example = styled.div`

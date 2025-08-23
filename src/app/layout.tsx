@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import '@/css/common.scss';
 import './globals.css';
 import './product.scss';
-import '@/css/common.scss';
 import StyledComponentsRegistry from '@/registry';
 import { ReactNode } from 'react';
 

@@ -48,6 +48,8 @@ export default function () {
       dog: pathJoin('dog.ts'),
       page: pathJoin('src/page/'), /// 页面相关
       css: pathJoin('src/css/'), /// 公共 css 相关
+      storage: pathJoin('storage'), // 公共的 storage
+      utilities: pathJoin('utilities'), // 公共的其他数据
       // 'a-react-ripples': path.join(__dirname, 'node_modules/a-react-ripples/'),
     },
   };

@@ -1,6 +1,6 @@
 import { LayoutHeaderProps } from './types';
 import { xcn } from 'xcn';
-import { LayoutHeaderContent } from 'components/shared/EnLayoutContent';
+import { LayoutHeaderContainer } from 'components/shared/EnLayoutContent';
 import { forwardRef } from 'react';
 
 /**
@@ -23,14 +23,14 @@ const InternalValueH = forwardRef<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, children, height, noSticky, ...props }, ref) => {
   return (
-    <LayoutHeaderContent
+    <LayoutHeaderContainer
       ref={ref}
       className={xcn(['en-layout-header'], className)}
       {...props}
       data-earthnut-ui="layout-header"
     >
       {children}
-    </LayoutHeaderContent>
+    </LayoutHeaderContainer>
   );
 });
 

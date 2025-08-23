@@ -27,7 +27,7 @@ export function useLazyRipples(
     setTimeout(() => {
       // 当前是被卸载状态
       if (isUnmounted.current) {
-        dog.error('执行了卸载');
+        dog.warn('执行了卸载');
         ripples.current?.destroy();
       }
     }, 0);

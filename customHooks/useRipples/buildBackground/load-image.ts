@@ -17,7 +17,7 @@ import { getNewImage } from '../callback/get-new-image';
  */
 export function loadImage(this: Ripples) {
   dog.type = false;
-  dog.error('开始下载图片');
+  dog.warn('开始下载图片');
   const { renderData, options, fadeData } = this;
   if (isNull(renderData)) {
     dog('执行绘制时没有渲染数据');

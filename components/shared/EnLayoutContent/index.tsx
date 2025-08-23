@@ -1,5 +1,5 @@
 'use client';
-import styled, { css } from 'styled-components';
+import { styled, css } from 'styled-components';
 import { EnLayoutContentProps } from './types';
 
 /**  创建带样式的组件  */
@@ -17,7 +17,7 @@ export const LayoutFooterContent = styled.div`
 `;
 
 /**  带样式的头部  */
-export const LayoutHeaderContent = styled.div`
+export const LayoutHeaderContainer = styled.nav`
   grid-area: header;
   position: sticky;
   top: 0px;
@@ -29,7 +29,7 @@ export const LayoutHeaderContent = styled.div`
 `;
 
 /**  带样式的组件  */
-export const LayoutSideBarContent = styled.div`
+export const LayoutSideBarContainer = styled.aside`
   position: sticky;
   left: 0;
   z-index: 8;
@@ -49,8 +49,8 @@ export const LayoutContentWrapper = styled.div`
 export const EnLayoutContent = styled.div<EnLayoutContentProps>`
   position: relative;
   top: 0px;
-  height: var(--layout-height);
-  width: var(--layout-width);
+  height: var(--layout-self-height);
+  width: var(--layout-self-width);
   overflow-x: hidden;
   overflow-y: auto;
 

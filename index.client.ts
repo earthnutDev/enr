@@ -32,3 +32,11 @@ export type {
 export { Image, Image as EnImage } from './components/image';
 
 export type { EnImageProps } from './components/image';
+
+export { useColorMode, ThemeColorModeProvider } from './components/ThemeContext';
+
+export type {
+  ColorMode,
+  ThemeContextType,
+  ThemeColorModeProviderProps,
+} from './components/ThemeContext/types';

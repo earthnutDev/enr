@@ -1,6 +1,6 @@
 import { LayoutSideBarProps } from './types';
 import { xcn } from 'xcn';
-import { LayoutSideBarContent } from 'components/shared/EnLayoutContent';
+import { LayoutSideBarContainer } from 'components/shared/EnLayoutContent';
 import { forwardRef } from 'react';
 
 /**
@@ -29,7 +29,7 @@ const InternalValueS = forwardRef<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, width = 150, right = false, full = false, ...props }, ref) => {
   return (
-    <LayoutSideBarContent
+    <LayoutSideBarContainer
       className={xcn('en-layout-side', className)}
       ref={ref}
       {...props}

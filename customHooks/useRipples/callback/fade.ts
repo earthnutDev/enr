@@ -65,7 +65,7 @@ export function fade(this: Ripples) {
    *
    */
   if (isNull(ctx) || isNull(lastDrawImage.resource) || isEmptyArray(toBeList)) {
-    dog.error(
+    dog.warn(
       '是我啦',
       isNull(ctx),
       '-',

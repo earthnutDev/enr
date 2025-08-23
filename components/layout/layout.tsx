@@ -11,7 +11,7 @@ import {
   LayoutTheme,
 } from './types';
 import { xcn } from 'xcn';
-import { isTrue } from 'a-type-of-js';
+import { isString, isTrue } from 'a-type-of-js';
 import { EnLayoutContent, LayoutContentWrapper } from 'components/shared/EnLayoutContent';
 import { getValue } from './get-value';
 import { Children, cloneElement, forwardRef, isValidElement, ReactElement } from 'react';
@@ -209,8 +209,10 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         style={{
           // eslint-disable-next-line jsdoc/check-tag-names
           /**  @ts-expect-error: 自定义侧边栏的宽度  */
-          '--layout-width': getValue(width),
-          '--layout-height': getValue(height),
+          '--layout-self-width': getValue(width),
+          '--layout-self-height': getValue(height),
+          '--layout-width': getValue(isString(width) && width.endsWith('%') ? '100%' : width),
+          '--layout-height': getValue(isString(height) && height.endsWith('%') ? '100%' : height),
           '--layout-side-bar-width': getValue(sideWidth),
           '--layout-header-height': getValue(headerHeight),
           '--layout-footer-height': getValue(footerHeight),
