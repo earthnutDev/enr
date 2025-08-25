@@ -30,7 +30,7 @@ export interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
   theme?: LayoutTheme;
 }
 
-/**  侧边 sideBar 的参数  */
+/**  侧边 sidebar 的参数  */
 export interface LayoutSideBarProps extends HTMLAttributes<HTMLDivElement> {
   classes?: string | string[];
   /**

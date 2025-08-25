@@ -1,7 +1,7 @@
 'use client';
 
 import { TabList } from './types';
-import { TabItem } from './SideBarItem/Link/';
+import { TabItem } from './SidebarItem/Link';
 import { styled } from 'styled-components';
 
 const NarContent = styled.div`

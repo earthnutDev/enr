@@ -1,5 +1,5 @@
 import { InternalValueH as LayoutHeader } from './header';
-import { InternalValueS as LayoutSideBar } from './sideBar';
+import { InternalValueS as LayoutSideBar } from './sidebar';
 import { InternalValueC as LayoutContent } from './content';
 import { InternalValueF as LayoutFooter } from './footer';
 import {
@@ -11,10 +11,18 @@ import {
   LayoutTheme,
 } from './types';
 import { xcn } from 'xcn';
-import { isString, isTrue } from 'a-type-of-js';
+import { isNumber, isString, isTrue } from 'a-type-of-js';
 import { EnLayoutContent, LayoutContentWrapper } from 'components/shared/EnLayoutContent';
 import { getValue } from './get-value';
 import { Children, cloneElement, forwardRef, isValidElement, ReactElement } from 'react';
+import { dog } from 'dog';
+import { isFragment } from './is-fragment';
+
+/**  数值是否是需要转换的值  */
+function isDecimal(value: string | number) {
+  if (isNumber(value)) return value > 0 && value <= 1 ? `${value * 100}%` : value;
+  return /^0\.\d+$/.test(value) ? `${parseFloat(value) * 100}%` : value;
+}
 
 /**
  *
@@ -59,9 +67,9 @@ import { Children, cloneElement, forwardRef, isValidElement, ReactElement } from
  *
  */
 const Layout = forwardRef<HTMLDivElement, LayoutProps>(
-  ({ className, children, style, width = '100vw', height = '100vh', classes, ...props }, ref) => {
+  ({ className, children, style, width = '100%', height = '100%', classes, ...props }, ref) => {
     /**  子组件的个数  */
-    // const childCount = Children.count(children);
+    const childCount = Children.count(children);
     /**  头部 header 是否粘连影响下的样式  */
     // console.log('子元素个数', childCount);
     /**  头部 header 组件  */
@@ -72,7 +80,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
       /**  是否拥有头部（header）  */
       hasHeader: boolean = false,
       /**  侧边栏组件  */
-      SideBar: ReactElement | undefined,
+      Sidebar: ReactElement | undefined,
       /**  是否拥有侧边（side bar）  */
       hasSideBar: boolean = false,
       /**  内容区，该内容区与 Content、SideBar 组成的 .content 不同  */
@@ -101,7 +109,24 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
       $sidebar: string = 'en-layout-sidebar',
       /**  页脚字符串样式类  */
       $footer: string = 'en-layout-footer';
+    /**  由 Fragment 包裹的子元素完成解包  */
+    if (childCount === 1) {
+      Children.forEach(children, child => {
+        if (!isValidElement(child)) return;
+        /**  是否仅有一个元素  */
+        const onlyOneElement = Children.only(child);
+        if (isFragment(onlyOneElement))
+          // eslint-disable-next-line jsdoc/check-tag-names
+          /**  @ts-expect-error: 已知晓其中厉害  */
+          children = Children.toArray(child?.props?.children);
+      });
+    }
 
+    // 转化可能是小数设置的宽度
+    width = isDecimal(width);
+    height = isDecimal(height);
+
+    dog('Layout 执行渲染');
     /// 校验所有的子元素，并修改特定的 props
     Children.forEach(children, child => {
       /// 检测 child 是否是有效的 React 元素（避免非元素节点）
@@ -132,7 +157,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
                 ? 'side-full'
                 : 'simple';
         sideFull = isTrue(sideBarProps.full);
-        SideBar = cloneElement(element, {
+        Sidebar = cloneElement(element, {
           className: xcn($sidebar, element.props.className),
         });
         hasSideBar = true;
@@ -227,12 +252,12 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
             {Header}
             {hasFooter ? (
               <div className={xcn($content)} data-earthnut-ui="layout-with-foot-content">
-                {SideBar}
+                {Sidebar}
                 {Content}
               </div>
             ) : (
               <>
-                {SideBar}
+                {Sidebar}
                 {Content}
               </>
             )}
@@ -241,7 +266,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         ) : (
           // 特殊布局
           <>
-            {SideBar}
+            {Sidebar}
             {Header}
             {Content}
             {Footer}

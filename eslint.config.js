@@ -26,6 +26,19 @@ export default defineConfig([
   },
   { files: ['**/*.css'], plugins: { css }, language: 'css/css', extends: ['css/recommended'] },
   {
+    plugins: ['sass', 'prettier'],
+    rules: {
+      'sass/space-after-variable-name': false,
+      'prettier/prettier': [
+        'error',
+        {
+          // 这里复用 Prettier 的配置
+          sassVariableSemicolon: false,
+        },
+      ],
+    },
+  },
+  {
     plugins: {
       jsdoc: jsdocPlugin,
     },
@@ -73,6 +86,12 @@ export default defineConfig([
         pragma: 'React',
         version: 'detect',
       },
+    },
+    rules: {
+      // 禁用 "React" 必须在作用域的检测
+      'react/react-in-jsx-scope': 'off',
+      //
+      'react/jsx-uses-react': 'off',
     },
   },
 ]);

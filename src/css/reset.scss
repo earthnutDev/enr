@@ -1,4 +1,4 @@
-@use "./root.scss";
+@use "./vars-color.scss" as *;
 
 /* 盒模型 规则 */
 *,
@@ -28,7 +28,7 @@ body {
   font-family: var(--en-font-body);
   font-size: var(--en-base-font-size);
   line-height: var(--en-font-content-line-height);
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizeSpeed; // 文本渲染，是快速还是清晰
 }
 
 /*  链接元素没有 class 类时的展示 */

@@ -40,3 +40,5 @@ export type {
   ThemeContextType,
   ThemeColorModeProviderProps,
 } from './components/ThemeContext/types';
+
+export { Switch, Switch as EnSwitch } from './components/switch';

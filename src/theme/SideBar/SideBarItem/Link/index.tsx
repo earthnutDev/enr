@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { xcn } from 'xcn';
 import { usePathname } from 'next/navigation';
 import { TabItemProps } from '../../types';
 import { css, styled } from 'styled-components';
@@ -30,16 +29,19 @@ const LinkContent = styled.span<{
   padding: 5px 0px;
   width: 100%;
   transition: all 0.6s;
+  /* type */
   ${({ $type }) =>
     $type === 'link' &&
     css`
       cursor: ne-resize;
       &::after {
-        content: '🔗';
+        content: '⎋';
+        color: #0f0;
         position: absolute;
         top: 0px;
         right: 8px;
         opacity: 0.5;
+        transform: rotate(80deg);
       }
     `}
 
@@ -60,6 +62,7 @@ const LinkContent = styled.span<{
     `}
 `;
 
+/**  链接子项  */
 export function TabItem({ data }: TabItemProps) {
   const path = usePathname();
 
