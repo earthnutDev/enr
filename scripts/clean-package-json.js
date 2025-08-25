@@ -19,15 +19,23 @@ packageJson = {
   files: [
     'components',
     'customHooks',
+    'storage',
     'styles',
+    'utilities',
+    '209.mjs',
+    '209.mjs.map',
     'client.mjs',
+    'client.mja.map',
     'index.client.d.ts',
     'index.d.ts',
     'index.mjs',
     'index.server.d.ts',
     'layoutUtil.mjs',
+    'layoutUtil.mjs.map',
     'server.mjs',
+    'server.mjs.map',
     'vendors.mjs',
+    'vendors.mjs.map',
   ],
   exports: {
     '.': {

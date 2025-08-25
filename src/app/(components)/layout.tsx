@@ -1,4 +1,4 @@
-import MainTab from '@/theme/Sidebar';
+import MainTab from '@/theme/Side-bar';
 import { Layout, LayoutContent, LayoutFooter, LayoutHeader, LayoutSideBar } from '../../../index';
 import { ReactNode } from 'react';
 import { root_tab_bar_list } from './root-tab-list';
