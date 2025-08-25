@@ -1,5 +1,5 @@
 import { InternalValueH as LayoutHeader } from './header';
-import { InternalValueS as LayoutSideBar } from './side-bar';
+import { InternalValueS as LayoutSideBar } from './sidebar';
 import { InternalValueC as LayoutContent } from './content';
 import { InternalValueF as LayoutFooter } from './footer';
 import {

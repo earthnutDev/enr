@@ -1,4 +1,4 @@
-import { TabList } from '@/theme/Side-bar/types';
+import { TabList } from '@/theme/Sidebar/types';
 
 export const root_tab_bar_list: TabList = [
   {
