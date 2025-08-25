@@ -21,8 +21,5 @@
         "printWidth": 100
       }
     }
-  ],
-  "plugins": [
-    "prettier-plugin-scss"
   ]
 }

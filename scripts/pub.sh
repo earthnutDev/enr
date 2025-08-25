@@ -22,8 +22,6 @@ echo "获取🉐发布标签为 ${tag}"
 # 依赖安装
 # npm ci
 pnpm install --frozen-lockfile --prod=false
-# 变换环境值
-node ./scripts/env.js env=production
 # 构建项目
 ./scripts/build.sh
 # 构建 package.json 文件
