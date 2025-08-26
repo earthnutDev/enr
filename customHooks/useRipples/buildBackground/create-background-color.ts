@@ -2,14 +2,13 @@ import { isArray, isEmptyArray, isNull } from 'a-type-of-js';
 import { Ripples } from '../ripplesClass';
 import { setTransparentTexture } from './default-background';
 import { isNoneBackGroundColor } from '../tools';
-import { dog } from 'dog';
+
 import { DrawImage } from '../rippersData/fadeData';
 import { getNewColor } from '../callback/get-new-image';
+import { dog } from 'dog';
 
 /**  构建背景色  */
 export function createBackgroundColor(this: Ripples) {
-  dog.type = false;
-
   const { renderData, fadeData, options } = this;
 
   if (isNull(renderData)) {
@@ -65,5 +64,4 @@ export function createBackgroundColor(this: Ripples) {
   dog('添加了背景色', drawColor, nestDrawImage);
   fadeData.run(); // 执行渐变
   dog('目前有', fadeData.toBeList);
-  dog.type = true;
 }

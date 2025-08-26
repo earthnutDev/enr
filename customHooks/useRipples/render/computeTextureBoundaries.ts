@@ -4,7 +4,6 @@ import { dog } from 'dog';
 
 /**  计算纹理边界及背景图  */
 export function computeTextureBoundaries(this: Ripples) {
-  dog.type = false;
   const { renderData, fadeData } = this;
   if (isNull(renderData)) return;
 
@@ -130,7 +129,6 @@ export function computeTextureBoundaries(this: Ripples) {
     this.canvas.width / maxSide,
     this.canvas.height / maxSide,
   ]);
-  dog.type = true;
 }
 /**
  *

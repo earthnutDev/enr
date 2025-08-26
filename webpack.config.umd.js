@@ -16,7 +16,7 @@ export default function () {
     output: /** umd 格式 打包 */ {
       filename: 'index.js',
       path: pathJoin('dist'),
-      library: 'earthnut',
+      library: 'enr',
       libraryTarget: 'umd',
       globalObject: 'this',
     },
@@ -32,8 +32,6 @@ export default function () {
   delete config.devServer;
   delete config.devtool;
   config.plugins.splice(1, 1);
-  /**  在正式环境添加自定义的 dog 进行不执行打印  */
-  config.resolve.alias['@qqi/log'] = pathJoin('./mocks/log.ts');
 
   return config;
 }

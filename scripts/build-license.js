@@ -27,8 +27,7 @@ function addLicense(dir) {
     /**  文件的名（不带扩展名）  */
     const fileBashName = basename(filePath, '.mjs');
     /**  是否添加 use client  */
-    const isAddUseClient =
-      ['server', 'index'].every(e => e !== fileBashName) && !filePath.endsWith('.d.ts');
+    const isAddUseClient = ['client', 'layoutUtil'].some(e => fileBashName === e);
     /**  use client 文本 （已校验） */
     const useClientMessage = isAddUseClient ? '\n"use client";\n' : '';
     /**  文件是否存在（其实，一定存在）  */
@@ -56,6 +55,7 @@ function addLicense(dir) {
 
 addLicense(distDir);
 
+/// 写入根导入导出
 writeFileSync(
   pathJoin(distDir, 'index.mjs'),
   `

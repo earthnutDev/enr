@@ -1,5 +1,11 @@
 import defaultModule, { pathJoin } from './webpack.config.js';
 import CopyPlugin from 'copy-webpack-plugin';
+import process from 'node:process';
+
+/**  读取本地的数据配置  */
+const mode = process.env.dev_mode || 'production';
+
+const isProduction = mode === 'production';
 
 /**
  * 打包为 mjs 模式
@@ -37,9 +43,8 @@ export default function () {
       'a-type-of-js': 'a-type-of-js',
       'styled-components': 'styled-components',
       'components/shared/EnLayoutContent': './layoutUtil.mjs',
+      '@qqi/log': '@qqi/log',
     },
-    // 打包模式
-    mode: 'production',
     // 配置 source-map 可用
     devtool: 'source-map',
     // 实验配置
@@ -48,9 +53,16 @@ export default function () {
     },
     // 打包优化
     optimization: {
+      chunkIds: 'named',
+      mangleExports: false,
+      minimize: isProduction,
+      // // 代码分割
+      runtimeChunk: false, // 关闭 runtime 文件单独打包
+      sideEffects: false,
+      usedExports: isProduction, // 启用 tree shaking
       splitChunks: {
         chunks: 'all', // 对所有 chunk 生效（包括同步和异步）
-        minSize: 1, // 最小提取体积（20KB）
+        minSize: 20, // 最小提取体积（20KB）
         minRemainingSize: 0,
         minChunks: 2, // 至少被 2 个入口引用才提取
         cacheGroups: {
@@ -80,6 +92,8 @@ export default function () {
   config.plugins.splice(1, 1);
   // 添加文件复制
   defaultConfig.plugins.push(
+    // 妈蛋，测试环境不需要你你捣乱，正式环境需要你你不干
+    // new AddUserClientPlugin(),
     new CopyPlugin({
       patterns: [
         // 写入 scss
@@ -98,8 +112,6 @@ export default function () {
       ],
     }),
   );
-  ///  在正式环境添加自定义的 dog 进行不执行打印
-  config.resolve.alias['@qqi/log'] = pathJoin('./mocks/log.ts');
 
   return config;
 }

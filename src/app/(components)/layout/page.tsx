@@ -42,7 +42,7 @@ export default function LayoutDemoPage() {
     [contentVisible, setContentVisible, '是否包含内容'],
     [sideBarVisible, setSideBarVisible, '是否包含侧栏'],
     [footerVisible, setHooterVisible, '是否包含页脚'],
-    [headerNoSticky, setHeaderNoSticky, '头部是否粘连'],
+    [headerNoSticky, setHeaderNoSticky, '头部是否滚动'],
     [sidebarIsRight, setSidebarIsRight, '侧栏是否居右'],
     [sidebarIsFull, setSidebarIsFull, '侧栏是否占满全高'],
     [sidebarIsOverflow, setSidebarIsOverflow, '侧栏子数据是否超限'],
@@ -66,7 +66,7 @@ export default function LayoutDemoPage() {
   const Container = (
     <>
       {headerVisible && (
-        <LayoutHeader height={headerHeight} noSticky={headerNoSticky}>
+        <LayoutHeader height={headerHeight} noSticky={headerNoSticky} className={_en('en-dark')}>
           头部
         </LayoutHeader>
       )}
@@ -89,13 +89,21 @@ export default function LayoutDemoPage() {
           ))}
         </LayoutContent>
       )}
-      {footerVisible && <LayoutFooter height={footerHeight}>页脚</LayoutFooter>}
+      {footerVisible && (
+        <LayoutFooter height={footerHeight} className={_en('en-dark')}>
+          页脚
+        </LayoutFooter>
+      )}
     </>
   );
 
   /**  渲染测试的区块  */
   const layoutContent = layoutVisible ? (
-    <EnLayout height={layoutHeight} width={layoutWidth}>
+    <EnLayout
+      height={layoutHeight}
+      width={layoutWidth}
+      className={_en('en-box-shadow-light-red-90', 'en-radius-8')}
+    >
       {Container}
     </EnLayout>
   ) : (

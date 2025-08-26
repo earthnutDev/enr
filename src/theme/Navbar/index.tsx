@@ -2,13 +2,13 @@
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
-const NavbarInner = styled;
+const NavbarInner = styled.div``;
 
 /**  导航栏  */
 export function Navbar(): ReactNode {
   return (
     <>
-      <div>12</div>
+      <NavbarInner>12</NavbarInner>
     </>
   );
 }

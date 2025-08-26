@@ -1,13 +1,14 @@
 import { OriginStyle } from '../buildBackground/type';
 import { Ripples } from '../ripplesClass';
 import { Program, Textures } from '../types';
-import { dog } from 'dog';
+
 import { getBackgroundStyles } from '../buildBackground/utils/get-background-style';
 import { enArr } from 'a-js-tools';
 import { isEmptyArray } from 'a-type-of-js';
 import { hideCssBackground } from '../buildBackground/utils/hide-css-background';
 import { isNoneBackGroundColor, isNoneBackgroundImage } from '../tools';
 import { restoreCssBackground } from '../buildBackground/utils/restore-css-background';
+import { dog } from 'dog';
 
 /**
  *
@@ -89,11 +90,10 @@ export class RipplesRenderData {
     //
     Reflect.apply(hideCssBackground, _Ripples, []);
     this.originStyle = this.lastUseStyle = getBackgroundStyles(this.parentElement);
-    dog.type = false;
+
     dog('初始化时估计元素的尺寸', this.originStyle);
     // 注册监听属性变化
     this.mutationObserver = new MutationObserver(mutations => {
-      dog.type = false;
       /**  变化值  */
       mutations.forEach(mutation => {
         if (mutation.target !== this.parentElement) return;
@@ -132,7 +132,6 @@ export class RipplesRenderData {
           Reflect.apply(hideCssBackground, _Ripples, []); // 触发隐藏元素的
         }
       });
-      dog.type = true;
     });
     // 开始监听属性变化
     this.mutationObserver.observe(this.parentElement, {
@@ -161,7 +160,7 @@ export class RipplesRenderData {
     Reflect.apply(restoreCssBackground, { renderData: this }, []);
     // 移除事件监听
     if (this.parentElement && this.events) {
-      dog.warn('移除监听的事件');
+      dog('移除监听的事件');
 
       try {
         const { parentElement, events } = this;
@@ -181,7 +180,7 @@ export class RipplesRenderData {
           this.resizeObserver = null;
         }
       } catch (error) {
-        dog.warn('移除监听者失败', error);
+        dog('移除监听者失败', error);
       }
     }
   }

@@ -2,6 +2,8 @@
 import { EnTypeofClassNameItem, EnXcn, xcn } from 'xcn';
 
 type EnClassName =
+  | 'en-light'
+  | 'en-dark'
   | 'en-flex'
   | 'en-flex-row'
   | 'en-flex-row-reverse'
@@ -70,17 +72,15 @@ type EnClassName =
   | 'en-margin-32'
   | 'en-margin-36'
   | 'en-margin-40'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
-  | 'en-box-shadow-light-red100'
+  | 'en-box-shadow-light-red-10'
+  | 'en-box-shadow-light-red-20'
+  | 'en-box-shadow-light-red-30'
+  | 'en-box-shadow-light-red-40'
+  | 'en-box-shadow-light-red-50'
+  | 'en-box-shadow-light-red-60'
+  | 'en-box-shadow-light-red-70'
+  | 'en-box-shadow-light-red-80'
+  | 'en-box-shadow-light-red-90'
   | 'en-border-radius-4'
   | 'en-border-radius-8'
   | 'en-border-radius-12'
@@ -91,6 +91,16 @@ type EnClassName =
   | 'en-border-radius-32'
   | 'en-border-radius-36'
   | 'en-border-radius-40'
+  | 'en-radius-4'
+  | 'en-radius-8'
+  | 'en-radius-12'
+  | 'en-radius-16'
+  | 'en-radius-20'
+  | 'en-radius-24'
+  | 'en-radius-28'
+  | 'en-radius-32'
+  | 'en-radius-36'
+  | 'en-radius-40'
   | 'en-center'
   | 'en-dust'
   | 'en-text-in-one-line'
@@ -111,7 +121,7 @@ type EnClassName =
   | 'en-user-select-text'
   | 'en-cursor-pointer';
 
-/**  在 xcn 中使用 earthnut 样式类 */
+/**  在 xcn 中使用 enr 样式类 */
 export function _en<T extends EnClassName[]>(
   ...classNameList: T
 ): EnXcn<{

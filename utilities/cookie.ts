@@ -1,12 +1,11 @@
-/**
+/*****************************************************
  *  @Author earthnut
  *  @Email earthnut.dev@outlook.com
  *  @ProjectName nest
  *  @FileName cookie.ts
  *  @CreateDate  周五  01/10/2025
  *  @Description cookie 管理
- */
-
+ ******************************************************/
 import { typeOf } from 'a-type-of-js';
 
 export const manageCookie = {
@@ -43,10 +42,7 @@ export const manageCookie = {
         expires = '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
         break;
       case 'number':
-        expires =
-          end === Infinity
-            ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT'
-            : '; max-age=' + end;
+        expires = end === Infinity ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT' : '; max-age=' + end;
         break;
       case 'string':
         expires = '; expires=' + end;
@@ -76,9 +72,7 @@ export const manageCookie = {
   },
   exist(key: string) {
     return new RegExp(
-      '(?:^|;\\s*)' +
-        encodeURIComponent(key).replace(/[-.+*]/g, '\\$&') +
-        '\\s*\\=',
+      '(?:^|;\\s*)' + encodeURIComponent(key).replace(/[-.+*]/g, '\\$&') + '\\s*\\=',
     ).test(key);
   },
   keys() {

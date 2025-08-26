@@ -1,9 +1,10 @@
 import { isNull } from 'a-type-of-js';
 import { createCanvasElementBySize } from '../buildBackground/default-background/createCanvasElementBySize';
 import { Ripples } from '../ripplesClass';
-import { dog } from 'dog';
+
 import { setTransparentTexture } from '../buildBackground/default-background';
 import { forbiddenRunSide } from '../callback/can-side';
+import { dog } from 'dog';
 
 export type DrawImage = {
   /**  资源  */
@@ -63,7 +64,6 @@ export class FadeData {
   }
   /**  销毁  */
   destroy() {
-    dog.type = true;
     this.#mediaQuery.removeEventListener('change', this.#mediaQueryChange);
     dog('退出后取消执行', this.transparentId);
     if (this.transparentId) clearTimeout(this.transparentId);

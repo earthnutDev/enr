@@ -1,11 +1,11 @@
-/**
+/***********************************************
  *  @Author earthnut
  *  @Email earthnut.dev@outlook.com
  *  @ProjectName website
  *  @FileName req.ts
  *  @CreateDate  周四  01/09/2025
  *  @Description req 请求
- */
+ **************************************************/
 
 import { typeOf } from 'a-type-of-js';
 import { global_config_data } from 'data/config';
@@ -115,11 +115,7 @@ export class Req {
 
   // 'Content-Type': 'application/json',
 
-  async postJson<T>(
-    url: string,
-    data?: string | object,
-    option?: RequestInit,
-  ): Promise<T | null> {
+  async postJson<T>(url: string, data?: string | object, option?: RequestInit): Promise<T | null> {
     try {
       const result = await this.post(url, data, option);
       if (result === null) return null;
@@ -150,11 +146,7 @@ export class Req {
    * - application/json
    * - application/x-www-form-urlencoded
    **/
-  async post(
-    url: string,
-    data?: string | object,
-    option?: RequestInit,
-  ): Promise<Response | null> {
+  async post(url: string, data?: string | object, option?: RequestInit): Promise<Response | null> {
     const dataType = typeOf(data);
     const options: RequestInit =
       dataType == 'object'

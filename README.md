@@ -1,16 +1,16 @@
-# 花生亻 ui
-
-嗯，姑且称之为 ui 吧
+# enr
 
 ## 安装
 
 ```sh
+npm install  --save enr
+# 或
 npm install  --save earthnut
 ```
 
 ## 文档
 
-参阅 [earthnut](https://earthnut.dev/quickUse/)
+参阅 [enr](https://earthnut.dev/quickUse/)
 
 ## 涟漪背景
 
@@ -36,7 +36,7 @@ npm install  --save earthnut
 就是 `useRef` 和 `useEffect` 的简单使用。
 
 ```ts
-import { useTimeId } from "earthnut";
+import { useTimeId } from "enr";
 
 export function Home() {
   const timeId = useTimeId();
@@ -46,7 +46,7 @@ export function Home() {
       <button
         onclick={() => {
           timeId.current = setTimeout(
-            () => console.log("没有感情的按钮 A 打印了一条没有感情的消息"),
+            () => dog("没有感情的按钮 A 打印了一条没有感情的消息"),
             2500
           );
         }}
@@ -66,7 +66,7 @@ export function Home() {
 使用下一帧动画。
 
 ```ts
-import { useAnimationFrame } from 'earthnut';
+import { useAnimationFrame } from 'enr';
 ```
 
 ## scss 样式
@@ -127,12 +127,12 @@ export default defineConfig({
 为了防止意外覆盖别人的自定义 css 属性，该样式皆以 `en-` 为前缀。譬如：
 
 ```tsx
-import { xcn } from 'earthnut';
+import { _en } from 'enr';
 
 export function Home() {
   return (
     <div>
-      <p className={xcn('en-text-in=one-line')}>无论我字数多少，仅会会在同一行就行打印。</p>
+      <p className={_en('en-text-in=one-line')}>无论我字数多少，仅会会在同一行就行打印。</p>
     </div>
   );
 }

@@ -1,10 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
-import {
-  ColorMode,
-  ThemeColorModeProviderProps,
-  ThemeContextType,
-} from './types';
+import { ColorMode, ThemeColorModeProviderProps, ThemeContextType } from './types';
 import { storageStore } from 'storage/storage-store';
 import { manageCookie } from 'utilities/cookie';
 import { sysInfo } from 'utilities/sys';
@@ -27,10 +23,7 @@ export function useColorMode() {
 }
 
 /**    */
-export function ThemeColorModeProvider({
-  children,
-  initialTheme,
-}: ThemeColorModeProviderProps) {
+export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorModeProviderProps) {
   /**  颜色类型  */
   const [colorMode, setColorMode] = useState<ColorMode>(initialTheme);
   /**  是否为自动  */
@@ -43,11 +36,7 @@ export function ThemeColorModeProvider({
   };
   /**  设置指定的色值  */
   const setSpecifiedColorMode = (newColorMode: ColorMode) => {
-    if (
-      newColorMode === colorMode ||
-      ['light', 'dark'].indexOf(newColorMode) < 0
-    )
-      return colorMode;
+    if (newColorMode === colorMode || ['light', 'dark'].indexOf(newColorMode) < 0) return colorMode;
     setColorMode(newColorMode); // 设置新的值触发响应
     storageStore.theme = newColorMode; // 将新的主题色值类型保存到本地
     return newColorMode;

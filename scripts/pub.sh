@@ -52,7 +52,11 @@ function publish() {
 
 publish 
 
-node ./scripts/change-name.js
+node ./scripts/change-name.js earthnut
+
+publish 
+
+node ./scripts/change-name.js oops-ui
 
 publish 
 

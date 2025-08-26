@@ -1,9 +1,9 @@
-import { dog } from 'dog';
 import { isEmptyArray, isNull } from 'a-type-of-js';
 import { Ripples } from '../ripplesClass';
 import { createImageBySrc } from './utils/create-image-by-src';
 import { createLinearGradient } from './create-linear-gradient';
 import { getNewImage } from '../callback/get-new-image';
+import { dog } from 'dog';
 /**
  *
  * 加载图像
@@ -16,8 +16,7 @@ import { getNewImage } from '../callback/get-new-image';
  * 在加载过程中如果渲染的图片为非法的（加载错误）那么将查找当前的背景色或是背景图作为依据，再就是都没有的情况下将会渲染一个类似于旧地板的色
  */
 export function loadImage(this: Ripples) {
-  dog.type = false;
-  dog.warn('开始下载图片');
+  dog('开始下载图片');
   const { renderData, options, fadeData } = this;
   if (isNull(renderData)) {
     dog('执行绘制时没有渲染数据');
@@ -36,7 +35,7 @@ export function loadImage(this: Ripples) {
   renderData.imageSource = newImageSource!;
   // 虚假来源意味着没有背景。
   if (!newImageSource) {
-    dog.warn('没有原始图像，开始使用空白自绘');
+    dog('没有原始图像，开始使用空白自绘');
     Reflect.apply(createLinearGradient, this, []);
     return;
   }
@@ -79,12 +78,11 @@ export function loadImage(this: Ripples) {
 
   // 下载图像出错
   image.onerror = () => {
-    dog.warn('下载图像错误');
+    dog('下载图像错误');
     Reflect.apply(createLinearGradient, this, []);
   };
 
   // 当图像源是数据 URI 时禁用 CORS。
   // TODO
   image.crossOrigin = options.crossOrigin;
-  dog.type = true;
 }

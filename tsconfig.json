@@ -15,9 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    // "jsx": "react",
     "incremental": true,
-    // "moduleResolution": "bundler",
     "moduleResolution": "node",
     "declaration": false,
     "strict": true,
@@ -53,14 +51,14 @@
     "index.client.ts",
     "index.server.ts",
     "env.d.ts",
-    "dog.ts",
     "components/**/*.ts",
     "components/**/*.tsx",
     "components/**/*.d.ts",
     "customHooks/**/*.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "public/**/*.ts"
+    "public/**/*.ts",
+    "mocks/log.mjs"
   ],
   "exclude": [
     "node_modules",

@@ -15,8 +15,8 @@ import { isNumber, isString, isTrue } from 'a-type-of-js';
 import { EnLayoutContent, LayoutContentWrapper } from 'components/shared/EnLayoutContent';
 import { getValue } from './get-value';
 import { Children, cloneElement, forwardRef, isValidElement, ReactElement } from 'react';
-import { dog } from 'dog';
 import { isFragment } from './is-fragment';
+import { dog } from 'dog';
 
 /**  数值是否是需要转换的值  */
 function isDecimal(value: string | number) {
@@ -71,11 +71,11 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
     /**  子组件的个数  */
     const childCount = Children.count(children);
     /**  头部 header 是否粘连影响下的样式  */
-    // console.log('子元素个数', childCount);
+    dog('子元素个数', childCount);
     /**  头部 header 组件  */
     let Header: ReactElement<LayoutHeaderProps> | undefined,
       /** 当前的样式   */
-      layout: string = 'simple',
+      layout: 'side-right-full' | 'simple' | 'side-right' | 'side-full' = 'simple',
       headerNoSticky: boolean = false,
       /**  是否拥有头部（header）  */
       hasHeader: boolean = false,
@@ -126,7 +126,6 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
     width = isDecimal(width);
     height = isDecimal(height);
 
-    dog('Layout 执行渲染');
     /// 校验所有的子元素，并修改特定的 props
     Children.forEach(children, child => {
       /// 检测 child 是否是有效的 React 元素（避免非元素节点）
@@ -177,7 +176,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         const element = child as ReactElement<LayoutSideBarProps>;
         Content = (
           <LayoutContentWrapper
-            data-earthnut-ui="layout-content"
+            data-enr-ui="layout-content"
             className={xcn($main, 'en-layout-main')}
           >
             {element}
@@ -245,13 +244,13 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         }}
         theme={theme}
         {...props}
-        data-earthnut-ui="layout"
+        data-enr-ui="layout"
       >
         {!shouldUseSpecialLayout ? (
           <>
             {Header}
             {hasFooter ? (
-              <div className={xcn($content)} data-earthnut-ui="layout-with-foot-content">
+              <div className={xcn($content)} data-enr-ui="layout-with-foot-content">
                 {Sidebar}
                 {Content}
               </div>

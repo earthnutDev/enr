@@ -2,19 +2,22 @@ import webpack from 'webpack';
 import path from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import process from 'node:process';
-
+import { isArray } from 'a-type-of-js';
+/**************************************
+ * 请注意，打印狗在多处被设置
+ **************************************/
+/**  本文件路径  */
 const __dirname = import.meta.dirname;
 
+/**  相对于执行目录的文件路径  */
 export const pathJoin = str => path.join(__dirname, str);
 
 /**  读取本地的数据配置  */
 const mode = process.env.dev_mode ?? 'production';
 
-/**
- *
- * 生产包打包为 cjs 、mjs
- *
- */
+const isProduction = mode === 'production';
+
+/**  生产包打包为 cjs 、mjs  */
 export default function () {
   /** 入口 */
   /**
@@ -45,12 +48,11 @@ export default function () {
       src: pathJoin('src/'), /// src  主要代码
       components: pathJoin('components/'), /// 公共组件
       customHooks: pathJoin('customHooks/'), // 公共自定义 hooks
-      dog: pathJoin('dog.ts'),
+      dog: pathJoin('./dog.ts'),
       page: pathJoin('src/page/'), /// 页面相关
       css: pathJoin('src/css/'), /// 公共 css 相关
       storage: pathJoin('storage'), // 公共的 storage
       utilities: pathJoin('utilities'), // 公共的其他数据
-      // 'a-react-ripples': path.join(__dirname, 'node_modules/a-react-ripples/'),
     },
   };
 
@@ -64,13 +66,16 @@ export default function () {
         test: /\.(tsx?)|(jsx?)$/,
         exclude: /node_modules/,
         use: [
+          ...customLoader((isProduction && 'remove-import-dog') || undefined),
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+              configFile: pathJoin('./babel.config.js'),
             },
           },
-          // pathJoin('loaders/add-use-client-loader.js'),
+          ...customLoader(
+            'add-react-import-loader', // 'add-use-client-loader'
+          ),
         ],
       },
       // 配置 scss
@@ -179,4 +184,16 @@ export default function () {
   };
 
   return config;
+}
+
+/**  自定义 loader   */
+function customLoader(...arg) {
+  return arg
+    .filter(Boolean)
+    .reduce(
+      (result, currentValue) =>
+        (isArray(currentValue) && result.concat(currentValue)) || [...result, currentValue],
+      [],
+    )
+    .map(e => pathJoin(`./loaders/${e}.js`));
 }

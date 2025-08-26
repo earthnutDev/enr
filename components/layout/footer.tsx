@@ -25,7 +25,7 @@ const InternalValueF = forwardRef<
       ref={ref}
       {...props}
       className={xcn('en-layout-footer', className)}
-      data-earthnut-ui="layout-footer"
+      data-enr-ui="layout-footer"
     />
   );
 });

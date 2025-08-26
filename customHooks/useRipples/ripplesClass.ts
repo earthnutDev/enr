@@ -16,7 +16,6 @@ import { hideCssBackground } from './buildBackground/utils/hide-css-background';
 import { RipplesRenderData } from './rippersData/renderData';
 import { isFalse, isNull } from 'a-type-of-js';
 import { initGL } from './init';
-import { dog } from './../../dog';
 import { reloadBackground } from './callback/reload-background';
 import { destroy } from './callback/destroy';
 import { restoreCssBackground } from './buildBackground/utils/restore-css-background';
@@ -26,6 +25,7 @@ import { fade } from './callback/fade';
 import { FadeData } from './rippersData/fadeData';
 import { setTransparentTexture } from './buildBackground/default-background';
 import { forbiddenRunSide } from './callback/can-side';
+import { dog } from 'dog';
 
 /**
  *

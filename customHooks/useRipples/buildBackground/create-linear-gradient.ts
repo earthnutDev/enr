@@ -1,12 +1,11 @@
 import { isArray, isEmptyArray, isNull } from 'a-type-of-js';
 import { Ripples } from '../ripplesClass';
-import { dog } from 'dog';
+
 import { createBackgroundColor } from './create-background-color';
+import { dog } from 'dog';
 
 /**  构建渐变背景色图  */
 export function createLinearGradient(this: Ripples) {
-  dog.type = false;
-
   const { fadeData, renderData, options } = this;
 
   if (isNull(renderData)) {
@@ -73,5 +72,4 @@ export function createLinearGradient(this: Ripples) {
   });
   dog('添加了渐变背景', colorList);
   fadeData.run();
-  dog.type = true;
 }

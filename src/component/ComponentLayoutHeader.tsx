@@ -5,7 +5,7 @@ export function ComponentLayoutHeader() {
   return (
     <div>
       <Link href={'https://lmssee.com'} target="_blank">
-        earthnut
+        earthnut react ui
       </Link>
       部分组件功能展示
     </div>

@@ -8,7 +8,6 @@ import { dog } from 'dog';
  *
  */
 export function reloadBackground(this: Ripples) {
-  dog.type = false;
   const { renderData, fadeData } = this;
   if (isNull(renderData)) return;
   const { parentElement } = renderData;
@@ -19,5 +18,4 @@ export function reloadBackground(this: Ripples) {
   this.canvas.height = backgroundInfo.height = height;
   dog('触发再次加载背景');
   Reflect.apply(loadImage, this, []);
-  dog.type = true;
 }

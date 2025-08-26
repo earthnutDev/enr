@@ -4,6 +4,7 @@ import { Ripples } from './ripplesClass';
 import { RipplesOptions } from './types';
 import { isNull } from 'a-type-of-js';
 import { dog } from 'dog';
+
 /**  动态加载包含的自定义的钩子  */
 export function useLazyRipples(
   canvas: RefObject<HTMLCanvasElement | null>,
@@ -23,11 +24,11 @@ export function useLazyRipples(
   /**  卸载  */
   function unmounted() {
     isUnmounted.current = true;
-    dog.warn('卸载');
+    dog('卸载');
     setTimeout(() => {
       // 当前是被卸载状态
       if (isUnmounted.current) {
-        dog.warn('执行了卸载');
+        dog('执行了卸载');
         ripples.current?.destroy();
       }
     }, 0);
@@ -37,11 +38,10 @@ export function useLazyRipples(
     isUnmounted.current = false;
     /**  非空检验（这里一般都是有值的，除非故障）  */
     if (isNull(canvas.current) || isLoaded.current) {
-      dog.type = true;
-      dog.warn('不执行初始化，因为初始化已经在执行了 ', canvas.current, isLoaded.current);
+      dog('不执行初始化，因为初始化已经在执行了 ', canvas.current, isLoaded.current);
       return unmounted;
     }
-    dog.warn('执行了加载');
+    dog('执行了加载');
     // 设置加载状态
     setIsLoading(true);
     isLoaded.current = true;
@@ -51,7 +51,7 @@ export function useLazyRipples(
           dog('当前状态值不准确，执行');
           return;
         }
-        dog.warn('加载了该项异步，并初始化了值');
+        dog('加载了该项异步，并初始化了值');
         ripples.current = new module.Ripples(canvas.current, option);
       })
       .catch(err => {

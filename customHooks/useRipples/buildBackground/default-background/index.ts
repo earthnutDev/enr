@@ -1,8 +1,9 @@
 import { Ripples } from '../../ripplesClass';
 import { createCanvasElementBySize } from './createCanvasElementBySize';
 import { circleDataList } from './circleDataList';
-import { dog } from 'dog';
+
 import { getRandomString } from 'a-js-tools';
+import { dog } from 'dog';
 /**
  *
  * 设置透明的纹理
@@ -14,7 +15,6 @@ import { getRandomString } from 'a-js-tools';
  *
  */
 export function setTransparentTexture(this: Ripples, executeImmediately: boolean = true) {
-  dog.type = true;
   const { fadeData, options } = this;
 
   const { backgroundInfo, toBeList } = fadeData;
@@ -40,8 +40,6 @@ export function setTransparentTexture(this: Ripples, executeImmediately: boolean
     kind: 'default',
     tag,
   });
-
-  dog.type = true;
 
   if (executeImmediately) fadeData.run(); // 开启渐变
 }

@@ -10,6 +10,7 @@
 'use client';
 import { isBoolean, isPlainObject } from 'a-type-of-js';
 import { dog } from 'dog';
+
 import { useCallback, useEffect, useRef } from 'react';
 
 /**  使用动画结果  */
@@ -189,7 +190,7 @@ export function useAnimationFrame(
     return () => {
       current.isUnmounted = true;
       setTimeout(() => {
-        dog.warn('退出执行取消');
+        dog('退出执行取消');
         if (current.isUnmounted) current.result.cancel();
       }, 0);
     };

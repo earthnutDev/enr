@@ -1,6 +1,7 @@
+import { dog } from 'dog';
 import { forbiddenRunSide } from '../callback/can-side';
 import { Ripples } from '../ripplesClass';
-import { dog } from 'dog';
+
 /**
  * 设置缓变
  *
@@ -27,7 +28,7 @@ export function runSide(this: Ripples) {
       }
 
       fadeData.run();
-      dog.type = true;
+
       dog('开始渐变');
     }, // 触发渐变
     options.raindropsTimeInterval * 2,

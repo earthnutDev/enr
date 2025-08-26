@@ -2,14 +2,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "dist/",
+    "declarationDir": "dist/type",
     "emitDeclarationOnly": true,
     "noEmit": false,
     "sourceMap": true
   },
   "include": [
     "env.d.ts",
-    "dog.ts",
     "index.ts",
     "index.client.ts",
     "index.server.ts",

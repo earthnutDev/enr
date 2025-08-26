@@ -1,11 +1,11 @@
-/**
+/*********************************************
  * @Author earthnut
  * @Email earthnut.dev@outlook.com
  * @ProjectName website
  * @FileName copyText.ts
  * @CreateDate  周四  12/19/2024
  * @Description 复制文本到剪切板
- */
+ ************************************************/
 
 declare global {
   const clipboardData: {
@@ -25,11 +25,7 @@ export default function copyText(text: string) {
   /** 新式写法 */
   if (clipboard && clipboard.writeText) {
     clipboard.writeText(text);
-  } else if (
-    clipboardData &&
-    clipboardData.clearData &&
-    clipboardData.setData
-  ) {
+  } else if (clipboardData && clipboardData.clearData && clipboardData.setData) {
     /**
      * IE 大哥
      *

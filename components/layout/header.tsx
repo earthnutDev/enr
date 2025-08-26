@@ -27,7 +27,7 @@ const InternalValueH = forwardRef<
       ref={ref}
       className={xcn(['en-layout-header'], className)}
       {...props}
-      data-earthnut-ui="layout-header"
+      data-enr-ui="layout-header"
     >
       {children}
     </LayoutHeaderContainer>

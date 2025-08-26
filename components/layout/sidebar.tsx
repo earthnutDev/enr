@@ -33,7 +33,7 @@ const InternalValueS = forwardRef<
       className={xcn('en-layout-side', className)}
       ref={ref}
       {...props}
-      data-earthnut-ui="layout-side-bar"
+      data-enr-ui="layout-side-bar"
     />
   );
 });

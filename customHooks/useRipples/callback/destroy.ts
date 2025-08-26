@@ -4,9 +4,8 @@ import { dog } from 'dog';
 
 /**  注销  */
 export function destroy(this: Ripples) {
-  dog.type = true;
   const { renderData, fadeData } = this;
-  dog.warn('执行销毁');
+  dog('执行销毁');
 
   if (!isNull(renderData)) {
     dog('销毁 render 数据');

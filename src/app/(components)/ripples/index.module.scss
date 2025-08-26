@@ -1,5 +1,3 @@
-@use "../../../css/vars" as *;
-
 .page {
   position: static;
   width: 100%;
@@ -13,8 +11,8 @@
       padding: 0.36rem 0.68rem;
       border-radius: 12px;
       border: none;
-      background-color: $en-color-ads;
-      color: $en-color-dark-theme-blue-60;
+      background-color: var(--color-background-button);
+      color: var(--color-text-button);
     }
   }
 }

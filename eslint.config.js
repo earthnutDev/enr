@@ -9,7 +9,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 
 export default defineConfig([
-  globalIgnores(['**/origin.js']),
+  globalIgnores(['**/origin.js', '.next/*']),
   { files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'], plugins: { js }, extends: ['js/recommended'] },
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
@@ -25,19 +25,6 @@ export default defineConfig([
     extends: ['json/recommended'],
   },
   { files: ['**/*.css'], plugins: { css }, language: 'css/css', extends: ['css/recommended'] },
-  {
-    plugins: ['sass', 'prettier'],
-    rules: {
-      'sass/space-after-variable-name': false,
-      'prettier/prettier': [
-        'error',
-        {
-          // 这里复用 Prettier 的配置
-          sassVariableSemicolon: false,
-        },
-      ],
-    },
-  },
   {
     plugins: {
       jsdoc: jsdocPlugin,

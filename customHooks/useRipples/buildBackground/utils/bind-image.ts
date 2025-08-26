@@ -1,11 +1,11 @@
 import { isNull, isZero } from 'a-type-of-js';
 import { Ripples } from '../../ripplesClass';
-import { dog } from 'dog';
+
 import { DrawImage } from '../../rippersData/fadeData';
+import { dog } from 'dog';
 
 /**  绑定图片  */
 export function bindImage(this: Ripples, textImageSource: DrawImage) {
-  dog.type = false;
   const { gl, renderData, fadeData } = this;
 
   if (isNull(renderData)) {
@@ -55,5 +55,4 @@ export function bindImage(this: Ripples, textImageSource: DrawImage) {
   parentElement.dataset['render_height'] = textImageSource.height + 'px';
 
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textImageSource.resource);
-  dog.type = true;
 }

@@ -1,6 +1,7 @@
 'use client';
 import { _en } from 'customHooks/use-xcn';
 import { useAnimationFrame } from 'customHooks/useAnimationFrame';
+import { dog } from 'dog';
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import { xcn } from 'xcn';
@@ -36,13 +37,13 @@ export default function UseAnimationFramePage() {
       time1: data.time1,
       time2: data.time2,
     });
-    console.log(data);
+    dog(data);
 
     if (nextState) {
-      console.log('终止');
+      dog('终止');
       cancelAnimation.cancel();
     } else {
-      console.log('启动');
+      dog('启动');
 
       cancelAnimation.render();
     }
@@ -51,7 +52,7 @@ export default function UseAnimationFramePage() {
   const testData = useRef(false);
 
   useEffect(() => {
-    console.log('i am coming ', testData.current);
+    dog('i am coming ', testData.current);
 
     return () => ((testData.current = true), undefined);
   }, []);

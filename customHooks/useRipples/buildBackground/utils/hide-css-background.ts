@@ -11,7 +11,6 @@ import { isNull } from 'a-type-of-js';
  * - 父级样式属性发生变更的时候
  */
 export function hideCssBackground(this: Ripples) {
-  dog.type = false;
   const { renderData } = this;
   if (isNull(renderData)) return;
   const { parentElement } = renderData;
@@ -29,5 +28,4 @@ export function hideCssBackground(this: Ripples) {
   dog('重写后的父级的行内背景图样式', parentElement.style.backgroundImage);
   dog('暂存的原始样式', renderData.originStyle);
   dog('暂存的最后获取样式', renderData.lastUseStyle);
-  dog.type = true;
 }

@@ -4,6 +4,7 @@ import { ReactNode, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
+/**  styled  的 className 收集  */
 export default function StyledComponentsRegistry({ children }: { children: ReactNode }) {
   // Only create stylesheet once with lazy initial state
   // x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state

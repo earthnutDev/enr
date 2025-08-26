@@ -14,10 +14,10 @@ const InternalValueC = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>
   ({ className, ...props }, ref) => {
     return (
       <LayoutContentContainer
-        // ref={ref}
+        ref={ref}
         className={xcn('en-layout-main', className)}
         {...props}
-        data-earthnut-ui="layout-content"
+        data-enr-ui="layout-content"
       />
     );
   },

@@ -1,5 +1,10 @@
 # 版本日志
 
+## v0.2.3-alpha.3 (2025-8-26)
+
+- 移除了 `cjs` 打包
+- 并将 [enr](https://www.npmjs.com/package/enr) 作为 `earthnut react ui` 的主名，为不再是 [earthnut](https://www.npmjs.com/package/earthnut)。当然，包 [earthnut](https://www.npmjs.com/package/earthnut) 将持续跟随 [enr](https://www.npmjs.com/package/enr) 同步发布新版本
+
 ## v0.2.3-alpha.2 (2025-8-25)
 
 - 修改了部分样式值

@@ -13,7 +13,6 @@ export function useOptionUpdate(
   const oldOption = useRef({ ...option });
   /**  监听数据变化并给值  */
   useEffect(() => {
-    dog.type = true;
     if (!option || !ripplesRef.current) return;
     (Object.keys(ripplesRef.current.defaults) as unknown as (keyof RipplesOptions)[]).forEach(e => {
       /**  新的值  */
@@ -29,7 +28,6 @@ export function useOptionUpdate(
         oldOption.current[e] = isArray(value) ? ([...value] as never) : (option[e] as never);
         ripplesRef.current.set(e, value);
       }
-      dog.type = true;
     });
   }, [option]);
 }

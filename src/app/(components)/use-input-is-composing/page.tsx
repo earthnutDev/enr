@@ -1,8 +1,10 @@
 'use client';
 import { useInputIsComposing } from 'customHooks/useInputIsComposing';
+import { dog } from 'dog';
 import { useEffect, useRef } from 'react';
 
-export default function Page() {
+/**  使用输入框是否输入完成页面  */
+export default function UssInputIsComposingPage() {
   const inputRef = useRef<HTMLInputElement>(null);
   const isOver = useInputIsComposing(inputRef);
 
@@ -10,7 +12,7 @@ export default function Page() {
    * 更改测试
    */
   function change(e: React.KeyboardEvent<HTMLInputElement>) {
-    console.log(e);
+    dog(e);
   }
 
   useEffect(() => {

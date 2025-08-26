@@ -2,14 +2,14 @@ import { isBusinessEmptyString, isEmptyArray, isNull, isZero } from 'a-type-of-j
 import { Ripples } from '../ripplesClass';
 import { bindImage } from '../buildBackground/utils/bind-image';
 import { runSide } from '../buildBackground/run-side';
-import { dog } from 'dog';
+
 import { isNoneBackGroundColor, isNoneBackgroundImage } from '../tools';
 import { setTransparentTexture } from '../buildBackground/default-background';
 import { DrawImage } from '../rippersData/fadeData';
+import { dog } from 'dog';
 
 /**  两个图像间的淡入淡出  */
 export function fade(this: Ripples) {
-  dog.type = false;
   const { renderData, fadeData, options } = this;
   const { toBeList } = fadeData;
 
@@ -65,14 +65,7 @@ export function fade(this: Ripples) {
    *
    */
   if (isNull(ctx) || isNull(lastDrawImage.resource) || isEmptyArray(toBeList)) {
-    dog.warn(
-      '是我啦',
-      isNull(ctx),
-      '-',
-      isNull(lastDrawImage.resource),
-      '-',
-      isEmptyArray(toBeList),
-    );
+    dog('是我啦', isNull(ctx), '-', isNull(lastDrawImage.resource), '-', isEmptyArray(toBeList));
     return Reflect.apply(exitFade, this, '环境值错误');
   }
   const { width, height } = backgroundInfo;
@@ -117,13 +110,12 @@ export function fade(this: Ripples) {
     toBeList.shift();
     fadeData.drawProgress = 0;
   }
-  dog.type = true;
 }
 
 /**  退出当前的渐变执行  */
 function exitFade(this: Ripples, message: string) {
   const { fadeData } = this;
   fadeData.isTransitioning = false;
-  dog.warn(message);
+  dog(message);
   Reflect.apply(runSide, this, []);
 }

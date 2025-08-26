@@ -8,6 +8,14 @@
 }
 
 @for $i from 1 through 10 {
+  $v: #{calc($i * 10)};
+
+  .en-box-shadow-light-red-#{$v} {
+    box-shadow: 0 1px 2px rgb(var(--en-color-red-#{$v}-rgb));
+  }
+}
+
+@for $i from 1 through 10 {
   $v: #{calc($i * 4)};
   // 水平方向的 padding
   .en-padding-horizontal-#{$v} {
@@ -44,7 +52,8 @@
   }
 
   // 圆角
-  .en-border-radius-#{$v} {
+  .en-border-radius-#{$v},
+  .en-radius-#{$v} {
     border-radius: #{$v}px;
   }
 }

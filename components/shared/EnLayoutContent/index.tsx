@@ -54,57 +54,6 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
   overflow-x: hidden;
   overflow-y: auto;
 
-  ${({ $headerNoSticky, $header, $layoutType, $content, $sidebar }) =>
-    $headerNoSticky &&
-    css`
-      // 头部不粘连样式，头部区域设置
-      & > .${$header} {
-        position: relative;
-        z-index: 2;
-      }
-
-      ${($layoutType === 'simple-all' || $layoutType === 'side-right-all') &&
-      // 头部不粘连样式，内容区设置
-      css`
-        & > .${$content} > .${$sidebar} {
-          top: 0;
-          min-height: calc(
-            var(--layout-height) - var (--layout-footer-height) - var(--layout-header-height)
-          );
-          max-height: var(--layout-height);
-        }
-      `}
-
-      ${($layoutType === 'simple-no-footer' || $layoutType === 'side-right-no-footer') &&
-      css`
-        & > .${$sidebar} {
-          top: 0;
-          min-height: calc(var(--layout-height) - var(--layout-footer-height));
-          max-height: var(--layout-height);
-        }
-      `}
-    `}
-
-  ${({ $layoutType, $content }) =>
-    $layoutType === 'no-sidebar' &&
-    css`
-      & > .${$content} {
-        min-height: calc(
-          var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
-        );
-      }
-    `}
-
-  // 侧边栏全屏样式
-  ${({ $layoutType, $sidebar }) =>
-    $layoutType === 'side-full' &&
-    css`
-      & > .${$sidebar} {
-        top: 0;
-        height: var(--layout-height);
-      }
-    `}
-
   // ------------------------------
   // --- 标准模式（全）与侧边栏右置（全）共用样式 ---
   // 标准模式（全）与侧边栏右置（全）
@@ -129,6 +78,17 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
           );
           max-height: calc(var(--layout-height) - var(--layout-header-height));
         }
+      }
+    `}
+
+  /* 与头部粘连无关 */
+  ${({ $layoutType, $content }) =>
+    $layoutType === 'no-sidebar' &&
+    css`
+      & > .${$content} {
+        min-height: calc(
+          var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
+        );
       }
     `}
 
@@ -349,7 +309,7 @@ ${({ $layoutType, $main }) =>
       grid-template-areas: 'header' 'content';
     `}
   
-  // 仅侧边布局
+// 仅侧边布局
 // 标准的无头模式样式、侧边栏在右侧的无头模式样式
 // side bar 值由 en-layout-side-full 控制
   ${({ $layoutType }) =>
@@ -381,5 +341,36 @@ ${({ $layoutType, $main }) =>
         'content .';
       grid-template-columns: auto var(--layout-side-bar-width);
       grid-template-rows: 100% max-content;
+    `}
+  
+  ${({ $headerNoSticky, $header, $layoutType, $content, $sidebar }) =>
+    $headerNoSticky &&
+    css`
+      // 头部不粘连样式，头部区域设置
+      & > .${$header} {
+        position: relative;
+        z-index: 2;
+      }
+
+      ${($layoutType === 'simple-all' || $layoutType === 'side-right-all') &&
+      // 头部不粘连样式，内容区设置
+      css`
+        & > .${$content} > .${$sidebar} {
+          top: 0;
+          min-height: calc(
+            var(--layout-height) - var (--layout-footer-height) - var(--layout-header-height)
+          );
+          max-height: var(--layout-height);
+        }
+      `}
+
+      ${($layoutType === 'simple-no-footer' || $layoutType === 'side-right-no-footer') &&
+      css`
+        & > .${$sidebar} {
+          top: 0;
+          min-height: calc(var(--layout-height) - var(--layout-footer-height));
+          max-height: var(--layout-height);
+        }
+      `}
     `}
 `;

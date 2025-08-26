@@ -98,23 +98,22 @@ export interface LayoutTheme {
 /**  可使用的样式类型  */
 export type EnLayoutContentType =
   | 'simple'
-  | 'only-footer'
-  | 'only-header'
-  | 'no-sidebar'
-  | 'side-full'
-  | 'side-right-full-all'
-  | 'side-right-full-no-footer'
-  | 'side-right-full-no-header'
-  | 'side-right-full-only-side'
-  | 'side-right-all'
-  | 'side-right-no-footer'
-  | 'side-right-no-header'
-  | 'side-right-only-side'
-  | 'side-full-all'
-  | 'side-full-no-footer'
-  | 'side-full-no-header'
-  | 'side-full-only-side'
+  | 'only-footer' // 已校验
+  | 'only-header' // 已校验
+  | 'no-sidebar' // 已校验
   | 'simple-all'
+  | 'side-full-all'
+  | 'side-right-all'
+  | 'side-right-full-all'
   | 'simple-no-footer'
+  | 'side-full-no-footer'
+  | 'side-right-no-footer'
+  | 'side-right-full-no-footer'
   | 'simple-no-header'
-  | 'simple-only-side';
+  | 'side-full-no-header'
+  | 'side-right-no-header'
+  | 'side-right-full-no-header'
+  | 'simple-only-side'
+  | 'side-full-only-side' // 同上
+  | 'side-right-only-side'
+  | 'side-right-full-only-side'; // 同上

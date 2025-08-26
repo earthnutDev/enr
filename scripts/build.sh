@@ -4,6 +4,8 @@ buildResult() {
   # 清空dist
   pnpm jja rm dist 
 
+  # dev_mode=development
+
   if  ! pnpm webpack --config webpack.config.mjs.js; then 
     exit 1
   fi 
