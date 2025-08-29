@@ -46,7 +46,7 @@ export function Home() {
       <button
         onclick={() => {
           timeId.current = setTimeout(
-            () => dog("没有感情的按钮 A 打印了一条没有感情的消息"),
+            () => console.log("没有感情的按钮 A 打印了一条没有感情的消息"),
             2500
           );
         }}

@@ -7,6 +7,8 @@ export type ThemeContextType = {
   autoColorMode: boolean;
   /** 获取颜色模式  */
   colorMode: ColorMode;
+  /**  展示的当前颜色模型样式类 */
+  colorModeClassName: string;
   /**  切换颜色模式  */
   toggleColorMode: () => ColorMode;
   /**  设置颜色模式（仅允许设置为 'dark'、或 `light`） */
@@ -16,7 +18,7 @@ export type ThemeContextType = {
 };
 
 export type ThemeColorModeProviderProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**  初始化默认的主题值  */
   initialTheme: ColorMode;
 };

@@ -1,6 +1,7 @@
 import { dog } from 'dog';
 import { forbiddenRunSide } from '../callback/can-side';
 import { Ripples } from '../ripplesClass';
+import { isUndefined } from 'a-type-of-js';
 
 /**
  * 设置缓变
@@ -11,10 +12,14 @@ import { Ripples } from '../ripplesClass';
  */
 export function runSide(this: Ripples) {
   const { options, fadeData } = this;
+
+  if (isUndefined(fadeData)) return; // 防空
+
   /// 设置下一个循环
   fadeData.transparentId = setTimeout(
     () => {
       clearTimeout(fadeData.transparentId); // 清理栈中未执行的同类型调用，防止多次触发
+      if (isUndefined(fadeData)) return; // 防空
       // 当前上一次为执行完毕放弃本次子执行，创建下一次执行
       if (fadeData.isTransitioning) return Reflect.apply(runSide, this, []);
       // 校验当前是否可执行

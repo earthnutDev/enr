@@ -62,7 +62,7 @@ export default function UseAnimationFramePage() {
       className={xcn(_en('en-center', 'en-center', 'en-text-center', 'en-cursor-pointer'))}
       onClick={changeState}
       style={{
-        backgroundColor: data.state ? 'Highlight' : 'ActiveBorder',
+        backgroundColor: data.state ? 'var(--en-color-red-40)' : 'var(--en-color-darkness-90)',
       }}
     >
       <div>{data.state ? 'run' : 'stop'}</div>

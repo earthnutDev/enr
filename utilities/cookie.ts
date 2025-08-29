@@ -61,7 +61,7 @@ export const manageCookie = {
       .concat(secure ? '; secure' : '');
     return true;
   },
-  deleteItem(key: string, path: string, domain: string) {
+  deleteItem(key: string, path?: string, domain?: string) {
     if (!key || !this.exist(key)) {
       return false;
     }

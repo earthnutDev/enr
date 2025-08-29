@@ -16,11 +16,13 @@ import { dog } from 'dog';
  * 在加载过程中如果渲染的图片为非法的（加载错误）那么将查找当前的背景色或是背景图作为依据，再就是都没有的情况下将会渲染一个类似于旧地板的色
  */
 export function loadImage(this: Ripples) {
+  dog.type = false;
   dog('开始下载图片');
   const { renderData, options, fadeData } = this;
   if (isNull(renderData)) {
     dog('执行绘制时没有渲染数据');
     Reflect.apply(createLinearGradient, this, []);
+    dog.type = true;
     return;
   }
   const { lastUseStyle } = renderData;
@@ -37,6 +39,7 @@ export function loadImage(this: Ripples) {
   if (!newImageSource) {
     dog('没有原始图像，开始使用空白自绘');
     Reflect.apply(createLinearGradient, this, []);
+    dog.type = true;
     return;
   }
   // 从新图像加载纹理。
@@ -74,12 +77,14 @@ export function loadImage(this: Ripples) {
     }); // 设置渐变过去
     dog('添加后的列表长度', fadeData.toBeList);
     fadeData.run(); // 开启渐变
+    dog.type = true;
   };
 
   // 下载图像出错
   image.onerror = () => {
     dog('下载图像错误');
     Reflect.apply(createLinearGradient, this, []);
+    dog.type = true;
   };
 
   // 当图像源是数据 URI 时禁用 CORS。

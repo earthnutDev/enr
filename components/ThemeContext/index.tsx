@@ -5,21 +5,42 @@ import { storageStore } from 'storage/storage-store';
 import { manageCookie } from 'utilities/cookie';
 import { sysInfo } from 'utilities/sys';
 
+/**  用于判断是否正确放置的  */
+const defaultCall = (): ColorMode => {
+  return 'light';
+};
+
 const ThemeColorModeContext = createContext<ThemeContextType>({
   autoColorMode: true,
+  colorModeClassName: 'en-light',
   colorMode: 'light',
-  toggleColorMode() {
-    return 'light';
-  },
-  setColorMode() {
-    return 'light';
-  },
+  toggleColorMode: defaultCall,
+  setColorMode: defaultCall,
   clearColorMode() {},
 });
 
-/**  使用主题颜色模式  */
-export function useColorMode() {
-  return useContext(ThemeColorModeContext);
+/**
+ * 使用主题颜色模式
+ *
+ * ```ts
+ * interface ThemeContextType {
+ *   autoColorMode: boolean;
+ *   colorMode: ColorMode;
+ *   colorModeClassName: string;
+ *   toggleColorMode: () => ColorMode;
+ *   setColorMode: (newColorMode: ColorMode) => ColorMode;
+ *   // 清理主题设置，让主题跟随系统
+ *   clearColorMode: () => void;
+ * }
+ * ```
+ */
+export function useColorMode(): ThemeContextType {
+  const result = useContext(ThemeColorModeContext);
+
+  if (result.setColorMode === defaultCall || result.toggleColorMode === defaultCall) {
+    console.warn('use ColorMode 应当在 <ThemeColorModeProvider /> 内部使用');
+  }
+  return result;
 }
 
 /**    */
@@ -46,6 +67,7 @@ export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorMod
     setAuto(true);
     setColorMode(sysInfo.isDark ? 'dark' : 'light');
     storageStore.theme = '';
+    manageCookie.deleteItem('theme');
   };
 
   useEffect(() => {
@@ -85,6 +107,7 @@ export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorMod
     <ThemeColorModeContext.Provider
       value={{
         colorMode,
+        colorModeClassName: `en-${colorMode}`,
         toggleColorMode,
         setColorMode: setSpecifiedColorMode,
         clearColorMode: clear,

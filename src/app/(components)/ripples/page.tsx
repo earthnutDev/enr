@@ -26,7 +26,7 @@ export default function RipplesPage() {
     const target = e.target as HTMLButtonElement;
     const index = Number(target.dataset['index']);
     setBackground(
-      [['#f00'], ['#a63', '#361', '#009'], '/image/defaultBackground.png', null][index],
+      [['#0f0'], ['#f00'], ['#a63', '#361', '#009'], '/image/defaultBackground.png', null][index],
     );
     e.stopPropagation();
     e.preventDefault();
@@ -41,11 +41,7 @@ export default function RipplesPage() {
       id="ripple"
       onContextMenu={togglePlayingState}
       data-alias="ripple 外壳"
-      style={{
-        padding: '0rem 0rem',
-        margin: '0rem',
-        boxSizing: 'border-box',
-      }}
+      style={{}}
     >
       <BackgroundRipple
         ref={rippleRef}
@@ -89,7 +85,7 @@ export default function RipplesPage() {
             </div>
           ))}
           <div className={xcn(styles.buttons)}>
-            {['纯色', '渐变', '图片', '没有值'].map((e, i) => (
+            {['绿色', '红色', '渐变', '图片', '没有值'].map((e, i) => (
               <button key={e} data-index={i} onClick={setBackgroundValue}>
                 {e}
               </button>

@@ -63,14 +63,14 @@ export default function () {
     rules: [
       // 配置 ts loader
       {
-        test: /\.(tsx?)|(jsx?)$/,
+        test: /\.[tj]sx?$/,
         exclude: /node_modules/,
         use: [
           ...customLoader((isProduction && 'remove-import-dog') || undefined),
           {
             loader: 'babel-loader',
             options: {
-              configFile: pathJoin('./babel.config.js'),
+              configFile: pathJoin('./babel.config.custom.js'),
             },
           },
           ...customLoader(

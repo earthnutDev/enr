@@ -1,20 +1,35 @@
-import { Layout, LayoutContent, LayoutHeader } from 'components/layout';
-import { _en } from 'customHooks/use-xcn';
-import Link from 'next/link';
+'use client';
+
+import styled from 'styled-components';
+import { HeadersMode } from './Headers';
+import { InputMemoTheme } from './Input';
+import { ParagraphMode } from './paragraph';
+import { RadioDemoTheme } from './Radio';
+
+const PageContainer = styled.div`
+  scroll-behavior: smooth;
+  margin-bottom: var(--en-spacing-10);
+
+  & > div {
+    margin: var(--en-font-size-base);
+    padding: var(--en-font-size-base);
+    border-radius: var(--en-radius-card);
+    box-shadow: 0 1px 12px rgba(var(--en-text-primary-rgb), 0.23);
+    transition: all calc(var(--en-transition-fast) * 8.6);
+    &:hover {
+      box-shadow: 0 1px 24px rgba(var(--en-text-primary-rgb), 0.4);
+    }
+  }
+`;
 
 /**  主题页面测试  */
 export default function ThemePage() {
   return (
-    <Layout>
-      <LayoutHeader>
-        <div className={_en('en-full-container')}>
-          <div className={_en('en-float-left')}>
-            <Link href={'/'}>其他组件测试</Link>
-          </div>
-          <div className={_en('en-float-right')}>45</div>
-        </div>
-      </LayoutHeader>
-      <LayoutContent>具体内容</LayoutContent>
-    </Layout>
+    <PageContainer>
+      <HeadersMode />
+      <ParagraphMode />
+      <InputMemoTheme />
+      <RadioDemoTheme />
+    </PageContainer>
   );
 }

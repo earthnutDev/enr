@@ -121,10 +121,12 @@ export function useAnimationFrame(
     isUnmounted: true,
     result: {
       cancel() {
+        dog.type = false;
         const { id } = animationFrame.current;
         dog('执行取消');
         if (id) window.cancelAnimationFrame(id);
         animationFrame.current.result.canceled = true;
+        dog.type = true;
       },
       canceled: false,
       render() {
@@ -161,6 +163,7 @@ export function useAnimationFrame(
   }
 
   useEffect(() => {
+    dog.type = false;
     dog(
       '回调更替',
       '此时的是否为第一次执行状态为',
@@ -174,13 +177,16 @@ export function useAnimationFrame(
       if (current.firstRunEffect) {
         current.result.render();
         current.firstRunEffect = false; //  标记为不允许执行
+        dog.type = false;
         dog('第一次执行', '，执行后状态', current.result.canceled);
       } else if (!current.firstRunEffect && !current.result.canceled) {
         /**  非第一次执行  */
         current.result.render();
+        dog.type = false;
         dog('非首次执行', '，执行后状态', current.result.canceled);
       }
     }
+    dog.type = true;
   }, [callback]);
 
   /// 在组件退出时保证能正确的退出

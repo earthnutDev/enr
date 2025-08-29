@@ -10,10 +10,12 @@ import { dog } from 'dog';
 /**  构建背景色  */
 export function createBackgroundColor(this: Ripples) {
   const { renderData, fadeData, options } = this;
+  dog.type = false;
 
   if (isNull(renderData)) {
     dog('当前尚未获取到渲染数据');
     // 没有值时设置为默认的类透明背景色
+    dog.type = true;
     return Reflect.apply(setTransparentTexture, this, []);
   }
   const { originStyle } = renderData;
@@ -23,6 +25,7 @@ export function createBackgroundColor(this: Ripples) {
     (!isArray(options.imgUrl) || options.imgUrl.length !== 1)
   ) {
     dog('当前没有配置背景色');
+    dog.type = true;
     return Reflect.apply(setTransparentTexture, this, []);
   }
   /**  画布  */
@@ -31,6 +34,7 @@ export function createBackgroundColor(this: Ripples) {
   const ctx = canvas.getContext('2d');
   if (isNull(ctx)) {
     dog('当前未获取到画布的执行上下文');
+    dog.type = true;
     return Reflect.apply(setTransparentTexture, this, []);
   }
 
@@ -64,4 +68,5 @@ export function createBackgroundColor(this: Ripples) {
   dog('添加了背景色', drawColor, nestDrawImage);
   fadeData.run(); // 执行渐变
   dog('目前有', fadeData.toBeList);
+  dog.type = true;
 }

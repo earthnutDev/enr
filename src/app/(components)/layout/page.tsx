@@ -6,7 +6,7 @@ import {
   LayoutHeader,
   LayoutSideBar,
 } from 'components/layout';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, HTMLAttributes, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 import { Switch } from 'index.client';
 import { _en } from 'index.server';
@@ -22,6 +22,11 @@ const LayoutContainer = styled.div`
   box-shadow: 1px 1px 12px #666;
   overflow: hidden;
 `;
+
+/**  大标题  */
+function H1(props: HTMLAttributes<HTMLHeadElement>) {
+  return <h1 {...props} className={_en('en-text-center', 'en-h1', 'en-color-text')} />;
+}
 
 /**  布局测试页面  */
 export default function LayoutDemoPage() {
@@ -42,14 +47,17 @@ export default function LayoutDemoPage() {
     [contentVisible, setContentVisible, '是否包含内容'],
     [sideBarVisible, setSideBarVisible, '是否包含侧栏'],
     [footerVisible, setHooterVisible, '是否包含页脚'],
-    [headerNoSticky, setHeaderNoSticky, '头部是否滚动'],
     [sidebarIsRight, setSidebarIsRight, '侧栏是否居右'],
     [sidebarIsFull, setSidebarIsFull, '侧栏是否占满全高'],
+  ];
+  /**  列表  */
+  const toggleList: [boolean, Dispatch<SetStateAction<boolean>>, string][] = [
+    [headerNoSticky, setHeaderNoSticky, '头部是否滚动'],
     [sidebarIsOverflow, setSidebarIsOverflow, '侧栏子数据是否超限'],
     [contentIsOverflow, setContentIsOverflow, '内容区是否超限'],
   ];
-  const [layoutHeight, setLayoutHeight] = useState<string | number>(0.8);
-  const [layoutWidth, setLayoutWidth] = useState<string | number>(0.8);
+  const [layoutHeight, setLayoutHeight] = useState<string | number>('40vh');
+  const [layoutWidth, setLayoutWidth] = useState<string | number>('72vw');
   const [headerHeight, setHeaderHeight] = useState<string | number>('2.8rem');
   const [footerHeight, setFooterHeight] = useState<string | number>('2.8rem');
   const [sideWidth, setSideWidth] = useState<string | number>(150);
@@ -66,7 +74,15 @@ export default function LayoutDemoPage() {
   const Container = (
     <>
       {headerVisible && (
-        <LayoutHeader height={headerHeight} noSticky={headerNoSticky} className={_en('en-dark')}>
+        <LayoutHeader
+          height={headerHeight}
+          noSticky={headerNoSticky}
+          className={_en('en-dark')}
+          style={{
+            backgroundColor: 'var(--en-color-red)',
+            opacity: 0.3,
+          }}
+        >
           头部
         </LayoutHeader>
       )}
@@ -75,7 +91,7 @@ export default function LayoutDemoPage() {
           width={sideWidth}
           right={sidebarIsRight}
           full={sidebarIsFull}
-          className={_en()}
+          className={_en('en-dark')}
         >
           {new Array(sidebarIsOverflow ? 100 : 10).fill(1).map((e, i) => (
             <div key={i}>第 {i + 1} 个侧栏子项</div>
@@ -90,7 +106,14 @@ export default function LayoutDemoPage() {
         </LayoutContent>
       )}
       {footerVisible && (
-        <LayoutFooter height={footerHeight} className={_en('en-dark')}>
+        <LayoutFooter
+          height={footerHeight}
+          className={_en('en-dark')}
+          style={{
+            backgroundColor: 'var(--en-color-blue-80)',
+            opacity: 0.45,
+          }}
+        >
           页脚
         </LayoutFooter>
       )}
@@ -113,11 +136,22 @@ export default function LayoutDemoPage() {
   return (
     <>
       <div>
-        {toggleVisibleList.map(e => (
-          <Switch key={e[2]} value={e[0]} change={() => e[1](!e[0])}>
-            {e[2]}
-          </Switch>
-        ))}
+        <div>
+          <H1>布局格式调整区</H1>
+          {toggleVisibleList.map(e => (
+            <Switch key={e[2]} value={e[0]} change={() => e[1](!e[0])}>
+              {e[2]}
+            </Switch>
+          ))}
+        </div>
+        <div>
+          <H1>副作用区</H1>
+          {toggleList.map(e => (
+            <Switch key={e[2]} value={e[0]} change={() => e[1](!e[0])}>
+              {e[2]}
+            </Switch>
+          ))}
+        </div>
         <div>
           {inputValueList.map(item => (
             <div key={item[2]} className={_en('en-inline-block', 'en-padding-4')}>

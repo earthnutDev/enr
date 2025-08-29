@@ -95,25 +95,28 @@ export interface LayoutTheme {
   footerHeight: string | number;
 }
 
+/**  布局侧栏的状态  */
+export type EnLayoutSideState = 'side-right-full' | 'simple' | 'side-right' | 'side-full';
+
 /**  可使用的样式类型  */
 export type EnLayoutContentType =
   | 'simple'
-  | 'only-footer' // 已校验
-  | 'only-header' // 已校验
-  | 'no-sidebar' // 已校验
+  | 'only-footer'
+  | 'only-header'
+  | 'no-side'
   | 'simple-all'
-  | 'side-full-all'
   | 'side-right-all'
-  | 'side-right-full-all'
   | 'simple-no-footer'
-  | 'side-full-no-footer'
   | 'side-right-no-footer'
+  | 'side-full-all'
+  | 'side-right-full-all'
+  | 'side-full-no-footer'
   | 'side-right-full-no-footer'
   | 'simple-no-header'
-  | 'side-full-no-header'
   | 'side-right-no-header'
+  | 'side-full-no-header'
   | 'side-right-full-no-header'
   | 'simple-only-side'
-  | 'side-full-only-side' // 同上
+  | 'side-full-only-side'
   | 'side-right-only-side'
-  | 'side-right-full-only-side'; // 同上
+  | 'side-right-full-only-side';

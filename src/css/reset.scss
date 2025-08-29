@@ -1,16 +1,16 @@
-@use "./vars-color.scss" as *;
+@use './vars-color.scss' as *;
 
 /* 盒模型 规则 */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  position: relative;
 }
 
 /* 移除默认的 margin 外边距 */
 html,
 body,
-p,
 figure,
 blockquote,
 dl,
@@ -29,6 +29,7 @@ body {
   font-size: var(--en-base-font-size);
   line-height: var(--en-font-content-line-height);
   text-rendering: optimizeSpeed; // 文本渲染，是快速还是清晰
+  scroll-behavior: smooth;
 }
 
 /*  链接元素没有 class 类时的展示 */
@@ -49,7 +50,7 @@ picture {
 
 /* Fix Inter font bug: 'em' not slanted in Safari. See issue: https://github.com/mdn/yari/issues/7203 */
 em {
-  font-variation-settings: "slnt" -10;
+  font-variation-settings: 'slnt'-10;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -73,7 +74,7 @@ input:-webkit-autofill:active {
   -webkit-transition:
     color 99999s ease-out,
     background-color 99999s ease-out;
-  -webkit-text-fill-color: var(--text-primary);
+  -webkit-text-fill-color: var(--en-text-primary);
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

@@ -43,6 +43,8 @@ packageJson = {
     },
     './scss': './styles/common.scss',
     './css': './styles/common.css',
+    './reset.scss': './styles/reset.scss',
+    './reset.css': './styles/reset.css',
   },
   keywords: ['enr'],
   homepage: 'https://earthnut.dev/quickUse',

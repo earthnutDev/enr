@@ -8,12 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@qqi/babel-plugin-remove-dog-calls':
-        specifier: ^0.1.1
-        version: 0.1.1
-      '@qqi/log':
-        specifier: ^0.1.1
-        version: 0.1.1
       a-element-inline-style:
         specifier: ^0.1.1
         version: 0.1.1
@@ -54,9 +48,15 @@ importers:
       '@eslint/json':
         specifier: ^0.13.1
         version: 0.13.1
+      '@qqi/babel-plugin-remove-dog-calls':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@qqi/copy-text':
         specifier: ^1.0.7
         version: 1.0.7
+      '@qqi/log':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@types/node':
         specifier: latest
         version: 20.19.11

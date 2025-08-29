@@ -3,6 +3,7 @@
 import { TabList } from './types';
 import { TabItem } from './SidebarItem/Link';
 import { styled } from 'styled-components';
+import { HTMLAttributes } from 'react';
 
 const NarContent = styled.div`
   grid-area: tab;
@@ -15,9 +16,12 @@ const NarContent = styled.div`
 /**
  * 左侧导航栏
  */
-export default function MainTab({ data }: { data: TabList }) {
+export default function MainTab({
+  data,
+  ...props
+}: { data: TabList } & HTMLAttributes<HTMLDivElement>) {
   return (
-    <NarContent>
+    <NarContent {...props}>
       <nav>
         <ul>
           {data?.map(e => (

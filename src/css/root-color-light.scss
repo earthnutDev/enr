@@ -1,0 +1,81 @@
+@use './vars-color.scss' as color;
+
+@mixin light {
+  // 主要文本色（正文、标题）
+  --en-text-primary: var(--en-color-darkness-85);
+  --en-text-primary-rgb: var(--en-color-darkness-85-rgb);
+  // 次要文本色（辅助说明）
+  --en-text-secondary: var(--en-color-darkness-70);
+  --en-text-secondary-rgb: var(--en-color-darkness-70-rgb);
+  // 备注、浇注的文本色
+  --en-text-tertiary: var(--en-color-darkness-40);
+  --en-text-tertiary-rgb: var(--en-color-darkness-40-rgb);
+  --en-text-active: var(--en-color-darkness-50);
+  --en-text-active-rgb: var(--en-color-darkness-50-rgb);
+  --en-text-inactive: rgba(var(--en-color-darkness-40-rgb), 0.76);
+  --en-text-inactive-rgb: var(--en-color-darkness-40-rgb);
+  --en-text-link: var(--en-color-blue-70);
+  --en-text-link-rgb: var(--en-color-blue-70-rgb);
+  --en-text-invert: var(--en-color-white); // 文本反转色
+  --en-text-invert-rgb: var(--en-color-white-rgb); // 文本反转色
+  --en-text-muted: var(--en-color-darkness-65); // 温和文本色
+  --en-text-muted-rgb: var(--en-color-darkness-65-rgb); // 温和文本色
+  // 背景色
+  --en-background-primary: var(--en-color-darkness-10);
+  --en-background-primary-rgb: var(--en-color-darkness-10-rgb);
+  --en-background-secondary: var(--en-color-darkness-15);
+  --en-background-secondary-rgb: var(--en-color-darkness-15-rgb);
+  --en-background-tertiary: var(--en-color-darkness-20);
+  --en-background-tertiary-rgb: var(--en-color-darkness-20-rgb);
+  // 边框
+  --en-border-primary: var(--en-color-darkness-10);
+  --en-border-primary-rgb: var(--en-color-darkness-10-rgb);
+  --en-border-secondary: var(--en-color-darkness-15);
+  --en-border-secondary-rgb: var(--en-color-darkness-15-rgb);
+  // 成功盒子的提示框
+  --en-border-success: var(--en-color-green-20);
+  --en-border-success-rgb: var(--en-color-green-20-rgb);
+  // 按钮
+  --en-button-primary: var(--en-color-darkness-85);
+  --en-button-primary-rgb: var(--en-color-darkness-85-rgb);
+  --en-button-primary-hover: var(--en-color-darkness-60);
+  --en-button-primary-hover-rgb: var(--en-color-darkness-60-rgb);
+  --en-button-primary-active: var(--en-color-darkness-40);
+  --en-button-primary-active-rgb: var(--en-color-darkness-40-rgb);
+  --en-button-primary-inactive: var(--en-color-darkness-85);
+  --en-button-primary-inactive-rgb: var(--en-color-darkness-85-rgb);
+  --en-button-secondary: var(--en-color-white);
+  --en-button-secondary-rgb: var(--en-color-white-rgb);
+  --en-button-secondary-hover: var(--en-color-darkness-20);
+  --en-button-secondary-hover-rgb: var(--en-color-darkness-20-rgb);
+  --en-button-secondary-active: var(--en-color-darkness-20);
+  --en-button-secondary-active-rgb: var(--en-color-darkness-20-rgb);
+  --en-button-secondary-inactive: var(--en-color-darkness-15);
+  --en-button-secondary-inactive-rgb: var(--en-color-darkness-15-rgb);
+  --en-button-secondary-border-focus: var(--en-color-blue-50);
+  --en-button-secondary-border-focus-rgb: var(--en-color-blue-50-rgb);
+  // 红框按钮
+  --en-button-secondary-border-red: var(--en-color-red-30);
+  --en-button-secondary-border-red-rgb: var(--en-color-red-30-rgb);
+  --en-button-secondary-border-red-focus: var(--en-color-red-10);
+  --en-button-secondary-border-red-focus-rgb: var(--en-color-red-10-rgb);
+  --en-box-shadow-light: 0 1px 2px rgba(var(--en-color-darkness-80), 0.05);
+  --en-box-shadow-dark: 0 1px 6px rgba(var(--en-color-darkness-80), 0.1);
+  // 输入框
+  --en-input-primary-text: var(--en-text-primary);
+  --en-input-primary-text-rgb: var(--en-text-primary-rgb);
+  --en-input-primary-background: var(--en-background-primary);
+  --en-input-primary-background-rgb: var(--en-background-primary-rgb);
+  --en-input-primary-placeholder-text: var(--en-color-darkness-50);
+  --en-input-primary-focus-visible-outline: var(--en-color-blue-60) solid 2px;
+  --en-input-revers-text: var(--en-color-green-20);
+  --en-input-revers-text-rgb: var(--en-color-green-20-rgb);
+  --en-input-revers-background: var(--en-color-darkness-90);
+  --en-input-revers-background-rgb: var(--en-color-darkness-90-rgb);
+  --en-input-revers-placeholder-text: var(--en-color-darkness-50);
+  --en-input-revers-focus-visible-outline: var(--en-color-green-60) solid 2px;
+
+  color-scheme: light;
+  color: var(--en-text-primary, #3a3b3f);
+  background-color: var(--en-background-primary, #f0f2e6);
+}

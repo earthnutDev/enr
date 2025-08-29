@@ -1,0 +1,131 @@
+.en-input-focus-visible-none,
+input.en-input-focus-visible-none,
+.en-style input:focus-visible {
+  outline: none;
+}
+
+.en-style input[type='button'],
+.cursor-pointer input[type='button'].cursor-pointer {
+  cursor: pointer;
+}
+
+.en-input-type-text-revers,
+input[type='text'].en-input-type-text-revers,
+.en-input-type-text-primary,
+input[type='text'].en-input-type-text-primary,
+.en-style input[type='text'] {
+  width: calc(var(--en-spacing) * 40);
+  border-radius: var(--en-spacing-3);
+  padding: var(--en-spacing-1) var(--en-spacing-3);
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+.en-input-type-text-primary,
+input[type='text'].en-input-type-text-primary,
+.en-style input[type='text'] {
+  background-color: var(--en-input-primary-background);
+  color: var(--en-input-primary-text);
+  border-style: outset;
+
+  &::placeholder {
+    color: var(--en-input-primary-placeholder-text);
+  }
+
+  &:focus-visible {
+    outline: var(--en-input-primary-focus-visible-outline);
+    border-color: transparent;
+    box-shadow: 0 2px 24px rgba(var(--en-input-primary-text-rgb), 0.6);
+  }
+}
+
+input[type='text'].en-input-type-text-revers,
+.en-input-type-text-revers {
+  background-color: var(--en-input-revers-background);
+  color: var(--en-input-revers-text);
+  border-style: outset;
+
+  &::placeholder {
+    color: var(--en-input-revers-placeholder-text);
+  }
+
+  &:focus-visible {
+    outline: var(--en-input-revers-focus-visible-outline);
+    border-color: transparent;
+    box-shadow: 0 2px 12px rgba(var(--en-input-revers-text-rgb), 0.6);
+  }
+}
+
+.en-input-type-radio-primary,
+.en-style input[type='radio'] {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+
+  + label {
+    padding-left: 15px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      top: 50%;
+      transform: translate(0, -50%);
+      overflow: hidden;
+    }
+
+    $with: var(--en-spacing-base);
+
+    // 默认/未选中的前置
+    &::before {
+      left: 0px;
+      height: $with;
+      width: $with;
+      box-shadow: 1px 1px 3px var(--en-text-primary);
+      z-index: 1;
+    }
+
+    // 选中的项的额外涂色
+    &::after {
+      font-size: $with;
+      line-height: $with;
+      z-index: 2;
+      left: 0px;
+      height: $with;
+      width: $with;
+      color: var(--en-background-primary);
+      background-color: var(--en-text-primary);
+      clip-path: circle(0%);
+      transition: all var(--en-transition-slow);
+    }
+  }
+
+  &:checked {
+    color: #f00;
+
+    & + label {
+      color: var(--en-color-green-30);
+
+      &::before {
+        box-shadow:
+          1px 1px 3px var(--en-color-green-10),
+          -1px -1px 3px var(--en-color-green-10);
+      }
+
+      &::after {
+        background-color: var(--en-color-green-30);
+        clip-path: circle(100%);
+        transition: all 0.8s;
+      }
+    }
+  }
+}
+
+.en-input-type-image-primary,
+.en-style input[type='image'] {
+  -webkit-user-select: none;
+  user-select: none;
+}

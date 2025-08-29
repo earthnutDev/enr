@@ -4,6 +4,7 @@ import { InternalValueC as LayoutContent } from './content';
 import { InternalValueF as LayoutFooter } from './footer';
 import {
   EnLayoutContentType,
+  EnLayoutSideState,
   LayoutFooterProps,
   LayoutHeaderProps,
   LayoutProps,
@@ -11,7 +12,7 @@ import {
   LayoutTheme,
 } from './types';
 import { xcn } from 'xcn';
-import { isNumber, isString, isTrue } from 'a-type-of-js';
+import { isNumber, isString } from 'a-type-of-js';
 import { EnLayoutContent, LayoutContentWrapper } from 'components/shared/EnLayoutContent';
 import { getValue } from './get-value';
 import { Children, cloneElement, forwardRef, isValidElement, ReactElement } from 'react';
@@ -68,6 +69,7 @@ function isDecimal(value: string | number) {
  */
 const Layout = forwardRef<HTMLDivElement, LayoutProps>(
   ({ className, children, style, width = '100%', height = '100%', classes, ...props }, ref) => {
+    dog.type = false;
     /**  子组件的个数  */
     const childCount = Children.count(children);
     /**  头部 header 是否粘连影响下的样式  */
@@ -75,7 +77,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
     /**  头部 header 组件  */
     let Header: ReactElement<LayoutHeaderProps> | undefined,
       /** 当前的样式   */
-      layout: 'side-right-full' | 'simple' | 'side-right' | 'side-full' = 'simple',
+      sideState: EnLayoutSideState = 'simple' as EnLayoutSideState,
       headerNoSticky: boolean = false,
       /**  是否拥有头部（header）  */
       hasHeader: boolean = false,
@@ -96,9 +98,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
       /**  头部的高度，缺省值 `2.8rem`  */
       headerHeight: string | number = '2.8rem',
       /**  页脚的高度，缺省值为 `2rem`  */
-      footerHeight: string | number = '2rem',
-      /**  侧边是否占据所有尺寸（发生于 side bar 的 full 为 true 和仅有 side bar 时）   */
-      sideFull: boolean = false;
+      footerHeight: string | number = '2rem';
     /**  头字符串样式类  */
     const $header: string = 'en-layout-header',
       /**  内容字符串样式类  */
@@ -147,7 +147,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         const element = child as ReactElement<LayoutSideBarProps>;
         const sideBarProps = element.props;
         sideWidth = sideBarProps.width || sideWidth;
-        layout =
+        sideState =
           sideBarProps.right && sideBarProps.full
             ? 'side-right-full'
             : sideBarProps.right
@@ -155,7 +155,6 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
               : sideBarProps.full
                 ? 'side-full'
                 : 'simple';
-        sideFull = isTrue(sideBarProps.full);
         Sidebar = cloneElement(element, {
           className: xcn($sidebar, element.props.className),
         });
@@ -192,15 +191,22 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
       }
     });
     /**  组件在子组件不同下的样式值  */
-    const layoutType: EnLayoutContentType =
-      (hasHeader && hasSideBar && hasContent && hasFooter && `${layout}-all`) ||
-      (hasHeader && hasContent && hasSideBar && `${layout}-no-footer`) ||
-      (hasSideBar && hasContent && hasFooter && `${layout}-no-header`) ||
-      (hasHeader && hasContent && hasFooter && 'no-sidebar') ||
-      (hasContent && hasFooter && 'only-footer') ||
-      (hasContent && hasHeader && 'only-header') ||
-      (hasContent && hasSideBar && (sideFull = true) && `${layout}-only-side`) ||
-      'simple';
+    let layoutType: EnLayoutContentType =
+      hasHeader && hasSideBar && hasContent && hasFooter
+        ? `${sideState}-all`
+        : hasHeader && hasContent && hasSideBar
+          ? `${sideState}-no-footer`
+          : hasSideBar && hasContent && hasFooter
+            ? `${sideState}-no-header`
+            : hasHeader && hasContent && hasFooter
+              ? 'no-side'
+              : hasContent && hasFooter
+                ? 'only-footer'
+                : hasContent && hasHeader
+                  ? 'only-header'
+                  : hasContent && hasSideBar
+                    ? `${sideState}-only-side`
+                    : 'simple';
 
     /**  构建主题对象  */
     const theme: LayoutTheme = {
@@ -212,8 +218,19 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
       ...(props.theme || {}), // 保留外部传入的主题
     };
 
+    if (layoutType === 'side-full-only-side') {
+      layoutType = 'simple-only-side';
+    } else if (layoutType === 'side-right-full-only-side') {
+      layoutType = 'side-right-only-side';
+    }
+
+    /**  是否仅包含侧栏  */
+    const shouldUseOnlySideLayout = /-only-side$/.test(layoutType);
     /**  确定布局结构  */
-    const shouldUseSpecialLayout = /side.*full/.test(layout);
+    const shouldUseSideFullLayout = /^side.*full/.test(layoutType);
+
+    dog.type = true;
+
     return (
       <EnLayoutContent
         ref={ref}
@@ -224,12 +241,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         $main={$main}
         $content={$content}
         $footer={$footer}
-        className={xcn(
-          sideFull && 'en-layout-side-full',
-          `en-layout-${layoutType}`,
-          className,
-          classes,
-        )}
+        className={xcn(className, classes)}
         style={{
           // eslint-disable-next-line jsdoc/check-tag-names
           /**  @ts-expect-error: 自定义侧边栏的宽度  */
@@ -245,30 +257,30 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         theme={theme}
         {...props}
         data-enr-ui="layout"
+        data-enr-layout-type={layoutType}
       >
-        {!shouldUseSpecialLayout ? (
+        {shouldUseOnlySideLayout ? (
+          <>
+            {Sidebar} {Content}
+          </>
+        ) : !shouldUseSideFullLayout ? (
           <>
             {Header}
-            {hasFooter ? (
-              <div className={xcn($content)} data-enr-ui="layout-with-foot-content">
-                {Sidebar}
-                {Content}
-              </div>
-            ) : (
-              <>
-                {Sidebar}
-                {Content}
-              </>
-            )}
+            <div className={xcn($content)} data-enr-ui="layout-side-no-full-content">
+              {Sidebar}
+              {Content}
+            </div>
             {Footer}
           </>
         ) : (
           // 特殊布局
           <>
             {Sidebar}
-            {Header}
-            {Content}
-            {Footer}
+            <div className={xcn($content)} data-enr-ui="layout-side-full-container">
+              {Header}
+              {Content}
+              {Footer}
+            </div>
           </>
         )}
       </EnLayoutContent>

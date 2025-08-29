@@ -10,6 +10,8 @@ export function useOptionUpdate(
   ripplesRef: RefObject<Ripples | null>,
   option: RipplesOptions | undefined,
 ) {
+  dog('执行打印', option);
+
   const oldOption = useRef({ ...option });
   /**  监听数据变化并给值  */
   useEffect(() => {
@@ -19,8 +21,10 @@ export function useOptionUpdate(
       const value = option[e] as never;
       /**  测试值是否相等  */
       const checkArr = ((v: unknown, ov: unknown) =>
-        (isArray(v) && isArray(ov) && (v.length !== ov.length || !v.every(k => v[k] === ov[k]))) ||
+        (isArray(v) && isArray(ov) && (v.length !== ov.length || v.some((k, i) => k !== ov[i]))) ||
         ((!isArray(v) || !isArray(ov)) && v !== ov))(value, oldOption.current[e]);
+
+      dog('我在这里', value, oldOption.current[e]);
 
       if (ripplesRef.current && checkArr) {
         dog('设置值', e, value);

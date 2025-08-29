@@ -1,13 +1,6 @@
 # 代办
 
-目前涟漪不可渲染纯色或渐变的背景
-
-Cannot read properties of undefined (reading 'resource')
-
-Cannot read properties of null (reading 'kind')
-
-<!--  -->
-
+```css
 @mixin light-theme {
 --text-primary: #{$mdn-theme-light-text-primary};
   --text-secondary: #{$mdn-theme-light-text-secondary};
@@ -646,3 +639,5 @@ color-scheme: dark;
 --curriculum-landing-started-employment: url("../../assets/icons/curriculum-landing-started-employment.svg#dark");
 --curriculum-landing-started-educator: url("../../assets/icons/curriculum-landing-started-educator.svg#dark");
 }
+
+```

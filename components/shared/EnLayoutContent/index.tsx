@@ -6,9 +6,10 @@ import { EnLayoutContentProps } from './types';
 export const LayoutContentContainer = styled.main`
   grid-area: content;
   position: relative;
+  scroll-behavior: smooth;
 `;
 /**  带样式的组件  */
-export const LayoutFooterContent = styled.div`
+export const LayoutFooterContent = styled.footer`
   grid-area: footer;
   position: relative;
   height: var(--layout-footer-height);
@@ -26,6 +27,7 @@ export const LayoutHeaderContainer = styled.nav`
   height: var(--layout-header-height);
   box-shadow: 0 4px 13px -3px #0000001a;
   overflow: hidden;
+  scroll-behavior: smooth;
 `;
 
 /**  带样式的组件  */
@@ -53,241 +55,233 @@ export const EnLayoutContent = styled.div<EnLayoutContentProps>`
   width: var(--layout-self-width);
   overflow-x: hidden;
   overflow-y: auto;
+  scroll-behavior: smooth;
 
-  // ------------------------------
-  // --- 标准模式（全）与侧边栏右置（全）共用样式 ---
-  // 标准模式（全）与侧边栏右置（全）
+  /**************************************
+   *
+   * 标准模式（全）与侧边栏右置（全）
+   * 
+   * 该布局对应了侧栏不为全高且非除主要区域外仅一个区域的项
+   * 
+   *
+   **************************************/
   ${({ $layoutType, $content, $sidebar }) =>
-    ['simple-all', 'side-right-all'].includes($layoutType) &&
+    [
+      'simple-all',
+      'simple-no-footer',
+      'side-right-no-footer',
+      'side-right-all',
+      'simple-no-header',
+      'side-right-no-header',
+    ].includes($layoutType) &&
     css`
       // 子元素
       & > .${$content} {
         display: grid;
-        grid-template-rows:
-          calc(var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height))
-          auto;
-        min-height: calc(
-          var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
-        );
+        scroll-behavior: smooth;
 
-        // side bar 块保持粘连，且在 content height 不足时支撑页面
-        & > .${$sidebar} {
-          top: var(--layout-header-height);
+        /* 全元素，所有内容需要减去页头、页脚的高 */
+        ${['simple-all', 'side-right-all'].includes($layoutType) &&
+        css`
+          grid-template-rows:
+            max(
+              100%,
+              calc(var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height))
+            )
+            auto;
           min-height: calc(
             var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
           );
-          max-height: calc(var(--layout-height) - var(--layout-header-height));
+        `}
+        /* 没有页脚，只需减去页头的高 */
+        ${['simple-no-footer', 'side-right-no-footer'].includes($layoutType) &&
+        css`
+          grid-template-rows:
+            max(100%, calc(var(--layout-height) - var(--layout-header-height)))
+            auto;
+          min-height: calc(var(--layout-height) - var(--layout-header-height));
+        `}
+        /* 没有页头，只需减去页脚的高即可 */
+       ${['simple-no-header', 'side-right-no-header'].includes($layoutType) &&
+        css`
+          grid-template-rows:
+            max(100%, calc(var(--layout-height) - var(--layout-footer-height)))
+            auto;
+        `}
+        /* 标准的左侧栏结构左右布局 */
+        ${['simple-all', 'simple-no-header', 'simple-no-footer'].includes($layoutType) &&
+        css`
+          grid-template-columns: var(--layout-side-bar-width) auto;
+          grid-template-areas:
+            'side content'
+            '. content';
+        `}
+
+        /*  右侧栏左右布局 */
+        ${['side-right-all', 'side-right-no-header', 'side-right-no-footer'].includes(
+          $layoutType,
+        ) &&
+        css`
+          grid-template-columns: auto var(--layout-side-bar-width);
+          grid-template-areas:
+            'content side'
+            'content .';
+        `}
+        // side bar 块保持粘连，且在 content height 不足时支撑页面
+        & > .${$sidebar} {
+          top: var(--layout-header-height);
+          ${['simple-all', 'side-right-all'].includes($layoutType) &&
+          css`
+            min-height: calc(
+              var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
+            );
+            max-height: calc(var(--layout-height) - var(--layout-header-height));
+          `}
+          ${['simple-no-footer', 'side-right-no-footer'].includes($layoutType) &&
+          css`
+            min-height: calc(var(--layout-height) - var(--layout-header-height));
+            max-height: calc(var(--layout-height) - var(--layout-header-height));
+          `}
+          ${['simple-no-header', 'side-right-no-header'].includes($layoutType) &&
+          css`
+            top: 0;
+            min-height: calc(var(--layout-height) - var(--layout-footer-height));
+            max-height: var(--layout-height);
+          `}
         }
       }
     `}
 
-  /* 与头部粘连无关 */
+  /**************************************
+    *
+    * 侧边全尺寸
+    *
+    **************************************/
+  ${({ $layoutType, $content, $sidebar }) =>
+    [
+      'side-full-all',
+      'side-right-full-all',
+      'side-full-no-footer',
+      'side-right-full-no-footer',
+      'side-full-no-header',
+      'side-right-full-no-header',
+    ].includes($layoutType) &&
+    css`
+      display: grid;
+      grid-template-rows: 100%;
+      gap: 0px;
+
+      ${['side-full-no-footer', 'side-full-all', 'side-full-no-header'].includes($layoutType) &&
+      css`
+        grid-template-columns: var(--layout-side-bar-width) auto;
+        grid-template-areas: 'side container';
+      `}
+
+      ${['side-right-full-no-footer', 'side-right-full-all', 'side-right-full-no-header'].includes(
+        $layoutType,
+      ) &&
+      css`
+        grid-template-columns: auto var(--layout-side-bar-width);
+        grid-template-areas: 'container side';
+      `}
+
+      & > .${$sidebar} {
+        height: 100%;
+      }
+      & > .${$content} {
+        height: 100%;
+        overflow: auto;
+        grid-area: container;
+        display: grid;
+        scroll-behavior: smooth;
+
+        ${['side-full-all', 'side-right-full-all'].includes($layoutType) &&
+        css`
+          grid-template-rows: var(--layout-header-height) auto var(--layout-footer-height);
+          grid-template-areas:
+            'header'
+            'content'
+            'footer';
+        `}
+        ${['side-full-no-footer', 'side-right-full-no-footer'].includes($layoutType) &&
+        css`
+          grid-template-rows: var(--layout-header-height) auto;
+          grid-template-areas:
+            'header'
+            'content';
+        `}
+        ${['side-full-no-header', 'side-right-full-no-header'].includes($layoutType) &&
+        css`
+          grid-template-rows: auto var(--layout-footer-height);
+          grid-template-areas:
+            'content'
+            'footer';
+        `}
+      }
+    `}
+
+  /**************************************
+   *
+   * 不粘连属于特殊配置
+   *
+   * 必须在最后才能保证覆盖其他非特殊设置
+   *
+   **************************************/
+  ${({ $headerNoSticky, $header, $layoutType, $content, $sidebar }) =>
+    $headerNoSticky &&
+    css`
+      // 头部不粘连样式，头部区域设置
+      & > .${$header}, & > .${$content} > .${$header} {
+        position: relative;
+        z-index: 2;
+      }
+
+      ${['simple-all', 'side-right-all', 'simple-no-footer', 'side-right-no-footer'].includes(
+        $layoutType,
+      ) &&
+      // 头部不粘连样式，内容区设置
+      css`
+        & > .${$content} > .${$sidebar} {
+          top: 0;
+          // 没有脚所以最小高度应当高于普通模式
+          ${['side-right-no-footer', 'simple-no-footer'].includes($layoutType) &&
+          css`
+            min-height: calc(var(--layout-height) - var(--layout-header-height));
+          `}
+
+          ${['simple-all', 'side-right-all'].includes($layoutType) &&
+          css`
+            min-height: calc(
+              var(--layout-height) - var(--layout-footer-height) - var(--layout-header-height)
+            );
+          `}
+          max-height: var(--layout-height);
+        }
+      `}
+    `}
+  
+    /**************************************
+     *
+     * 头部粘连会自己控制自己的粘连，无需考虑是否粘连
+     * 
+     * 仅需考虑内容区的最低高度不至于让底部坍塌
+     *
+     **************************************/
   ${({ $layoutType, $content }) =>
-    $layoutType === 'no-sidebar' &&
+    $layoutType === 'no-side' &&
     css`
       & > .${$content} {
+        scroll-behavior: smooth;
         min-height: calc(
           var(--layout-height) - var(--layout-header-height) - var(--layout-footer-height)
         );
       }
     `}
-
-  // 标准模式（全） 侧边栏与内容区设置
-  ${({ $layoutType, $content }) =>
-    ['simple-all', 'simple-no-header'].includes($layoutType) &&
-    css`
-      & > .${$content} {
-        grid-template-columns: var(--layout-side-bar-width) auto;
-        grid-template-areas:
-          'side content'
-          '. content';
-      }
-    `}
-  // 侧边栏（全） 侧边栏与内容区设置
-  ${({ $layoutType, $content }) =>
-    ['side-right-all', 'side-right-no-header'].includes($layoutType) &&
-    css`
-      & > .${$content} {
-        grid-template-columns: auto var(--layout-side-bar-width);
-        grid-template-rows: 100% max-content;
-        grid-template-areas:
-          'content side'
-          'content .';
-      }
-    `}
-
-   // 侧边栏 (全) 左侧全屏
-   // side bar 居左全尺寸
-   // side bar 值由 en-layout-side-full 控制
-  ${({ $layoutType }) =>
-    ['side-full-all', 'side-right-full-all'].includes($layoutType) &&
-    css`
-      display: grid;
-      grid-template-rows: var(--layout-header-height) auto var(--layout-footer-height);
-      gap: 0px;
-    `}
-  
-  // 标准的 side bar 居左全尺寸
-  ${({ $layoutType }) =>
-    $layoutType === 'side-full-all' &&
-    css`
-      grid-template-columns: var(--layout-side-bar-width) auto;
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'side header'
-        'side content'
-        'side footer';
-    `}
-
-  // side bar 居右全尺寸
-  ${({ $layoutType }) =>
-    $layoutType === 'side-right-full-all' &&
-    css`
-      grid-template-columns: auto var(--layout-side-bar-width);
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'header side'
-        'content side'
-        'footer side';
-    `}
-  
-  // ------------------------------
-  // --- 标准模式（无 header）与侧边栏在右侧的无头模式共用样式 ---
-  // 标准的无头模式样式、侧边栏在右侧的无头模式样式
-  ${({ $layoutType, $content, $sidebar }) =>
-    ['simple-no-header', 'side-right-no-header'].includes($layoutType) &&
-    css`
-      & > .${$content} {
-        display: grid;
-        grid-template-rows: auto;
-        // side bar 块的样式
-        & > .${$sidebar} {
-          top: 0;
-          min-height: calc(var(--layout-height) - var(--layout-footer-height));
-          max-height: var(--layout-height);
-        }
-      }
-    `}
-  
-  // 侧边栏（无 header ）全屏
-  // side bar 居左全尺寸
-  // side bar 值由 en-layout-side-full 控制
-  ${({ $layoutType }) =>
-    ['side-full-no-header', 'side-right-full-no-header'].includes($layoutType) &&
-    css`
-      display: grid;
-      grid-template-rows: auto var(--layout-footer-height);
-      gap: 0px;
-    `}
-
-  // 标准的 side bar 居左全尺寸
-  ${({ $layoutType }) =>
-    $layoutType === 'side-full-no-header' &&
-    css`
-      grid-template-columns: var(--layout-side-bar-width) auto;
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'side content'
-        'side footer';
-    `}
-
-  // side bar 居右全尺寸
-  ${({ $layoutType }) =>
-    $layoutType === 'side-right-full-no-header' &&
-    css`
-      grid-template-columns: auto var(--layout-side-bar-width);
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'content side'
-        'footer side';
-    `}
-  
-  // ------------------------------
-  // 标准模式（无 footer）与侧边栏右置（无 footer）共用样式
-  // 没有 footer
-  ${({ $layoutType, $sidebar }) =>
-    ['simple-no-footer', 'side-right-no-footer'].includes($layoutType) &&
-    css`
-      display: grid;
-      grid-template-rows: var(--layout-header-height) auto;
-      min-height: calc(var(--layout-height) - var(--layout-header-height));
-      gap: 0px;
-      // side bar 块保持粘连，且在 content height 不足时支撑页面
-      & > .${$sidebar} {
-        top: var(--layout-header-height);
-        height: calc(var(--layout-height) - var(--layout-header-height));
-      }
-    `}
-  
-
-  // 标准模式（无 footer） 侧边栏与内容区设置
-  ${({ $layoutType }) =>
-    $layoutType === 'simple-no-footer' &&
-    css`
-      grid-template-columns: var(--layout-side-bar-width) auto;
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'header header'
-        'side content'
-        '. content';
-    `}
-
-
-// 侧边栏在右侧的无 footer 模式样式
-  ${({ $layoutType }) =>
-    $layoutType === 'side-right-no-footer' &&
-    css`
-      grid-template-columns: auto var(--layout-side-bar-width);
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'header header'
-        'content side'
-        'content .';
-    `}
-
-// 侧边栏 (全) 左侧全屏
-// side bar 居左全尺寸
-// side bar 值由 en-layout-side-full 控制
-${({ $layoutType, $main }) =>
-    ['side-full-no-footer', 'side-right-full-no-footer'].includes($layoutType) &&
-    css`
-      display: grid;
-      grid-template-rows: var(--layout-header-height) auto;
-      gap: 0px;
-
-      // content 块
-      & > .${$main} {
-        min-height: calc(var(--layout-height) - var (--layout-header-height));
-      }
-    `}
-
-// 标准的 side bar 居左全尺寸
-  ${({ $layoutType }) =>
-    $layoutType === 'side-full-no-footer' &&
-    css`
-      grid-template-columns: var(--layout-side-bar-width) auto;
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'side header'
-        'side content';
-    `}
-
-
-  // side bar 居右全尺寸
-  ${({ $layoutType }) =>
-    $layoutType === 'side-right-full-no-footer' &&
-    css`
-      grid-template-columns: auto var(--layout-side-bar-width);
-      grid-template-rows: 100% max-content;
-      grid-template-areas:
-        'header side'
-        'content side';
-    `}
-  
-  // ------------------------------
-  // --- 分割线  --- 
-  // 下面是仅头部、底部和侧边栏布局
-  // 仅底部布局
+  /**************************************
+   *
+   * 只有页脚的布局
+   *
+   **************************************/    
   ${({ $layoutType }) =>
     $layoutType === 'only-footer' &&
     css`
@@ -298,7 +292,11 @@ ${({ $layoutType, $main }) =>
       grid-template-areas: 'content' 'footer';
     `}
 
-  // 仅头部布局
+  /**************************************
+   *
+   * 仅头部布局
+   *
+   **************************************/
   ${({ $layoutType }) =>
     $layoutType === 'only-header' &&
     css`
@@ -308,11 +306,16 @@ ${({ $layoutType, $main }) =>
       gap: 0px;
       grid-template-areas: 'header' 'content';
     `}
-  
-// 仅侧边布局
-// 标准的无头模式样式、侧边栏在右侧的无头模式样式
-// side bar 值由 en-layout-side-full 控制
-  ${({ $layoutType }) =>
+    /**************************************
+     *
+     * 大块布局之只有侧栏
+     *
+     * 严格来说 
+     * - 'side-full-only-side' 被转化为了 'simple-only-side'
+     * - 'side-right-full-only-side' 被转化为了 'side-right-only-side'
+     **************************************/
+  // 标准的无头模式样式、侧边栏在右侧的无头模式样式
+  ${({ $layoutType, $sidebar }) =>
     [
       'simple-only-side',
       'side-right-only-side',
@@ -321,17 +324,25 @@ ${({ $layoutType, $main }) =>
     ].includes($layoutType) &&
     css`
       display: grid;
-      // 纵向空间占比设置
-      grid-template-rows: 100%;
       // 横向空间占比设置
-      grid-template-columns: var(--layout-side-bar-width) auto;
-      grid-template-rows: 100% max-content;
+      grid-template-rows: max(100%, var(--layout-height)) auto;
+      /* height: var(--layout-height); */
       gap: 0px;
+
+      & > .${$sidebar} {
+        top: 0;
+      }
+    `}
+      
+      ${({ $layoutType }) =>
+    ['simple-only-side', 'side-full-only-side'].includes($layoutType) &&
+    css`
+      grid-template-columns: var(--layout-side-bar-width) auto;
       grid-template-areas:
         'side content'
         '. content';
     `}
-  
+
   // 右侧侧边布局
   ${({ $layoutType }) =>
     ($layoutType === 'side-right-full-only-side' || $layoutType === 'side-right-only-side') &&
@@ -340,37 +351,5 @@ ${({ $layoutType, $main }) =>
         'content side'
         'content .';
       grid-template-columns: auto var(--layout-side-bar-width);
-      grid-template-rows: 100% max-content;
-    `}
-  
-  ${({ $headerNoSticky, $header, $layoutType, $content, $sidebar }) =>
-    $headerNoSticky &&
-    css`
-      // 头部不粘连样式，头部区域设置
-      & > .${$header} {
-        position: relative;
-        z-index: 2;
-      }
-
-      ${($layoutType === 'simple-all' || $layoutType === 'side-right-all') &&
-      // 头部不粘连样式，内容区设置
-      css`
-        & > .${$content} > .${$sidebar} {
-          top: 0;
-          min-height: calc(
-            var(--layout-height) - var (--layout-footer-height) - var(--layout-header-height)
-          );
-          max-height: var(--layout-height);
-        }
-      `}
-
-      ${($layoutType === 'simple-no-footer' || $layoutType === 'side-right-no-footer') &&
-      css`
-        & > .${$sidebar} {
-          top: 0;
-          min-height: calc(var(--layout-height) - var(--layout-footer-height));
-          max-height: var(--layout-height);
-        }
-      `}
     `}
 `;
