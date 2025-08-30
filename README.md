@@ -1,4 +1,4 @@
-# enr
+# EarthNut React
 
 ## 安装
 

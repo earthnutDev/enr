@@ -5,6 +5,7 @@ import { HeadersMode } from './Headers';
 import { InputMemoTheme } from './Input';
 import { ParagraphMode } from './paragraph';
 import { RadioDemoTheme } from './Radio';
+import { ToggleThemeColorMode } from './ToggleThemeMode';
 
 const PageContainer = styled.div`
   scroll-behavior: smooth;
@@ -26,6 +27,7 @@ const PageContainer = styled.div`
 export default function ThemePage() {
   return (
     <PageContainer>
+      <ToggleThemeColorMode />
       <HeadersMode />
       <ParagraphMode />
       <InputMemoTheme />

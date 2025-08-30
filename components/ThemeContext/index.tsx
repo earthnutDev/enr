@@ -4,6 +4,7 @@ import { ColorMode, ThemeColorModeProviderProps, ThemeContextType } from './type
 import { storageStore } from 'storage/storage-store';
 import { manageCookie } from 'utilities/cookie';
 import { sysInfo } from 'utilities/sys';
+import { dog } from 'dog';
 
 /**  用于判断是否正确放置的  */
 const defaultCall = (): ColorMode => {
@@ -55,19 +56,51 @@ export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorMod
     const newColorMode: ColorMode = colorMode === 'light' ? 'dark' : 'light';
     return setSpecifiedColorMode(newColorMode);
   };
+  /**  自动切换  */
+  const autoChange = (newColorMode: ColorMode) => {
+    dog.type = true;
+    // 这是当前的
+    const _auto = !storageStore.theme;
+    dog('手动切换当前的模式', _auto);
+    if (_auto) {
+      manageCookie.deleteItem('theme');
+      storageStore.theme = '';
+    } else
+      manageCookie.setItem({
+        keyItem: 'theme',
+        value: newColorMode,
+      }); // 将值同步到 cookie ，以防止水合有误
+    window.document.documentElement.setAttribute('data-theme', newColorMode);
+    setAuto(_auto);
+    dog.type = true;
+  };
   /**  设置指定的色值  */
   const setSpecifiedColorMode = (newColorMode: ColorMode) => {
-    if (newColorMode === colorMode || ['light', 'dark'].indexOf(newColorMode) < 0) return colorMode;
-    setColorMode(newColorMode); // 设置新的值触发响应
+    dog.type = true;
+
+    dog('执行设置当前的主题样式模式', newColorMode);
+
+    if (['light', 'dark'].indexOf(newColorMode) < 0) {
+      dog('新设置的模式不正确不允许设置');
+      return colorMode;
+    }
+
     storageStore.theme = newColorMode; // 将新的主题色值类型保存到本地
+    // 设置新的值触发响应，新旧值不一致，自动触发 colorMode 更改的副作用 useEffect
+    if (newColorMode !== colorMode) setColorMode(newColorMode);
+    // 手动触发副作用
+    else autoChange(colorMode);
+
+    dog.type = true;
     return newColorMode;
   };
+
   /**  移除指定，设置为跟随系统  */
   const clear = () => {
-    setAuto(true);
-    setColorMode(sysInfo.isDark ? 'dark' : 'light');
-    storageStore.theme = '';
-    manageCookie.deleteItem('theme');
+    setAuto(true); // 设置为跟随系统
+    setColorMode(sysInfo.isDark ? 'dark' : 'light'); // 设置新的值
+    storageStore.theme = ''; // 移除本地的值
+    manageCookie.deleteItem('theme'); // 移除本地的 cookie
   };
 
   useEffect(() => {
@@ -94,12 +127,7 @@ export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorMod
   }, []);
 
   useEffect(() => {
-    manageCookie.setItem({
-      keyItem: 'theme',
-      value: colorMode,
-    }); // 将值同步到 cookie ，以防止水合有误
-    window.document.documentElement.setAttribute('data-theme', colorMode);
-    setAuto(!storageStore.theme);
+    autoChange(colorMode);
   }, [colorMode]);
 
   return (

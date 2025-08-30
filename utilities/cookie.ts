@@ -7,6 +7,7 @@
  *  @Description cookie 管理
  ******************************************************/
 import { typeOf } from 'a-type-of-js';
+import { dog } from 'dog';
 
 export const manageCookie = {
   getItem(keyItem: string) {
@@ -62,18 +63,24 @@ export const manageCookie = {
     return true;
   },
   deleteItem(key: string, path?: string, domain?: string) {
-    if (!key || !this.exist(key)) {
-      return false;
-    }
+    if (!key || !this.exist(key)) return false;
+
     document.cookie = encodeURIComponent(key)
       .concat('=; expires=Thu, 01 Jan 1970 00:00:00 GMT')
       .concat(domain ? '; domain='.concat(domain) : '')
       .concat(path ? '; path='.concat(path) : '');
+    dog(document.cookie);
+    return true;
   },
+  /**  校验当前 key 是否存在 */
+
   exist(key: string) {
-    return new RegExp(
+    const result = new RegExp(
       '(?:^|;\\s*)' + encodeURIComponent(key).replace(/[-.+*]/g, '\\$&') + '\\s*\\=',
-    ).test(key);
+    ).test(document.cookie);
+    dog('当前的 cookie 值', document.cookie);
+    dog('校验当前 cookie 键是否存在', key, result ? '存在' : '不存在');
+    return result;
   },
   keys() {
     const keyList = document.cookie

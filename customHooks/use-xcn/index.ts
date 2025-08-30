@@ -5,6 +5,7 @@ type EnClassName =
   | 'en-light'
   | 'en-dark'
   | 'en-style'
+  | 'en-weird-dark'
   | 'en-h1'
   | 'en-h2'
   | 'en-h3'

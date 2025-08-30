@@ -1,6 +1,7 @@
 @use './vars-color.scss' as color;
-@use './root-color-light.scss' as light;
-@use './root-color-dark.scss' as dark;
+@use './root-normal-light.scss' as light;
+@use './root-normal-dark.scss' as dark;
+@use './root-weird-dark.scss' as weirdDark;
 @use './vars-size.scss' as size;
 
 :root {
@@ -316,4 +317,10 @@
 .en-dark,
 :root[data-theme='dark'] {
   @include dark.dark();
+}
+
+// 怪异黑模式
+.en-weird-dark {
+  background-color: var(--en-background-weird);
+  color: var(--en-text-tertiary);
 }
