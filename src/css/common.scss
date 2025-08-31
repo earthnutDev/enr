@@ -1,11 +1,11 @@
-@use "./vars-color.scss"as *;
-@use "./respond"as rp;
-@use "./root.scss";
-@use "./loading-keyframes.scss";
-@use "./flex.scss";
-@use "./header.scss";
-@use "./image.scss";
-@use "./text.scss";
+@use './vars-color.scss' as *;
+@use './respond' as rp;
+@use './root.scss';
+@use './loading-keyframes.scss';
+@use './flex.scss';
+@use './header.scss';
+@use './image.scss';
+@use './text.scss';
 @use './input.scss';
 
 .en-full-container {
@@ -73,7 +73,6 @@
   position: relative;
 }
 
-
 .en-center {
   position: absolute;
   left: 50%;
@@ -84,7 +83,6 @@
 .en-dust {
   color: var(---en-text-dust);
 }
-
 
 .en-red-bg {
   background-color: var(--en-color-red-70);
@@ -124,6 +122,20 @@
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+}
+
+.en-user-select-none {
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.en-user-select-all {
+  -khtml-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
 }
 
 .en-cursor-pointer {

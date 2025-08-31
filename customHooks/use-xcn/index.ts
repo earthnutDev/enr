@@ -133,6 +133,8 @@ type EnClassName =
   | 'en-input-focus-visible-none'
   | 'en-relative'
   | 'en-user-select-text'
+  | 'en-user-select-none'
+  | 'en-user-select-all'
   | 'en-cursor-pointer';
 
 /**  在 xcn 中使用 enr 样式类 */
