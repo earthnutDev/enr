@@ -13,7 +13,6 @@
   font-size: 0.6rem;
 }
 
-
 /** 文本显示一行，超出点点点 */
 .en-text-in-one-line {
   white-space: nowrap;
@@ -49,6 +48,57 @@
   animation: 6s ease-in 0s infinite colorText alternate;
 }
 
+// 没有文本下划线
+.en-text-decoration-none {
+  text-decoration: none;
+}
+
+.en-text-decoration-style-solid {
+  text-decoration-style: solid;
+}
+
+.en-text-decoration-style-double {
+  text-decoration-style: double;
+}
+
+.en-text-decoration-style-dotted {
+  text-decoration-style: dotted;
+}
+
+.en-text-decoration-style-dashed {
+  text-decoration-style: dashed;
+}
+
+.en-text-decoration-style-wavy {
+  text-decoration-style: wavy;
+}
+
+.en-text-decoration-line-none {
+  text-decoration-line: none;
+}
+
+.en-text-decoration-line-underline {
+  text-decoration-line: underline;
+}
+
+.en-text-decoration-line-overline {
+  text-decoration-line: overline;
+}
+.en-text-decoration-line-line-through {
+  text-decoration-line: line-through;
+}
+.en-text-decoration-line-underline-line-through {
+  text-decoration-line: line-through underline;
+}
+.en-text-decoration-line-overline-line-through {
+  text-decoration-line: line-through overline;
+}
+.en-text-decoration-line-overline-underline {
+  text-decoration-line: underline overline;
+}
+.en-text-decoration-line-all {
+  text-decoration-line: underline overline line-through;
+}
 
 @keyframes colorText {
   0% {

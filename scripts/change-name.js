@@ -8,6 +8,8 @@ let packageJson = readFileToJsonSync('./dist/package.json');
 
 packageJson.name = newName;
 
+if (newName === 'oops-ui') packageJson.description += '，既然可以使用 oops-ui 导入，建议使用 enr ';
+
 packageJson.keywords.push(newName);
 
 {
