@@ -2,6 +2,7 @@ import { getRandomInt } from 'a-js-tools';
 import { dog } from 'dog';
 
 const build = (times: number = 0, darkMode: boolean = false) => {
+  dog.type = false;
   /**  构建数据  */
   const data: {
     /**  数据  */
@@ -30,7 +31,7 @@ const build = (times: number = 0, darkMode: boolean = false) => {
     l[x] = [];
     for (let y = 0; y < d; y++) l[x][y] = [0, 0, 0, 0];
   }
-  dog(darkMode);
+  dog('当前渲染基础晶格，暗夜模式为：', darkMode);
   // 绘制 1 / 8
   for (let x = 0; x <= r; x++) {
     for (let y = x; y <= r; y++) {
@@ -41,7 +42,7 @@ const build = (times: number = 0, darkMode: boolean = false) => {
       /**  色值范围开始  */
       const colorStart = darkMode ? 10 : 255;
       /**  色值范围结束  */
-      const colorEnd = darkMode ? 25 : 190;
+      const colorEnd = darkMode ? 25 : 180;
       /**   透明度范围的开始  */
       const opacityStart = isInCircle ? (darkMode ? 160 : 120) : darkMode ? 160 : 180;
       /**  透明度范围开始  */
@@ -64,7 +65,7 @@ const build = (times: number = 0, darkMode: boolean = false) => {
   for (let x = r; x < d; x++) for (let y = r; y < d; y++) l[x][y] = l[x][d - y];
   const k = times % d; // 偏移值，让图有动感
   data.list = [...l.slice(k), ...l.slice(0, k)];
-
+  dog.type = true;
   return data;
 };
 
@@ -75,7 +76,7 @@ export const circleDataList = new (class {
   /**  构建新的数据依据  */
   build(darkMode: boolean) {
     if (this.#cum > 100) this.#cum = 0;
-    this.data = build((this.#cum += 4), darkMode);
+    this.data = build(this.#cum++, darkMode);
   }
   /**  数据依据  */
   data = build();

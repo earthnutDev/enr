@@ -9,7 +9,7 @@
 import { setCanvasStyle } from './tools';
 import { RipplesData } from './rippersData';
 import { RipplesOptions } from './types';
-import { debounce, getRandomInt } from 'a-js-tools';
+import { getRandomInt } from 'a-js-tools';
 import { defaultData } from './rippersData/defaultData';
 import { loadImage } from './buildBackground/load-image';
 import { hideCssBackground } from './buildBackground/utils/hide-css-background';
@@ -65,8 +65,10 @@ export class Ripples extends RipplesData {
       ...options,
     });
 
+    /** 初始化带 this 指向的重加载回调  */
+    const withThisReload = reloadBackground.bind(this);
     // 数据初始化
-    this.renderData = new RipplesRenderData(canvas, this.reloadBackground, this);
+    this.renderData = new RipplesRenderData(canvas, withThisReload, this);
     // 渐变的数据
     this.fadeData = new FadeData(this);
 
@@ -113,13 +115,6 @@ export class Ripples extends RipplesData {
    */
   fade() {
     Reflect.apply(fade, this, []);
-  }
-  #reloadBackground = debounce(reloadBackground, { this: this });
-
-  /** 元素的尺寸发生变化  */
-  reloadBackground() {
-    dog('触发尺寸变化或属性变化');
-    this.#reloadBackground();
   }
 
   /**  销毁  */

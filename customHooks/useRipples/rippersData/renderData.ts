@@ -145,7 +145,6 @@ export class RipplesRenderData {
         // 非目标元素
         if (e.target !== this.parentElement) return;
         // 避免页面微变和子元素加载后页面的回流导致的重绘引起的微调
-        dog('变化前的尺寸');
         dog('监听的父级元素发生了尺寸变化', entries);
         // 仅允许在 canvas 渲染时触发尺寸的监听计划
         Reflect.apply(callback, _Ripples, []);

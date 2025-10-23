@@ -15,7 +15,11 @@ export function useOptionUpdate(
   const oldOption = useRef({ ...option });
   /**  监听数据变化并给值  */
   useEffect(() => {
-    if (!option || !ripplesRef.current) return;
+    dog.type = false;
+    if (!option || !ripplesRef.current) {
+      dog.type = true;
+      return;
+    }
     (Object.keys(ripplesRef.current.defaults) as unknown as (keyof RipplesOptions)[]).forEach(e => {
       /**  新的值  */
       const value = option[e] as never;
@@ -33,5 +37,6 @@ export function useOptionUpdate(
         ripplesRef.current.set(e, value);
       }
     });
+    dog.type = true;
   }, [option]);
 }
