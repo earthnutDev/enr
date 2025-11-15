@@ -66,7 +66,10 @@ export class FadeData {
   destroy() {
     this.#mediaQuery.removeEventListener('change', this.#mediaQueryChange);
     dog('退出后取消执行', this.transparentId);
-    if (this.transparentId) clearTimeout(this.transparentId);
+    if (this.transparentId) {
+      dog('清理时间 id', this.transparentId);
+      clearTimeout(this.transparentId);
+    }
   }
   /**  创建背景渐变的数据  */
   constructor(_Ripples: Ripples) {

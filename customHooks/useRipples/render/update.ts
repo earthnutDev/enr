@@ -25,7 +25,7 @@ export function update(this: Ripples) {
    */
   gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffers[bufferWriteIndex]);
   Reflect.apply(bindTexture, this, [textures[bufferReadIndex]]);
-  /**  将定义好的 WebGLProgram 对喜添加到当前的渲染状态中  */
+  /**  将定义好的 WebGLProgram 对象添加到当前的渲染状态中  */
   gl.useProgram(updateProgram.id!);
   Reflect.apply(drawQuad, this, []);
   Reflect.apply(swapBufferIndices, this, []);

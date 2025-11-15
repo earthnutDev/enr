@@ -1,4 +1,4 @@
-export { _en } from './customHooks/use-xcn';
+export { _en, _en as enc, _en as en } from './customHooks/use-xcn';
 
 export {
   Layout,

@@ -8,10 +8,6 @@ npm install  --save enr
 npm install  --save earthnut
 ```
 
-## 文档
-
-参阅 [enr](https://earthnut.dev/quickUse/)
-
 ## 涟漪背景
 
 由于当前组件的开发进度较缓慢，目前：
@@ -71,9 +67,7 @@ import { useAnimationFrame } from 'enr';
 
 ## scss 样式
 
-导出了一个 `common.css` 作为样式使用，还可以引用其中的 `scss` 文件使用其中的函数。
-
-如果使用 `common.css` 建议仅在跟下进行导入即可，避免在
+导出了一个 `common.css` 作为样式使用，还可以引用其中的 `scss` 文件使用其中的函数。如果使用 `common.css` 建议仅在跟下进行导入即可，避免多处引入导致包体积变大。
 
 在使用 `webpack` 的应用中可以这样引入
 
@@ -137,3 +131,13 @@ export function Home() {
   );
 }
 ```
+
+使用样式应注意：
+
+- `css`、`scss` 的直接导出仅是 `common.css`、`common.scss` 的别名
+- `reset.css`、`reset.scss` 不建议在非项目中使用，因为使用 `*` 修改了所有元素为 `border-box` 且定位为 `relative`。旧项目引入该文件可能会覆盖所有的已配置好的盒样式
+- 为了方便使用，包装了
+
+## 文档
+
+更多参阅 [enr](https://earthnut.dev/quickUse/)

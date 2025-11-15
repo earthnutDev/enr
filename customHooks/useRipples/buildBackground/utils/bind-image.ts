@@ -6,7 +6,7 @@ import { dog } from 'dog';
 
 /**  绑定图片  */
 export function bindImage(this: Ripples, textImageSource: DrawImage) {
-  dog.type = false;
+  dog.type = true;
   const { gl, renderData, fadeData } = this;
 
   if (isNull(renderData)) {
@@ -14,7 +14,7 @@ export function bindImage(this: Ripples, textImageSource: DrawImage) {
     return;
   }
 
-  const { backgroundTexture, parentElement } = renderData;
+  const { backgroundTexture } = renderData;
   const { backgroundInfo } = fadeData;
   const { width, height } = backgroundInfo;
 
@@ -49,11 +49,11 @@ export function bindImage(this: Ripples, textImageSource: DrawImage) {
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, wrapping);
   // dog('即将创建的图像', image);
   /// 指定二维纹理图像
-  dog('本次使用的纹理为', textImageSource.tag);
+  dog('本次使用的纹理为', textImageSource.tag, textImageSource.resource);
 
-  parentElement.dataset['render_img'] = textImageSource.tag;
-  parentElement.dataset['render_width'] = textImageSource.width + 'px';
-  parentElement.dataset['render_height'] = textImageSource.height + 'px';
+  // parentElement.dataset['render_img'] = textImageSource.tag;
+  // parentElement.dataset['render_width'] = textImageSource.width + 'px';
+  // parentElement.dataset['render_height'] = textImageSource.height + 'px';
 
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textImageSource.resource);
   dog.type = true;

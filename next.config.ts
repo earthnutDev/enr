@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 import { _p } from 'a-node-tools';
-import { brightYellowPen, cyanPen, greenPen, magentaPen } from 'color-pen';
+import { cyanPen, greenPen, magentaPen } from 'color-pen';
 import { isUndefined } from 'a-type-of-js';
 import { copyTextToClipboard } from '@qqi/copy-text';
 
@@ -44,6 +44,6 @@ if (port !== '0') {
     }, 2000) + '';
 }
 
-process.on('exit', () => _p(brightYellowPen`额走了`));
+process.on('exit', () => _p(magentaPen`测试结束`));
 
 export default nextConfig;

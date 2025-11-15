@@ -95,6 +95,8 @@ export function setCanvasStyle(canvas: HTMLCanvasElement) {
   // 给 canvas 元素赋值行内样式
   setStyle(canvas, {
     position: 'absolute',
+    width: '100%',
+    height: '100%',
     left: 0,
     top: 0,
     right: 0,
