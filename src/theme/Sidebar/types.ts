@@ -1,5 +1,5 @@
 export type TabListItem = {
-  text: string;
+  label: string;
   url: string;
   type?: 'link';
 };

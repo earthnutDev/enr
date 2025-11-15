@@ -72,7 +72,7 @@ export function TabItem({ data }: TabItemProps) {
     <LiContent>
       <Link href={data.url}>
         <LinkContent $type={data.type} $active={isActive}>
-          {data.text}
+          {data.label}
         </LinkContent>
       </Link>
     </LiContent>

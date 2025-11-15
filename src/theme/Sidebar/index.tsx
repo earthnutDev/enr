@@ -25,7 +25,7 @@ export default function MainTab({
       <nav>
         <ul>
           {data?.map(e => (
-            <TabItem data={e} key={e.text} />
+            <TabItem data={e} key={e.label} />
           ))}
         </ul>
       </nav>

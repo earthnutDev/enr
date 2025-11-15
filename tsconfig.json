@@ -14,7 +14,7 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "moduleResolution": "node",
     "declaration": false,
@@ -58,7 +58,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "public/**/*.ts",
-    "mocks/log.mjs"
+    "mocks/log.mjs",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
