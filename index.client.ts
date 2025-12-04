@@ -42,3 +42,5 @@ export type {
 } from './components/ThemeContext/types';
 
 export { Switch, Switch as EnSwitch } from './components/switch';
+
+export { Details, Details as EnDetails } from './components/Details';

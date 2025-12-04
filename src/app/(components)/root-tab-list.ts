@@ -10,6 +10,10 @@ export const root_tab_bar_list: TabList = [
     url: '/ripples',
   },
   {
+    label: '更多',
+    url: '/details',
+  },
+  {
     label: '检测输入框输入状态',
     url: '/use-input-is-composing',
   },
