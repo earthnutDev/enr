@@ -46,7 +46,7 @@ export default function () {
       '@qqi/log': '@qqi/log',
     },
     // 配置 source-map 可用
-    devtool: 'source-map',
+    devtool: false,
     // 实验配置
     experiments: {
       outputModule: true,

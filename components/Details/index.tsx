@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export type DetailsProps = {
   title?: string;
   children: React.ReactNode;
+  open?: boolean;
 };
 
 const DetailsContext = styled.details`
@@ -41,13 +42,14 @@ const SummaryContext = styled.summary`
 /**
  *
  * @param DetailsProps
+ * @param DetailsProps.open  是否默认展开
  * @param DetailsProps.children  子组件
  * @param DetailsProps.title   标题
  * @returns
  */
-export function Details({ title, children }: DetailsProps) {
+export function Details({ title, children, open }: DetailsProps) {
   return (
-    <DetailsContext>
+    <DetailsContext open={open}>
       <SummaryContext>{title || ''}</SummaryContext>
       {children}
     </DetailsContext>

@@ -6,5 +6,10 @@ import { Details } from 'components/Details';
  *
  */
 export default function DetailsPage() {
-  return <Details>23</Details>;
+  return (
+    <>
+      <Details>23</Details>
+      <Details open>56</Details>
+    </>
+  );
 }
