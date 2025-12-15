@@ -68,6 +68,8 @@ packageJson = {
     'react-dom': '>= 17',
     'styled-components': '>= 6',
   },
+  // 用作 tree-shaking 标记
+  sideEffects: false,
 };
 {
   const distPath = getDirectoryBy('src', 'directory');

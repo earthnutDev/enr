@@ -18,6 +18,8 @@ const licenseHeader = filePath => `/**
 `;
 // 执行的根
 const distDir = resolve(__dirname, '..', 'dist');
+// 根入口文件
+const indexFile = resolve(__dirname, '..', 'index.ts');
 
 /**  添加协议  */
 function addLicense(dir) {
@@ -55,11 +57,13 @@ function addLicense(dir) {
 
 addLicense(distDir);
 
+const index = readFileSync(indexFile, 'utf8');
+
 /// 写入根导入导出
 writeFileSync(
   pathJoin(distDir, 'index.mjs'),
-  `
-export * from './client.mjs';
-export * from './server.mjs';
-`,
+  index
+    .replace(/\/+\s+>>>.*\/+\s+<<</s, '')
+    .replace('index.server', 'server.mjs')
+    .replace('index.client', 'client.mjs'),
 );
