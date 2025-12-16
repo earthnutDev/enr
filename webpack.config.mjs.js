@@ -1,6 +1,7 @@
 import defaultModule, { pathJoin } from './webpack.config.js';
 import CopyPlugin from 'copy-webpack-plugin';
 import process from 'node:process';
+// import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 /**  读取本地的数据配置  */
 const mode = process.env.dev_mode || 'production';
@@ -37,6 +38,7 @@ export default function () {
     externals: {
       react: 'react',
       'react-dom': 'react-dom',
+      'react/jsx-runtime': 'react/jsx-runtime',
       'a-element-inline-style': 'a-element-inline-style',
       xcn: 'xcn',
       'a-js-tools': 'a-js-tools',
@@ -111,6 +113,12 @@ export default function () {
         },
       ],
     }),
+
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static',
+    //   openAnalyzer: false, // 自动打包浏览器
+    //   reportFilename: 'bundle-report.html', // 输出报告名
+    // }),
   );
 
   return config;
