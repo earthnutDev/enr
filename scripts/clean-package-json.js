@@ -39,7 +39,7 @@ packageJson = {
       default: `./#.mjs`,
     }),
     ...getExport(['common.scss', 'common.css', 'reset.scss', 'reset.css'], {
-      types: `./styles/index.#.d.ts`,
+      types: `./styles/#.d.ts`,
       import: `./styles/#`,
       default: `./styles/#`,
     }),
