@@ -33,36 +33,21 @@ packageJson = {
       import: './index.mjs',
       default: './index.mjs',
     },
-    ...Object.fromEntries([
-      ...['client', 'server'].map(e => [
-        e,
-        {
-          types: `./type/index.${e}.d.ts`,
-          import: `./${e}.mjs`,
-          default: `./${e}.mjs`,
-        },
-      ]),
-    ]),
-    ...Object.fromEntries([
-      ...['common.scss', 'common.css', 'reset.scss', 'reset.css'].map(e => [
-        e,
-        {
-          types: `./styles/index.${e}.d.ts`,
-          import: `./styles/${e}`,
-          default: `./styles/${e}`,
-        },
-      ]),
-    ]),
-    ...Object.fromEntries([
-      ...['scss', 'css'].map(e => [
-        e,
-        {
-          types: `./styles/common.${e}.d.ts`,
-          import: `./styles/common.${e}`,
-          default: `./styles/common.${e}`,
-        },
-      ]),
-    ]),
+    ...getExport(['client', 'server'], {
+      types: `./type/index.#.d.ts`,
+      import: `./#.mjs`,
+      default: `./#.mjs`,
+    }),
+    ...getExport(['common.scss', 'common.css', 'reset.scss', 'reset.css'], {
+      types: `./styles/index.#.d.ts`,
+      import: `./styles/#`,
+      default: `./styles/#`,
+    }),
+    ...getExport(['scss', 'css'], {
+      types: `./styles/common.#.d.ts`,
+      import: `./styles/common.#`,
+      default: `./styles/common.#`,
+    }),
   },
   keywords: ['enr'],
   homepage: 'https://earthnut.dev/quickUse',
@@ -93,4 +78,18 @@ packageJson = {
   const distPackagePath = pathJoin(distPath, './dist/package.json');
 
   writeJsonFile(distPackagePath, packageJson);
+}
+
+/**
+ *
+ */
+function getExport(target, _export) {
+  const _keys = Object.keys(_export);
+
+  return Object.fromEntries([
+    ...target.map(e => [
+      './' + e,
+      Object.fromEntries([..._keys.map(key => [key, _export[key].replace('#', e)])]),
+    ]),
+  ]);
 }
