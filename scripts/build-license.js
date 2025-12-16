@@ -2,7 +2,11 @@ import { basename, resolve } from 'node:path';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { fileExist, pathJoin, readFileToJsonSync } from 'a-node-tools';
 import { isUndefined } from 'a-type-of-js';
-
+/**
+ *
+ * 构建许可证明及写入 index.mjs 文件内容
+ *
+ */
 const __dirname = import.meta.dirname;
 
 const packInfo = readFileToJsonSync(pathJoin(__dirname, '../package.json')) ?? {
@@ -60,10 +64,39 @@ addLicense(distDir);
 const index = readFileSync(indexFile, 'utf8');
 
 /// 写入根导入导出
-writeFileSync(
-  pathJoin(distDir, 'index.mjs'),
-  index
-    .replace(/\/+\s+>>>.*\/+\s+<<</s, '')
-    .replace('index.server', 'server.mjs')
-    .replace('index.client', 'client.mjs'),
-);
+(() => {
+  writeFileSync(
+    pathJoin(distDir, 'index.mjs'),
+    index
+      .replace(/\/+\s+>>>.*\/+\s+<<</s, '')
+      .replace('index.server', 'server.mjs')
+      .replace('index.client', 'client.mjs'),
+  );
+})();
+
+// 向 styles 目录写入文件
+(() => {
+  try {
+    const stylesDir = pathJoin(distDir, 'styles');
+    const items = readdirSync(stylesDir);
+    items.forEach(_item => {
+      const item = pathJoin(stylesDir, _item);
+      const itemState = fileExist(item);
+
+      // 非文件
+      if (!itemState || !itemState.isFile() || !(item.endsWith('.scss') || item.endsWith('.css')))
+        return;
+      // const fileName = basename(item, '.scss');
+
+      writeFileSync(
+        `${item}.d.ts`,
+        `declare const styles: { [key: string]: string };
+        \n\rexport default styles;`,
+      );
+    });
+  } catch (error) {
+    console.log(error);
+
+    //
+  }
+})();

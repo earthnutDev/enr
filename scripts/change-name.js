@@ -1,6 +1,8 @@
 import { pathJoin, readFileToJsonSync, getDirectoryBy, writeJsonFile } from 'a-node-tools';
 import process from 'node:process';
 
+// 他包到其他名包
+
 const newName = process.argv[2];
 
 let packageJson = readFileToJsonSync('./dist/package.json');

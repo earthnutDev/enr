@@ -48,7 +48,7 @@ export default function () {
       '@qqi/log': '@qqi/log',
     },
     // 配置 source-map 可用
-    devtool: false,
+    devtool: isProduction ? false : 'eval-cheap-module-source-map',
     // 实验配置
     experiments: {
       outputModule: true,

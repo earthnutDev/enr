@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "name": "enr",
-  "version": "1.1.1",
+  "version": "1.1.2-alpha.0",
   "description": "一个 earthnut 的 react ui",
   "scripts": {
     "vjj": "vjj",
@@ -15,7 +15,8 @@
     "dev": "next dev --turbopack",
     "build:view": "next build --turbopack",
     "start": "next start",
-    "build:analyze": "jja rm dist stats.json && webpack --config ./webpack.config.mjs.js --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+    "build:analyze": "jja rm dist stats.json &&  dev_mode=development  webpack --config ./webpack.config.mjs.js --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+    "build:test": "jja rm dist run dev_mode=development webpack --config ./webpack.config.mjs.js && pnpx source-map-explorer dist/client.mjs dist/client.mjs.map",
     "deploy:cloudflare": "jja cls rm node_modules/.cache/wrangler/pages.json && pnpm build:only && wrangler pages deploy build",
     "build:scss": "sass --no-source-map --style=compressed src/css/common.scss dist/styles/common.css && sass --no-source-map --style=compressed src/css/reset.scss dist/styles/reset.css",
     "build": "chmod +x ./scripts/build.sh && ./scripts/build.sh",

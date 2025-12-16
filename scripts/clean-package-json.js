@@ -30,26 +30,39 @@ packageJson = {
   exports: {
     '.': {
       types: './type/index.d.ts',
-      // require: './index.cjs',
       import: './index.mjs',
       default: './index.mjs',
     },
-    './client': {
-      types: './type/index.client.d.ts',
-      import: './client.mjs',
-      default: './client.mjs',
-    },
-    './server': {
-      types: './type/index.server.d.ts',
-      import: './server.mjs',
-      default: './server.mjs',
-    },
-    './scss': './styles/common.scss',
-    './css': './styles/common.css',
-    './common.scss': './styles/common.scss',
-    './common.css': './styles/common.css',
-    './reset.scss': './styles/reset.scss',
-    './reset.css': './styles/reset.css',
+    ...Object.fromEntries([
+      ...['client', 'server'].map(e => [
+        e,
+        {
+          types: `./type/index.${e}.d.ts`,
+          import: `./${e}.mjs`,
+          default: `./${e}.mjs`,
+        },
+      ]),
+    ]),
+    ...Object.fromEntries([
+      ...['common.scss', 'common.css', 'reset.scss', 'reset.css'].map(e => [
+        e,
+        {
+          types: `./styles/index.${e}.d.ts`,
+          import: `./styles/${e}`,
+          default: `./styles/${e}`,
+        },
+      ]),
+    ]),
+    ...Object.fromEntries([
+      ...['scss', 'css'].map(e => [
+        e,
+        {
+          types: `./styles/common.${e}.d.ts`,
+          import: `./styles/common.${e}`,
+          default: `./styles/common.${e}`,
+        },
+      ]),
+    ]),
   },
   keywords: ['enr'],
   homepage: 'https://earthnut.dev/quickUse',

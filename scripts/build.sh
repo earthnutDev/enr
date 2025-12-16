@@ -4,8 +4,6 @@ buildResult() {
   # 清空dist
   pnpm jja rm dist 
 
-  
-
   if  ! dev_mode=production pnpm webpack --config webpack.config.mjs.js; then 
     exit 1
   fi 
@@ -28,4 +26,5 @@ buildResult() {
  # 构建
  buildResult 
 
+# 构建 license 及写入 index.mjs 文件
  node ./scripts/build-license.js

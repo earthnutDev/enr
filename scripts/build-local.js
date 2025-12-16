@@ -2,6 +2,8 @@ import { _p, isWindows, pathJoin, readFileToJsonSync, runOtherCode } from 'a-nod
 import { copyTextToClipboard } from '@qqi/copy-text';
 import { brightBlackPen, cyanPen, randomPen } from 'color-pen';
 
+/**  本地打包并将本地地址复制到剪切板 */
+
 await runOtherCode('pnpm exec jja clear');
 
 try {
