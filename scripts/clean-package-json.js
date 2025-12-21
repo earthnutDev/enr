@@ -38,14 +38,28 @@ packageJson = {
       import: `./#.mjs`,
       default: `./#.mjs`,
     }),
-    ...getExport(['common.scss', 'common.css', 'reset.scss', 'reset.css'], {
+    ...getExport(['common.scss', 'reset.scss'], {
       types: `./styles/#.d.ts`,
-      import: `./styles/#`,
+      sass: `./styles/#`,
+      style: `./styles/#`,
       default: `./styles/#`,
     }),
-    ...getExport(['scss', 'css'], {
+    ...getExport(['common.css', 'reset.css'], {
+      types: `./styles/#.d.ts`,
+      style: `./styles/#`,
+      css: `./styles/#`,
+      default: `./styles/#`,
+    }),
+    ...getExport(['scss'], {
       types: `./styles/common.#.d.ts`,
-      import: `./styles/common.#`,
+      style: `./styles/common.#`,
+      scss: `./styles/common.#`,
+      default: `./styles/common.#`,
+    }),
+    ...getExport(['css'], {
+      types: `./styles/common.#.d.ts`,
+      style: `./styles/common.#`,
+      css: `./styles/common.#`,
       default: `./styles/common.#`,
     }),
   },

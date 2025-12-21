@@ -68,8 +68,8 @@ const index = readFileSync(indexFile, 'utf8');
   writeFileSync(
     pathJoin(distDir, 'index.mjs'),
     index
-      .replace(/\/+\s+>>>.*\/+\s+<<</s, '')
-      .replace('index.server', 'server.mjs')
+      .replace(/\/+\s+>>>.*\/+\s+<<</s, '') // 移除类型导出
+      .replace('index.server', 'server.mjs') // 更改导出
       .replace('index.client', 'client.mjs'),
   );
 })();
