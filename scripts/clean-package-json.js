@@ -42,6 +42,10 @@ packageJson = {
     './common.css': './styles/common.css',
     './reset.scss': './styles/reset.scss',
     './reset.css': './styles/reset.css',
+    './styles/common.scss': './styles/common.scss',
+    './styles/common.css': './styles/common.css',
+    './styles/reset.scss': './styles/reset.scss',
+    './styles/reset.css': './styles/reset.css',
     // ...getExport(['common.scss', 'reset.scss'], {
     //   types: `./styles/#.d.ts`,
     //   sass: `./styles/#`,
