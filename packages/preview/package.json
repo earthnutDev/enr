@@ -12,6 +12,9 @@
     "deploy:cloudflare": "jja cls rm && pnpm build:only && wrangler pages deploy build",
     "start": "next start"
   },
+  "overrides": {
+    "css-loader": "6.11.0"
+  },
   "dependencies": {
     "react-dom": "19.2.1",
     "react": "19.2.1",
@@ -19,34 +22,5 @@
     "a-type-of-js": "^1.0.7",
     "xcn": "^1.0.0",
     "enr": "workspace:enr"
-  },
-  "devDependencies": {
-    "@eslint/css": "^0.14.1",
-    "@eslint/eslintrc": "^3.3.3",
-    "@eslint/js": "^9.39.1",
-    "@eslint/json": "^0.14.0",
-    "@types/node": "latest",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "@types/styled-components": "^5.1.36",
-    "@types/webxr": "^0.5.24",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "16.0.7",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^61.4.1",
-    "globals": "^16.5.0",
-    "eslint-plugin-react": "^7.37.5",
-    "next": "16.0.7",
-    "jja": "^2.3.21",
-    "pjj": "^1.0.4",
-    "gvv": "^0.1.8",
-    "prettier": "^3.7.4",
-    "sass": "^1.94.2",
-    "sass-loader": "^16.0.6",
-    "styled-components": "^6.1.19",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.48.1",
-    "vjj": "^1.0.11",
-    "wrangler": "^4.52.1"
   }
 }

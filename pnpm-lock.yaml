@@ -897,6 +897,10 @@ packages:
     resolution: {integrity: sha512-dV1nK4MyNsc9uR3vOLeDPvMXV6yOkd+Wmrc00xGjjHpAAj1k1Gb4lmWMMwn4vkkwc1TatexbJDTbbFwu54376g==}
     engines: {node: '>=12.0.0'}
 
+  '@color-pen/static@1.1.1':
+    resolution: {integrity: sha512-zSG9sOy+xQkQxbx+YjJ+LJoF5XNDsUMeVDIaIGW9w2CvbadwNVmyaY8bFhyuob70pt3EsD///9tNN+xkfeqzvw==}
+    engines: {node: '>=12.0.0'}
+
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
@@ -2010,6 +2014,10 @@ packages:
 
   a-type-of-js@1.0.7:
     resolution: {integrity: sha512-O7pkkRHQii4xt4Po+7N7mVk7xm9APzv6PZdgErSFBuRDSUrHZu5T6TYmFE24/WTR+m4lerbtXBbQfWjRmGyusQ==}
+
+  a-type-of-js@1.1.0:
+    resolution: {integrity: sha512-vbv/wX5rXOJBEQjpgrADxeQ77fGiaQR1VoqEbun5WU8DimBeb8ymlUEBlLhlWIoPyrnnwpeAdnWwQAzceuAdBg==}
+    engines: {node: '>=14.0.0'}
 
   accepts@1.3.8:
     resolution: {integrity: sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==}
@@ -4499,6 +4507,7 @@ packages:
   wrangler@4.55.0:
     resolution: {integrity: sha512-50icmLX8UbNaq0FmFHbcvvOh7I6rDA/FyaMYRcNSl1iX0JwuKswezmmtYvYPxPTkbYz7FUYR8GPZLaT23uzFqw==}
     engines: {node: '>=20.0.0'}
+    deprecated: This version can incorrectly automatically delegate 'wrangler deploy' to 'opennextjs-cloudflare'
     hasBin: true
     peerDependencies:
       '@cloudflare/workers-types': ^4.20251213.0
@@ -5336,6 +5345,8 @@ snapshots:
     optional: true
 
   '@color-pen/static@1.0.1': {}
+
+  '@color-pen/static@1.1.1': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -6326,6 +6337,8 @@ snapshots:
 
   a-type-of-js@1.0.7: {}
 
+  a-type-of-js@1.1.0: {}
+
   accepts@1.3.8:
     dependencies:
       mime-types: 2.1.35
@@ -6672,9 +6685,9 @@ snapshots:
 
   colored-table@0.1.0:
     dependencies:
-      '@color-pen/static': 1.0.1
+      '@color-pen/static': 1.1.1
       a-js-tools: 1.0.12
-      a-type-of-js: 1.0.7
+      a-type-of-js: 1.1.0
       color-pen: 2.0.13
 
   colorette@2.0.20: {}
@@ -7551,7 +7564,7 @@ snapshots:
       a-command: 2.3.16
       a-js-tools: 1.0.12
       a-node-tools: 4.2.20
-      a-type-of-js: 1.0.7
+      a-type-of-js: 1.1.0
       color-pen: 2.0.13
 
   handle-thing@2.0.1: {}
@@ -7876,13 +7889,13 @@ snapshots:
 
   jja@2.3.21:
     dependencies:
-      '@color-pen/static': 1.0.1
+      '@color-pen/static': 1.1.1
       '@qqi/copy-text': 1.0.7
       '@qqi/log': 0.1.1
       a-command: 2.3.16
       a-js-tools: 1.0.12
       a-node-tools: 4.2.20
-      a-type-of-js: 1.0.7
+      a-type-of-js: 1.1.0
       color-pen: 2.0.13
       colored-table: 0.1.0
 
@@ -8265,7 +8278,7 @@ snapshots:
       a-command: 2.3.16
       a-js-tools: 1.0.12
       a-node-tools: 4.2.20
-      a-type-of-js: 1.0.7
+      a-type-of-js: 1.1.0
       color-pen: 2.0.13
 
   pkg-dir@4.2.0:
@@ -9104,7 +9117,7 @@ snapshots:
       a-command: 2.3.16
       a-js-tools: 1.0.12
       a-node-tools: 4.2.20
-      a-type-of-js: 1.0.7
+      a-type-of-js: 1.1.0
       color-pen: 2.0.13
 
   watchpack@2.4.4:
