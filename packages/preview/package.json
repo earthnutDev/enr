@@ -1,0 +1,26 @@
+{
+  "name": "preview",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "diff": "jja pkg -d=淘宝",
+    "push": "gvv",
+    "prepublishOnly": "pjj",
+    "lint": "eslint src",
+    "dev": "next dev --turbopack",
+    "build:view": "next build --turbopack",
+    "deploy:cloudflare": "jja cls rm && pnpm build:only && wrangler pages deploy build",
+    "start": "next start"
+  },
+  "overrides": {
+    "css-loader": "6.11.0"
+  },
+  "dependencies": {
+    "react-dom": "19.2.1",
+    "react": "19.2.1",
+    "a-js-tools": "^1.0.12",
+    "a-type-of-js": "^1.0.7",
+    "xcn": "^1.0.0",
+    "enr": "workspace:enr"
+  }
+}

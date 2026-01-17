@@ -4,6 +4,7 @@
 /node_modules
 node_modules
 /.pnp
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -16,10 +17,14 @@ node_modules
 
 # next.js
 /.next/
+.next/
 /out/
+out/
 
 # production
 /build
+build
+dist
 
 # misc
 .DS_Store
@@ -41,7 +46,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-dist
 
 babel.config.forbidden.js
 stats.json
+

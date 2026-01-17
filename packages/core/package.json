@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "type": "module",
+  "name": "enr",
+  "version": "2.0.0-alpha.0",
+  "description": "一个 earthnut 的 react ui",
+  "scripts": {
+    "vjj": "vjj",
+    "diff": "jja pkg -d=淘宝",
+    "push": "gvv",
+    "push:version": "gvv",
+    "prepublishOnly": "pjj",
+    "lint": "eslint components customHooks src",
+    "umd": "webpack --env t=js",
+    "build:analyze": "jja rm dist stats.json &&  dev_mode=development  webpack --config ./webpack.config.mjs.js --profile --json > stats.json && webpack-bundle-analyzer stats.json && jja rm stats.json",
+    "build:scss": "sass --no-source-map --style=compressed src/css/common.scss dist/styles/common.css && sass --no-source-map --style=compressed src/css/reset.scss dist/styles/reset.css",
+    "build": "chmod +x ./scripts/build.sh && ./scripts/build.sh",
+    "local": "node ./scripts/build-local"
+  },
+  "dependencies": {
+    "a-element-inline-style": "^1.0.1",
+    "a-js-tools": "^2.0.1",
+    "a-type-of-js": "^2.0.0",
+    "xcn": "^1.1.0"
+  }
+}

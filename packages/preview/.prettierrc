@@ -1,0 +1,25 @@
+{
+  "jsxSingleQuote": false,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "endOfLine": "auto",
+  "sassVariableSemicolon": false,
+  "overrides": [
+    {
+      "files": [
+        "*.scss",
+        "*.sass"
+      ],
+      "options": {
+        "parser": "scss",
+        "printWidth": 100
+      }
+    }
+  ]
+}
