@@ -8,11 +8,11 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:40
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 06:41
+ * @lastModified 2026-02-01 05:38
  */
 
 import { isBoolean, isUndefined } from 'a-type-of-js';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { defaultData } from './data-default';
 import type { ImageCrossOrigin, RippleImgUrl, RipplesOptions } from './types';
 
@@ -150,7 +150,9 @@ export class RippleParam {
   }
   /**  当前时候为暗黑模式  */
   set darkMode(value: boolean | undefined) {
-    dog('设置参数的暗黑模式', value);
+    if (dun) {
+      dog('设置参数的暗黑模式', value);
+    }
     this._darkMode = isUndefined(value) ? undefined : Boolean(value);
   }
 

@@ -80,9 +80,9 @@ for (const childrenName of srcChildrenList) {
 }
 
 packageJson = {
-  main: cjsPrefix + '/index.js', // 旧版本 CommonJs 入口
-  module: esPrefix + '/index.js', // 旧版本 ESM 入口
-  types: dtsPrefix + '/index.d.ts', // 旧版本类型入口
+  // main: cjsPrefix + '/index.js', // 旧版本 CommonJs 入口
+  // module: esPrefix + '/index.js', // 旧版本 ESM 入口
+  // types: dtsPrefix + '/index.d.ts', // 旧版本类型入口
   author: {
     name: '泥豆君',
     email: 'Mr.MudBean@outlook.com',

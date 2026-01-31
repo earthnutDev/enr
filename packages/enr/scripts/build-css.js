@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-28 14:01
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 17:17
+ * @lastModified 2026-01-29 18:30
  */
 
 import { writeFileSync } from 'node:fs';
@@ -16,7 +16,7 @@ import { runOtherCode } from 'a-node-tools';
 /** 前置编译 */
 const preDone = globalThis?.process?.argv[2] === 'pre';
 
-const sass = 'pnpx sass --no-source-map --style=compressed ';
+const sass = 'pnpm exec sass --no-source-map --style=compressed ';
 
 const writeCssTo = str => `src/customHooks/use-xcn/${str}.ts`;
 

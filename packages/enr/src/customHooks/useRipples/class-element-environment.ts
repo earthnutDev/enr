@@ -8,11 +8,11 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-26 01:24
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-26 08:41
+ * @lastModified 2026-02-01 06:00
  */
 
 import { isNull } from 'a-type-of-js';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 
 /**
  * ## 执行环境校验并初始化 WebGl
@@ -55,7 +55,9 @@ export class ElementEnvironment {
       this.config = this.initializeConfig();
     } catch (error) {
       const msg = '初始化配置出现问题，当前环境不支持 WebGl 渲染';
-      dog.error(msg, error);
+      if (dun) {
+        dog.error(msg, error);
+      }
       throw new Error(msg);
     }
   }

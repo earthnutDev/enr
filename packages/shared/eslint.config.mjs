@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // tsconfig.json 配置文件的地址
-const tsconfigPath = resolve(__dirname, 'tsconfig.types.json');
+const tsconfigPath = resolve(__dirname, 'tsconfig.json');
 // typescript/javascript 配置
 const tsFile = ['src/**/*.{ts,tsx,js,jsx}', 'scripts/**/*.{ts,js}'];
 

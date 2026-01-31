@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 03:03
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 18:37
+ * @lastModified 2026-02-01 06:28
  */
 
 import { loggerMiddleware, StateManager, type Reducer } from '@qqi/state';
@@ -68,11 +68,14 @@ export class Ripples {
       this.element = new ElementEnvironment(canvas);
     } catch (error) {
       const msg = '初始化故障';
-      console.error(msg, error);
+      if (dun) {
+        dog.error(msg, error);
+      }
       throw new Error(msg);
     }
-
-    dog('初始化参数', options);
+    if (dun) {
+      dog('初始化参数', options);
+    }
     Object.defineProperty(this, 'defaults', {
       value: defaultData,
       writable: false,
@@ -92,7 +95,9 @@ export class Ripples {
     this.state = new StateManager(this.reducer, initData, {
       middleware: dun ? [loggerMiddleware] : [],
       afterDispatch(action, state) {
-        dog.warn('执行', action, state);
+        if (dun) {
+          dog.warn('执行', action, state);
+        }
       },
     });
     this.elementMeta = new ElementMeta(this.options, this.element, this.state);
@@ -121,12 +126,16 @@ export class Ripples {
     this.gl.bindImage();
     this.state.subscribe({
       imgUrl: newValue => {
-        dog('哇。订阅消息来的数据耶', newValue);
+        if (dun) {
+          dog('哇。订阅消息来的数据耶', newValue);
+        }
         this.buildBackground.setImage();
       },
       // 用户设定的暗黑模式立即通知
       darkMode: newValue => {
-        dog('哇。订阅消息来的数据耶', newValue);
+        if (dun) {
+          dog('哇。订阅消息来的数据耶', newValue);
+        }
         // 只有在允许渐变且当前绘制下一个位默认背景时才允许立即添加透明纹理
         if (!this.buildBackground.forbiddenRunSide() && this.buildBackground.checkIsDefault()) {
           this.buildBackground.setTransparentTexture(true);
@@ -134,12 +143,16 @@ export class Ripples {
       },
       /** 尺寸发生变化 */
       sizeChange: () => {
-        dog('哇。订阅消息来的数据耶', '！这次居然是父级元素的尺寸发生了变化');
+        if (dun) {
+          dog('哇。订阅消息来的数据耶', '！这次居然是父级元素的尺寸发生了变化');
+        }
         this.eventAction.reloadBackground();
       },
       /** 父级元素的样式发生变化 */
       styleChange: () => {
-        dog('哇。订阅消息来的数据耶', '！这次居然是父级元素的样式发生了变化');
+        if (dun) {
+          dog('哇。订阅消息来的数据耶', '！这次居然是父级元素的样式发生了变化');
+        }
         this.eventAction.reloadBackground();
       },
     });
@@ -175,14 +188,18 @@ export class Ripples {
   /**  销毁  */
   destroy() {
     const { renderData } = this;
-    dog('执行销毁');
+    if (dun) {
+      dog('执行销毁');
+    }
     this.state.destroy();
     this.eventAction.destroy();
     {
       /// 销毁当前对  WebGLRenderingContext 的引用
       if (this.gl) this.gl = null as unknown as never;
     }
-    dog('销毁 render 证据');
+    if (dun) {
+      dog('销毁 render 证据');
+    }
     renderData.destroy();
     /// 销毁执行上下文本身
     Object.keys(renderData).forEach(e => (renderData[e as never] = null as never));
@@ -212,10 +229,14 @@ export class Ripples {
   /** 切换当前状态   */
   changePlayingState(): boolean {
     const { options } = this;
-    dog('当前执行切换状态');
+    if (dun) {
+      dog('当前执行切换状态');
+    }
     const newState = !options.running;
     options.running = newState;
-    dog('更新后的状态', options.running);
+    if (dun) {
+      dog('更新后的状态', options.running);
+    }
     return newState;
   }
   /**
@@ -224,8 +245,10 @@ export class Ripples {
    * @param value
    */
   set(property: keyof RipplesOptions, value: unknown) {
-    dog.type = true;
-    dog('设置属性', property);
+    if (dun) {
+      dog.type = true;
+      dog('设置属性', property);
+    }
     this.options[property] = value as never;
 
     // 数仓更新
@@ -233,14 +256,17 @@ export class Ripples {
       type: property,
       payload: value,
     });
-
-    dog('已通知家属');
+    if (dun) {
+      dog('已通知家属');
+    }
   }
 
   private readonly reducer: Reducer<RippleState> = (state, action) => {
-    dog.type = true;
-    dog('数据更新', action);
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+      dog('数据更新', action);
+      dog.type = true;
+    }
     switch (action.type) {
       case 'sizeChange':
       case 'styleChange':

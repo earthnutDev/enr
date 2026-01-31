@@ -8,11 +8,11 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:44
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 18:36
+ * @lastModified 2026-02-01 05:23
  */
 
 import { isNull, isZero } from 'a-type-of-js';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { BuildBackground } from './class-build-background';
 import type { ElementEnvironment } from './class-element-environment';
 import type { ElementMeta } from './class-html-element-meta';
@@ -364,7 +364,9 @@ export class RippleGl {
    * 默认绑定的是 `buildBackground.lastDrawImage`，且不再接受参数，请调用前保证已设定 `buildBackground.lastDrawImage`
    */
   bindImage() {
-    dog.type = false;
+    if (dun) {
+      dog.type = false;
+    }
     const { gl, buildBackground, elementMeta, backgroundTexture } = this;
     const { lastDrawImage } = buildBackground;
     const { backgroundInfo } = elementMeta;
@@ -402,17 +404,20 @@ export class RippleGl {
      */
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, wrapping);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, wrapping);
-    // dog('即将创建的图像', image);
-    dog.type = false;
+    if (dun) {
+      // dog('即将创建的图像', image);
+      dog.type = false;
+      dog('本次使用的纹理为', dog.type, lastDrawImage.tag, lastDrawImage.resource);
+    }
     /// 指定二维纹理图像
-    dog('本次使用的纹理为', dog.type, lastDrawImage.tag, lastDrawImage.resource);
-
     // parentElement.dataset['render_img'] = textImageSource.tag;
     // parentElement.dataset['render_width'] = textImageSource.width + 'px';
     // parentElement.dataset['render_height'] = textImageSource.height + 'px';
 
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, lastDrawImage.resource);
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
   }
   /**
    * ## 绘制 GL 数据流

@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-06-20 01:37
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-25 19:02
+ * @lastModified 2026-02-01 05:22
  */
 
 'use client';
@@ -16,7 +16,7 @@
 import { isNull } from 'a-type-of-js';
 import { useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { Ripples } from './class-ripple';
 import type { BackgroundRipplesProps, RippleEle, RippleImgUrl, RipplesOptions } from './types';
 
@@ -68,7 +68,9 @@ export function useRipples(
     try {
       ripples.current = new Ripples(canvas.current, option);
     } catch (error) {
-      dog.error('初始化 Ripple 原始类有误', error);
+      if (dun) {
+        dog.error('初始化 Ripple 原始类有误', error);
+      }
     }
     return () => ripples.current?.destroy();
   }, []);

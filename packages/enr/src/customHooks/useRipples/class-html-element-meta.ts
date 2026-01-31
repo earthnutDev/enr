@@ -8,14 +8,14 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-21 21:32
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 16:57
+ * @lastModified 2026-02-01 05:40
  */
 
 import type { StateManager } from '@qqi/state';
 import { setStyle } from 'a-element-inline-style';
 import { enArr } from 'a-js-tools';
 import { isEmptyArray } from 'a-type-of-js';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import type { ElementEnvironment } from './class-element-environment';
 import { RippleParam } from './class-param';
 import { isNoneBackGroundColor, isNoneBackgroundImage } from './tools';
@@ -125,7 +125,9 @@ export class ElementMeta {
    * @param ev 事件
    */
   private mediaQueryChange(ev: MediaQueryListEvent) {
-    dog('当前获取', ev, this);
+    if (dun) {
+      dog('当前获取', ev, this);
+    }
     this.isDark = ev.matches;
     this.canDispatchDarkChange();
   }
@@ -149,29 +151,36 @@ export class ElementMeta {
     this.hideCssBackground(); /// 这里注释了隐藏
     const { options, element } = this;
     const { parentNode } = element;
-
-    dog('初始化时估计元素的尺寸', this.originStyle);
+    if (dun) {
+      dog('初始化时估计元素的尺寸', this.originStyle);
+    }
     // 注册监听属性变化
     this.mutationObserver = new MutationObserver(mutations => {
       /**  变化值  */
       mutations.forEach(mutation => {
         if (mutation.target !== parentNode) return;
         if (mutation.type === 'attributes' && options.visible) {
-          dog('父级元素的属性变更');
-          dog('当前父级元素', parentNode);
-          dog('当前属性监听者', this.mutationObserver);
-          dog('当前尺寸变化监听者', this.resizeObserver);
-          dog('当前执行的环境', this);
+          if (dun) {
+            dog('父级元素的属性变更');
+            dog('当前父级元素', parentNode);
+            dog('当前属性监听者', this.mutationObserver);
+            dog('当前尺寸变化监听者', this.resizeObserver);
+            dog('当前执行的环境', this);
+          }
           /**  上一次使用的值  */
           const lastStyleValues = Object.values(this.lastUseStyle ?? {});
           /**  现在的样式  */
           const currentStyle = this.getBackgroundStyles();
           /** 本次的样式值  */
           const currentStyleValues = Object.values(currentStyle);
-          dog('当前获取到的实际值，该值可能不作为使用值被储存', currentStyle);
+          if (dun) {
+            dog('当前获取到的实际值，该值可能不作为使用值被储存', currentStyle);
+          }
           // 由于最后使用与原始备份的数据相同
           if (isEmptyArray(enArr.difference(lastStyleValues, currentStyleValues))) {
-            dog('新值与旧值相同');
+            if (dun) {
+              dog('新值与旧值相同');
+            }
             return;
           }
           /**  当前没有背景图配置  */
@@ -181,10 +190,14 @@ export class ElementMeta {
           const isNoneColor = isNoneBackGroundColor(currentStyle.backgroundColor);
           // 新值为空
           if (isNoneImage && isNoneColor) {
-            dog('新值为空');
+            if (dun) {
+              dog('新值为空');
+            }
             return;
           }
-          dog('由于样式不同触发了真实的事件回调');
+          if (dun) {
+            dog('由于样式不同触发了真实的事件回调');
+          }
           this.lastUseStyle = currentStyle; // 赋新值
           {
             // 放到消息订阅中触发事件
@@ -210,10 +223,14 @@ export class ElementMeta {
         // 非目标元素
         if (e.target !== parentNode) return;
         // 避免页面微变和子元素加载后页面的回流导致的重绘引起的微调
-        dog('监听的父级元素发生了尺寸变化', entries);
+        if (dun) {
+          dog('监听的父级元素发生了尺寸变化', entries);
+        }
         if (this.isFirstChange) {
           this.isFirstChange = false;
-          dog.warn('跳过本次重新加载');
+          if (dun) {
+            dog.warn('跳过本次重新加载');
+          }
         } else {
           // 仅允许在 canvas 渲染时触发尺寸的监听计划
           this.state.dispatch({
@@ -238,7 +255,9 @@ export class ElementMeta {
     if (!parentNode) return;
     this.options.visible = true;
     canvas.style.visibility = 'visible';
-    dog('重写父级的行内样式');
+    if (dun) {
+      dog('重写父级的行内样式');
+    }
     // renderData.dropProgram = [];
     // 检测是否更改了行内样式或是重写了该样式
     [
@@ -246,11 +265,13 @@ export class ElementMeta {
       ['background-image', 'none'],
       ['background-color', 'transparent'],
     ].forEach(e => parentNode.style.setProperty(e[0], e[1], 'important'));
-    dog('重写后的父级的行内背景样式', parentNode.style.background);
-    dog('重写后的父级的行内背景色样式', parentNode.style.backgroundColor);
-    dog('重写后的父级的行内背景图样式', parentNode.style.backgroundImage);
-    dog('暂存的原始样式', this.originStyle);
-    dog('暂存的最后获取样式', this.lastUseStyle);
+    if (dun) {
+      dog('重写后的父级的行内背景样式', parentNode.style.background);
+      dog('重写后的父级的行内背景色样式', parentNode.style.backgroundColor);
+      dog('重写后的父级的行内背景图样式', parentNode.style.backgroundImage);
+      dog('暂存的原始样式', this.originStyle);
+      dog('暂存的最后获取样式', this.lastUseStyle);
+    }
   }
 
   /**
@@ -328,7 +349,9 @@ export class ElementMeta {
       this.mutationObserver?.takeRecords();
       this.mutationObserver?.disconnect();
       this.mutationObserver = null;
-      dog(this.mutationObserver);
+      if (dun) {
+        dog(this.mutationObserver);
+      }
       this.resizeObserver?.disconnect();
       this.resizeObserver = null;
     }

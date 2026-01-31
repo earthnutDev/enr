@@ -3,7 +3,7 @@ import { isNull } from 'a-type-of-js';
 
 import { useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { Ripples } from './class-ripple';
 import type { RipplesOptions } from './types';
 
@@ -30,11 +30,15 @@ export function useLazyRipples(
   /**  卸载  */
   function unmounted() {
     isUnmounted.current = true;
-    dog('卸载');
+    if (dun) {
+      dog('卸载');
+    }
     setTimeout(() => {
       // 当前是被卸载状态
       if (isUnmounted.current) {
-        dog('执行了卸载');
+        if (dun) {
+          dog('执行了卸载');
+        }
         ripples.current?.destroy();
       }
     }, 0);
@@ -44,20 +48,28 @@ export function useLazyRipples(
     isUnmounted.current = false;
     /**  非空检验（这里一般都是有值的，除非故障）  */
     if (isNull(canvas.current) || isLoaded.current) {
-      dog('不执行初始化，因为初始化已经在执行了 ', canvas.current, isLoaded.current);
+      if (dun) {
+        dog('不执行初始化，因为初始化已经在执行了 ', canvas.current, isLoaded.current);
+      }
       return unmounted;
     }
-    dog('执行了加载');
+    if (dun) {
+      dog('执行了加载');
+    }
     // 设置加载状态
     setIsLoading(true);
     isLoaded.current = true;
     import('./class-ripple')
       .then(module => {
         if (isNull(canvas.current) || isUnmounted.current) {
-          dog('当前状态值不准确，执行失败');
+          if (dun) {
+            dog('当前状态值不准确，执行失败');
+          }
           return;
         }
-        dog('加载了该项异步，并初始化了值');
+        if (dun) {
+          dog('加载了该项异步，并初始化了值');
+        }
         ripples.current = new module.Ripples(canvas.current, option);
         return;
       })

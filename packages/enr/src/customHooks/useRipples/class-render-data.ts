@@ -8,10 +8,10 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:56
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-25 01:40
+ * @lastModified 2026-02-01 05:25
  */
 
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 
 /**
  * ## 原始数据类
@@ -63,7 +63,9 @@ export class RenderData {
   destroy() {
     if (this.animationFrameId) window.cancelAnimationFrame(this.animationFrameId);
     if (this.transparentId) {
-      dog('清理时间 id', this.transparentId);
+      if (dun) {
+        dog('清理时间 id', this.transparentId);
+      }
       clearTimeout(this.transparentId);
     }
   }

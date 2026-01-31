@@ -8,12 +8,12 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 14:17
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 18:33
+ * @lastModified 2026-02-01 06:10
  */
 
 import { getRandomInt, getRandomString } from 'a-js-tools';
 import { isArray, isEmptyArray, isNull, isString } from 'a-type-of-js';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { ElementMeta } from './class-html-element-meta';
 import type { RippleParam } from './class-param';
 import { RenderData } from './class-render-data';
@@ -119,7 +119,9 @@ export class BuildBackground {
   private buildCircleData() {
     if (this.defaultBackgroundCount > 100) this.defaultBackgroundCount = 0; // 计数器无意义
     this.defaultBackgroundCount++; // 更新计数器
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     const { isDark: darkMode } = this.elementMeta;
     /**  构建数据  */
     const data = {
@@ -138,7 +140,9 @@ export class BuildBackground {
       l[x] = [];
       for (let y = 0; y < d; y++) l[x][y] = [0, 0, 0, 0];
     }
-    dog('当前渲染基础晶格，暗夜模式为：', darkMode);
+    if (dun) {
+      dog('当前渲染基础晶格，暗夜模式为：', darkMode);
+    }
     // 绘制 1 / 8
     for (let x = 0; x <= r; x++) {
       for (let y = x; y <= r; y++) {
@@ -172,7 +176,9 @@ export class BuildBackground {
     for (let x = r; x < d; x++) for (let y = r; y < d; y++) l[x][y] = l[x][d - y];
     const k = this.defaultBackgroundCount % d; // 偏移值，让图有动感
     data.list = [...l.slice(k), ...l.slice(0, k)];
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     this.defaultBackgroundData = data; // 在非初始化时直接赋值
     return data;
   }
@@ -191,7 +197,9 @@ export class BuildBackground {
    *    - 用户设置级别 `darkMode` 发生变化时（订阅消息时）
    */
   setTransparentTexture(executeImmediately: boolean = true) {
-    dog.error('当前触发设置默认背景', executeImmediately);
+    if (dun) {
+      dog.error('当前触发设置默认背景', executeImmediately);
+    }
     const { renderData } = this;
     const { backgroundInfo } = this.elementMeta;
     const { width, height } = backgroundInfo;
@@ -201,7 +209,9 @@ export class BuildBackground {
       includeUppercaseLetters: true,
     });
     this.buildCircleData(); // 重要：构建新的 48 位像素图
-    dog('添加默认纹理', tag);
+    if (dun) {
+      dog('添加默认纹理', tag);
+    }
     //   当前渲染的纹理（下一个）
     this.toBeList.push({
       resource: this.createCanvasElementBySize(),
@@ -225,7 +235,9 @@ export class BuildBackground {
   private createCanvasElementBySize() {
     const { elementMeta } = this;
     const { width, height } = elementMeta.backgroundInfo;
-    dog('本次构建的宽度为', width, '高度为', height);
+    if (dun) {
+      dog('本次构建的宽度为', width, '高度为', height);
+    }
     /**  构建空的 canvas  */
     const canvas = document.createElement('canvas');
     const canvasR = document.createElement('canvas');
@@ -266,10 +278,14 @@ export class BuildBackground {
    * @param height 元素的高
    */
   private createDefault(width: number, height: number) {
-    dog.type = false;
-    dog(`构建默认的纹理尺寸：宽 ${width} 高 ${height}`);
+    if (dun) {
+      dog.type = false;
+      dog(`构建默认的纹理尺寸：宽 ${width} 高 ${height}`);
+    }
     const time = Date.now();
-    dog('开始构建默认的时间', time);
+    if (dun) {
+      dog('开始构建默认的时间', time);
+    }
     /**  图像数据  */
     const imageData = new ImageData(width || 1, height || 1);
     /**  数据流  */
@@ -288,8 +304,10 @@ export class BuildBackground {
       data[i + 2] = ele[2];
       data[i + 3] = ele[3];
     }
-    dog('构建结束的时间', Date.now() - time);
-    dog.type = true;
+    if (dun) {
+      dog('构建结束的时间', Date.now() - time);
+      dog.type = true;
+    }
     return imageData;
   }
 
@@ -299,12 +317,18 @@ export class BuildBackground {
    * 触发时机：仅在下载背景图不可用时尝试创建渐变背景
    */
   private setLinearGradient() {
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     const { renderData, options, elementMeta } = this;
     const { originStyle } = elementMeta;
-    dog('渐变校验前', originStyle, options.imgUrl);
+    if (dun) {
+      dog('渐变校验前', originStyle, options.imgUrl);
+    }
     if (!/linear-gradient\(.*\)/.test(originStyle.backgroundImage) && !isArray(options.imgUrl)) {
-      dog('当前不符合渐变配置', originStyle, options.imgUrl);
+      if (dun) {
+        dog('当前不符合渐变配置', originStyle, options.imgUrl);
+      }
       return this.setBackgroundColor();
     }
     const colorList =
@@ -321,7 +345,9 @@ export class BuildBackground {
       [];
 
     if (colorList.length < 2) {
-      dog('当前获取的渐变色值数量少于 2');
+      if (dun) {
+        dog('当前获取的渐变色值数量少于 2');
+      }
       return this.setBackgroundColor();
     }
     /**  构建画布  */
@@ -330,7 +356,9 @@ export class BuildBackground {
     const ctx = canvas.getContext('2d');
 
     if (isNull(ctx)) {
-      dog('未获取执行上下文');
+      if (dun) {
+        dog('未获取执行上下文');
+      }
       return this.setBackgroundColor();
     }
     const { backgroundInfo } = elementMeta;
@@ -360,7 +388,9 @@ export class BuildBackground {
       height,
       isDark: elementMeta.isDark,
     });
-    dog('添加了渐变背景', colorList);
+    if (dun) {
+      dog('添加了渐变背景', colorList);
+    }
     renderData.run();
   }
 
@@ -371,7 +401,9 @@ export class BuildBackground {
    */
   private setBackgroundColor() {
     const { renderData, elementMeta } = this;
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     // 验证不完全
     if (!this.checkIsSolidColor()) {
       return this.setTransparentTexture();
@@ -402,10 +434,14 @@ export class BuildBackground {
     };
     /// 在上面更改了 toBeList 的指向，这里必须使用全新的 fadeData.toBeList
     this.toBeList.push(nestDrawImage);
-    dog('添加了背景色', drawColor, nestDrawImage);
+    if (dun) {
+      dog('添加了背景色', drawColor, nestDrawImage);
+    }
     renderData.run(); // 执行渐变
-    dog('目前有', this.toBeList);
-    dog.type = true;
+    if (dun) {
+      dog('目前有', this.toBeList);
+      dog.type = true;
+    }
   }
   /**
    * ## 通过设置设定一个 canvas
@@ -418,8 +454,10 @@ export class BuildBackground {
     /**  执行上下文  */
     const ctx = canvas.getContext('2d');
     if (isNull(ctx)) {
-      dog('当前未获取到画布的执行上下文');
-      dog.type = true;
+      if (dun) {
+        dog('当前未获取到画布的执行上下文');
+        dog.type = true;
+      }
       return null;
     }
     const { width, height } = elementMeta.backgroundInfo;
@@ -446,30 +484,40 @@ export class BuildBackground {
    * 在加载过程中如果渲染的图片为非法的（加载错误）那么将查找当前的背景色或是背景图作为依据，再就是都没有的情况下将会渲染一个类似于旧地板的色
    */
   setImage() {
-    dog.type = true;
-    dog('开始下载图片');
+    if (dun) {
+      dog.type = true;
+      dog('开始下载图片');
+    }
     const { options, elementMeta, renderData } = this;
     const { backgroundInfo } = elementMeta;
     const { width, height } = backgroundInfo;
     const newImageSource = this.getNewImage();
-    dog('当前获取的图像资源为', newImageSource);
+    if (dun) {
+      dog('当前获取的图像资源为', newImageSource);
+    }
     // 倘若图片资源未更改，则无需从新下载（但需要有值前提下）
     // 图片资源未更改，但是尺寸发生变化时亦会触发该方法
     renderData.imageSource = newImageSource!;
     // 虚假来源意味着没有背景。
     if (!newImageSource) {
-      dog('没有原始图像，开始使用空白自绘');
+      if (dun) {
+        dog('没有原始图像，开始使用空白自绘');
+      }
       this.setLinearGradient();
-      dog.type = true;
+      if (dun) {
+        dog.type = true;
+      }
       return;
     }
     // 从新图像加载纹理。
     const image = createImageBySrc(newImageSource, width, height);
     image.onload = () => {
       clearTimeout(renderData.transparentId); // 清理默认的渲染透明
-      dog('当前下载背景图', newImageSource);
-      dog('背景图下载完毕', this.toBeList.length);
-      dog('当前是否在渐变', renderData.isTransitioning);
+      if (dun) {
+        dog('当前下载背景图', newImageSource);
+        dog('背景图下载完毕', this.toBeList.length);
+        dog('当前是否在渐变', renderData.isTransitioning);
+      }
       //  当前是否在渲染
       if (renderData.isTransitioning && !isEmptyArray(this.toBeList)) {
         // 下载有效背景时清理默认的背景纹理和同地址的背景纹理
@@ -497,16 +545,24 @@ export class BuildBackground {
         tag: newImageSource,
         isDark: elementMeta.isDark,
       }); // 设置渐变过去
-      dog('添加后的列表长度', this.toBeList);
+      if (dun) {
+        dog('添加后的列表长度', this.toBeList);
+      }
       renderData.run(); // 开启渐变
-      dog.type = true;
+      if (dun) {
+        dog.type = true;
+      }
     };
 
     // 下载图像出错
     image.onerror = () => {
-      dog('下载图像错误');
+      if (dun) {
+        dog('下载图像错误');
+      }
       this.setLinearGradient();
-      dog.type = true;
+      if (dun) {
+        dog.type = true;
+      }
     };
 
     // 当图像源是数据 URI 时禁用 CORS。
@@ -521,7 +577,9 @@ export class BuildBackground {
    *
    */
   forbiddenRunSide(): boolean {
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     const { options, elementMeta, lastDrawImage } = this;
     const { imgUrl } = options;
     const { backgroundInfo } = elementMeta;
@@ -539,21 +597,27 @@ export class BuildBackground {
       // 尺寸相同，资源相同，禁止变化
       if (kind === 'image' && sizeEqual && isString(newImageSource) && newImageSource === tag)
         return true;
-      dog('通过图片校验');
+      if (dun) {
+        dog('通过图片校验');
+      }
     }
     if (this.checkIsLinearGradient()) {
       /**  新的获取的渐变资源  */
       const newGradientValue = (isArray(imgUrl) && imgUrl.join('_')) || '';
       // 渐变禁止执行变化
       if (kind === 'linear-gradient' && sizeEqual && newGradientValue === tag) return true;
-      dog('通过渐变校验', newGradientValue, tag);
+      if (dun) {
+        dog('通过渐变校验', newGradientValue, tag);
+      }
     }
     if (this.checkIsSolidColor()) {
       /**  当前的背景色值  */
       const newBackgroundColor = this.getNewColor();
       //  当前渲染为色值，且色值发生了变化
       if (kind === 'background-color' && sizeEqual && tag === newBackgroundColor) return true;
-      dog('通过背景色校验');
+      if (dun) {
+        dog('通过背景色校验');
+      }
     }
     return false;
   }
@@ -572,7 +636,9 @@ export class BuildBackground {
     const { elementMeta, options } = this;
     const { originStyle } = elementMeta;
     if (!/linear-gradient\(.*\)/.test(originStyle.backgroundImage) && !isArray(options.imgUrl)) {
-      dog('当前不符合渐变配置');
+      if (dun) {
+        dog('当前不符合渐变配置');
+      }
       return false;
     }
     const colorList = this.getColorList();
@@ -591,8 +657,10 @@ export class BuildBackground {
       isNoneBackGroundColor(originStyle.backgroundColor) &&
       (!isArray(options.imgUrl) || options.imgUrl.length !== 1)
     ) {
-      dog('当前没有配置背景色');
-      dog.type = true;
+      if (dun) {
+        dog('当前没有配置背景色');
+        dog.type = true;
+      }
       return false;
     }
     return true;

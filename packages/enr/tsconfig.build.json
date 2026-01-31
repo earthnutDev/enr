@@ -7,10 +7,7 @@
     // 设定为 "node" 时将导致如下问题：
     //  Cannot find module 'zza/log' or its corresponding type declarations.  There are types at '/Users/lm/code/npm/enr/packages/core/node_modules/zza/dist/es/src/log-development.d.ts', but this result could not be resolved under your current 'moduleResolution' setting. Consider updating to 'node16', 'nodenext', or 'bundler'.
     // "moduleResolution": "node", // 模块解析方式
-    "noEmit": false,
-    "skipDefaultLibCheck": true, // 跳过第三方库类型检测，避免内部类型冲突
-    "skipLibCheck": true, // 跳过库类型检测
-    "sourceMap": false
+    "noEmit": false
   },
   "include": ["src/**/*", "types.d.ts", "src/**/*.png"],
   "exclude": ["node_modules/"]

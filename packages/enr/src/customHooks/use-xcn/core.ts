@@ -8,11 +8,11 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-28 13:03
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 16:03
+ * @lastModified 2026-02-01 06:10
  */
 
 import { xcn, type EnTypeofClassNameItem, type EnXcn } from 'xcn';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { GLOBAL_CSS } from './css';
 import type { EnClassName } from './types';
 
@@ -54,5 +54,7 @@ export function ensureGlobalStyles(): boolean | undefined {
   style.setAttribute(dataUiLib, name);
   style.textContent = GLOBAL_CSS;
   document.head.appendChild(style);
-  dog('样式表插入成功 🏅');
+  if (dun) {
+    dog('样式表插入成功 🏅');
+  }
 }

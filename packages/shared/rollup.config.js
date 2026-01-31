@@ -1,4 +1,5 @@
-import typescript from '@rollup/plugin-typescript';
+// 使用更可控的 rollup-plugin-typescript2 代替官插 @rollup/plugin-typescript
+import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
@@ -40,7 +41,16 @@ export default {
     resolve(),
     commonjs(),
     json(),
-    typescript(),
+    typescript({
+      clean: true,
+      tsconfig: './tsconfig.json',
+      tsconfigOverride: {
+        noEmit: true, // 仅允许生成类型文件
+        declaration: true,
+        emitDeclarationOnly: true,
+        importHelpers: false, // 确保不引入 tslib
+      },
+    }),
     cleanup(),
   ],
 };

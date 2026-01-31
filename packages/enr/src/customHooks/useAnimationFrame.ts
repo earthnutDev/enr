@@ -7,14 +7,14 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-25 19:11
+ * @lastModified 2026-02-01 06:12
  */
 
 'use client';
 
 import { isBoolean, isPlainObject } from 'a-type-of-js';
 import { useCallback, useEffect, useRef } from 'react';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 
 /**  使用动画结果  */
 export interface UseAnimationFrameResult {
@@ -124,12 +124,18 @@ export function useAnimationFrame(
     isUnmounted: true,
     result: {
       cancel() {
-        dog.type = false;
+        if (dun) {
+          dog.type = false;
+        }
         const { id } = animationFrame.current;
-        dog('执行取消');
+        if (dun) {
+          dog('执行取消');
+        }
         if (id) window.cancelAnimationFrame(id);
         animationFrame.current.result.canceled = true;
-        dog.type = true;
+        if (dun) {
+          dog.type = true;
+        }
       },
       canceled: false,
       render() {
@@ -159,47 +165,61 @@ export function useAnimationFrame(
 
   // 首次执行
   if (current.immediately && !current.noun && current.result.canceled) {
-    dog('重复执行');
+    if (dun) {
+      dog('重复执行');
+    }
 
     current.noun = true;
     current.result.render();
   }
 
   useEffect(() => {
-    dog.type = false;
-    dog(
-      '回调更替',
-      '此时的是否为第一次执行状态为',
-      current.firstRunEffect,
-      '当前取消执行状态',
-      current.result.canceled,
-    );
+    if (dun) {
+      dog.type = false;
+      dog(
+        '回调更替',
+        '此时的是否为第一次执行状态为',
+        current.firstRunEffect,
+        '当前取消执行状态',
+        current.result.canceled,
+      );
+    }
 
     /// 非仅执行一次再次这里需要执行
     if (!current.once) {
       if (current.firstRunEffect) {
         current.result.render();
         current.firstRunEffect = false; //  标记为不允许执行
-        dog.type = false;
-        dog('第一次执行', '，执行后状态', current.result.canceled);
+        if (dun) {
+          dog.type = false;
+          dog('第一次执行', '，执行后状态', current.result.canceled);
+        }
       } else if (!current.firstRunEffect && !current.result.canceled) {
         /**  非第一次执行  */
         current.result.render();
-        dog.type = false;
-        dog('非首次执行', '，执行后状态', current.result.canceled);
+        if (dun) {
+          dog.type = false;
+          dog('非首次执行', '，执行后状态', current.result.canceled);
+        }
       }
     }
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
   }, [callback]);
 
   /// 在组件退出时保证能正确的退出
   useEffect(() => {
-    dog('执行');
+    if (dun) {
+      dog('执行');
+    }
     current.isUnmounted = false;
     return () => {
       current.isUnmounted = true;
       setTimeout(() => {
-        dog('退出执行取消');
+        if (dun) {
+          dog('退出执行取消');
+        }
         if (current.isUnmounted) current.result.cancel();
       }, 0);
     };

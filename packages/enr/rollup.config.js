@@ -58,6 +58,7 @@ export default {
         emitDeclarationOnly: true,
         importHelpers: false, // 确保不引入 tslib
       },
+      clean: true,
     }),
     babel({
       extends: ['.js', '.jsx', '.ts', '.tsx'],
@@ -76,7 +77,6 @@ export default {
     }),
     commonjs(),
     json(),
-
     // 去除无用代码
     // cleanup(),
     copy({

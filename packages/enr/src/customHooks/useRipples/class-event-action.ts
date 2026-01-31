@@ -8,11 +8,11 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-23 01:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 18:32
+ * @lastModified 2026-02-01 06:00
  */
 
 import { debounce, getRandomInt } from 'a-js-tools';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { BuildBackground } from './class-build-background';
 import type { ElementEnvironment } from './class-element-environment';
 import { ElementMeta } from './class-html-element-meta';
@@ -116,7 +116,9 @@ export class EventAction {
   private setCanvasSize = debounce((canvas, width, height) => {
     canvas.width = width;
     canvas.height = height;
-    dog('触发真实的设置 canvas 尺寸');
+    if (dun) {
+      dog('触发真实的设置 canvas 尺寸');
+    }
   }, 1000);
 
   /**
@@ -128,7 +130,9 @@ export class EventAction {
    *
    */
   reloadBackground() {
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     const { elementMeta, element } = this;
     const { backgroundInfo } = elementMeta;
     const { parentNode, canvas: node } = element;
@@ -136,17 +140,21 @@ export class EventAction {
       height = parentNode.offsetHeight,
       oldWidth = node.width,
       oldHeight = node.height;
-    dog(
-      '渲染尺寸',
-      width,
-      height,
-      oldHeight,
-      oldWidth,
-      Math.abs(oldWidth - width),
-      Math.abs(oldHeight - height),
-    );
+    if (dun) {
+      dog(
+        '渲染尺寸',
+        width,
+        height,
+        oldHeight,
+        oldWidth,
+        Math.abs(oldWidth - width),
+        Math.abs(oldHeight - height),
+      );
+    }
     if (width < 3 || height < 3) {
-      dog('尺寸太小，直接忽略渲染');
+      if (dun) {
+        dog('尺寸太小，直接忽略渲染');
+      }
       return;
     }
     // canvas.width =
@@ -156,7 +164,9 @@ export class EventAction {
 
     // TODO 此处修改，未验明效果
     this.setCanvasSize(element.canvas, width, height);
-    dog('触发再次加载背景');
+    if (dun) {
+      dog('触发再次加载背景');
+    }
     this.buildBackground.setImage();
   }
 
@@ -237,7 +247,9 @@ export class EventAction {
     if (running) {
       // 上一次状态为不执行
       if (!lastRunningState) {
-        console.error('100');
+        if (dun) {
+          console.error('100');
+        }
         options.lastRunningState = true; // 设置下次执行状态
         elementMeta.hideCssBackground(); // 展示背景
       }
@@ -269,7 +281,9 @@ export class EventAction {
     const { parentNode } = element;
     if (!parentNode || !renderData.events) return;
     // 移除事件监听
-    dog('移除监听的事件');
+    if (dun) {
+      dog('移除监听的事件');
+    }
     try {
       /// 移除监听的事件
       (Object.keys(renderData.events) as []).forEach(e =>
@@ -277,7 +291,9 @@ export class EventAction {
       );
       parentNode?.removeAttribute('data-ripples'); /// 移除属性
     } catch (error) {
-      dog('移除监听者失败', error);
+      if (dun) {
+        dog('移除监听者失败', error);
+      }
     }
   }
 }

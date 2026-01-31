@@ -8,11 +8,11 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 12:07
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-28 18:39
+ * @lastModified 2026-02-01 05:40
  */
 
 import { isBusinessEmptyString, isEmptyArray, isNull, isUndefined, isZero } from 'a-type-of-js';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { BuildBackground } from './class-build-background';
 import type { ElementEnvironment } from './class-element-environment';
 import { ElementMeta } from './class-html-element-meta';
@@ -67,30 +67,42 @@ export class RenderAction {
     /// 设置下一个循环
     renderData.transparentId = setTimeout(
       () => {
-        dog.type = true;
+        if (dun) {
+          dog.type = true;
+        }
         clearTimeout(renderData.transparentId); // 清理栈中未执行的同类型调用，防止 多次触发
-        dog('当前执行的列表', buildBackground.toBeList);
+        if (dun) {
+          dog('当前执行的列表', buildBackground.toBeList);
+        }
         // 这里之前判定有误，因为 `buildBackground.toBeList` 一直存在
         // 且当前逻辑 `renderData` 也一定存在
         if (!renderData || !buildBackground.toBeList) {
-          dog.warn('执行列表为空，直接退出');
+          if (dun) {
+            dog.warn('执行列表为空，直接退出');
+          }
           return; // 防空
         }
         // 当前上一次为执行完毕放弃本次子执行，创建下一次执行
         if (renderData.isTransitioning) return this.runSide();
-        // 校验当前是否可执行
-        dog('当前执行的 id', renderData.transparentId);
-        dog('当前执行的项', buildBackground.lastDrawImage);
-        dog('尚有未执行的项', buildBackground.toBeList.length);
+        if (dun) {
+          // 校验当前是否可执行
+          dog('当前执行的 id', renderData.transparentId);
+          dog('当前执行的项', buildBackground.lastDrawImage);
+          dog('尚有未执行的项', buildBackground.toBeList.length);
+        }
 
         // 执行环境相同退出循环
         if (this.buildBackground.forbiddenRunSide()) {
-          dog('当前禁止执行循环，退出循环', this.buildBackground.lastDrawImage);
+          if (dun) {
+            dog('当前禁止执行循环，退出循环', this.buildBackground.lastDrawImage);
+          }
           return;
         }
         renderData.run();
-        dog('开始渐变');
-        dog.type = true;
+        if (dun) {
+          dog('开始渐变');
+          dog.type = true;
+        }
       }, // 触发渐变
       options.raindropsTimeInterval * 2,
     );
@@ -110,14 +122,19 @@ export class RenderAction {
     }
 
     if (renderData.drawProgress === 0) {
-      dog('开始执行渐变，当前尚有可执行', toBeList.length);
-      toBeList.forEach(e => dog(e));
+      if (dun) {
+        dog('开始执行渐变，当前尚有可执行', toBeList.length);
+        toBeList.forEach(e => dog(e));
+      }
+      // TODO
     }
     // 进度完成则结束当前的进度
     if (renderData.drawProgress > 1000) {
       this.options.firstRun = false; // 已经经历过一次渐变，之后不再缓慢渐变
       buildBackground.lastDrawImage = toBeList.shift()!; // 更新最后渲染的纹理图
-      dog('执行渐变背景完毕，剩余可执行', toBeList);
+      if (dun) {
+        dog('执行渐变背景完毕，剩余可执行', toBeList);
+      }
       this.rippleGl.bindImage(); // 渲染到背景图
       // 尚有未执行完毕的
       if (isEmptyArray(toBeList)) {
@@ -141,7 +158,9 @@ export class RenderAction {
     renderData.drawProgress += this.options.firstRun
       ? this.firstDrawProgressStep
       : this.drawProgressStep;
-    // dog('当前的渲染进度', fadeData.drawProgress, fadeData.lastDrawImage);
+    if (dun) {
+      // dog('当前的渲染进度', fadeData.drawProgress, fadeData.lastDrawImage);
+    }
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -152,14 +171,16 @@ export class RenderAction {
      *
      */
     if (isNull(ctx) || isNull(buildBackground.lastDrawImage.resource) || isEmptyArray(toBeList)) {
-      dog(
-        '是我啦',
-        isNull(ctx),
-        '-',
-        isNull(buildBackground.lastDrawImage.resource),
-        '-',
-        isEmptyArray(toBeList),
-      );
+      if (dun) {
+        dog(
+          '是我啦',
+          isNull(ctx),
+          '-',
+          isNull(buildBackground.lastDrawImage.resource),
+          '-',
+          isEmptyArray(toBeList),
+        );
+      }
       return this.exitFade('环境值错误');
     }
     const { width, height } = this.elementMeta.backgroundInfo;
@@ -212,16 +233,22 @@ export class RenderAction {
    * @param message
    */
   private exitFade(message: string) {
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     const { renderData } = this;
     renderData.isTransitioning = false;
-    dog(message);
+    if (dun) {
+      dog(message);
+    }
     this.runSide();
   }
 
   /**  计算纹理边界及背景图  */
   computeTextureBoundaries() {
-    dog.type = false;
+    if (dun) {
+      dog.type = false;
+    }
     const { rippleGl, element, elementMeta } = this;
 
     const { parentNode } = element;
@@ -322,7 +349,9 @@ export class RenderAction {
       backgroundY = (container.top + parseFloat(backgroundY)).toString();
     }
 
-    dog('计算得到的背景的尺寸的值', backgroundWidth, backgroundHeight, backgroundX, backgroundY);
+    if (dun) {
+      dog('计算得到的背景的尺寸的值', backgroundWidth, backgroundHeight, backgroundX, backgroundY);
+    }
 
     /**  计算在 WebGL 着色器中使用的纹理坐标 （UV 坐标）的起点（左上角位置）   */
     rippleGl.renderProgram.uniforms.topLeft = new Float32Array([
@@ -333,7 +362,9 @@ export class RenderAction {
     //   (parentNode.offsetLeft - Number(backgroundX)) / backgroundWidth,
     //   (parentNode.offsetTop - Number(backgroundY)) / backgroundHeight,
     // ]);
-    dog('父级元素的偏移', parentNode.offsetLeft, parentNode.offsetTop);
+    if (dun) {
+      dog('父级元素的偏移', parentNode.offsetLeft, parentNode.offsetTop);
+    }
     /**    */
     rippleGl.renderProgram.uniforms.bottomRight = new Float32Array([
       rippleGl.renderProgram.uniforms.topLeft[0] + parentNode.clientWidth / backgroundWidth,
@@ -346,7 +377,9 @@ export class RenderAction {
       element.canvas.width / maxSide,
       element.canvas.height / maxSide,
     ]);
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
   }
 
   /**

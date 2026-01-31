@@ -2,7 +2,7 @@ import { isNumber, isString } from 'a-type-of-js';
 import { Children, cloneElement, isValidElement } from 'react';
 import type { CSSProperties, ReactElement } from 'react';
 import { xcn } from 'xcn';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import { EnLayoutContent, LayoutContentWrapper } from '../shared/EnLayoutContent/index';
 import { InternalValueC as LayoutContent } from './content';
 import { InternalValueF as LayoutFooter } from './footer';
@@ -74,12 +74,16 @@ function isDecimal(value: string | number) {
 const Layout = ({ width = '100%', height = '100%', ...props }: LayoutProps) => {
   const { style, className, children: _children, ..._props } = props;
   let children = _children;
-  dog.type = false;
+  if (dun) {
+    dog.type = false;
+  }
   /**  TODO ： React 不推荐使用 Children ，尽然当前版本依旧支持 */
   /**  子组件的个数  */
   const childCount = Children.count(children);
   /**  头部 header 是否粘连影响下的样式  */
-  dog('子元素个数', childCount);
+  if (dun) {
+    dog('子元素个数', childCount);
+  }
   /**  头部 header 组件  */
   let Header: ReactElement<LayoutHeaderProps> | undefined,
     /** 当前的样式   */
@@ -245,7 +249,9 @@ const Layout = ({ width = '100%', height = '100%', ...props }: LayoutProps) => {
   /**  确定布局结构  */
   const shouldUseSideFullLayout = /^side.*full/.test(layoutType);
 
-  dog.type = true;
+  if (dun) {
+    dog.type = true;
+  }
 
   return (
     <EnLayoutContent

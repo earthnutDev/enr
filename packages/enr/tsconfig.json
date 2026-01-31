@@ -1,30 +1,8 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": false, // 关键：禁用 tslib 导入
-    "incremental": true,
-    "isolatedModules": false, // 建议在库中使用 false
-    "jsx": "react-jsx", // 关键： 使用新的 JSX 转换
-    "jsxImportSource": "react", // 指定 JSX 导入源
-    "lib": ["es5", "dom", "dom.iterable", "esnext"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "noEmit": true, // 确保 TypeScript 不生成任何 JS
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "outDir": "dist/",
-    "resolveJsonModule": true,
-    "rootDir": ".",
-    "strict": true,
-    "skipLibCheck": true,
-    "target": "ES2022", // 使用较新的构建目标
-    "verbatimModuleSyntax": true // TS 5.0 + 推荐
+    // "isolatedModules": false,
+    "rootDir": "."
   },
   "include": ["src/**/*", "types.d.ts", "scripts/**/*", "src/**/*.png"],
   "exclude": ["node_modules", "**/*.test.ts"]

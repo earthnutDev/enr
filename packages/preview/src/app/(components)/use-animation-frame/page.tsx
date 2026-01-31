@@ -4,7 +4,7 @@ import { _en, useAnimationFrame } from 'enr';
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import { xcn } from 'xcn';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 
 const Example = styled.div`
   box-shadow: 1px 1px 24px #0f06;
@@ -37,13 +37,19 @@ export default function UseAnimationFramePage() {
       time1: data.time1,
       time2: data.time2,
     });
-    dog(data);
+    if (dun) {
+      dog(data);
+    }
 
     if (nextState) {
-      dog('终止');
+      if (dun) {
+        dog('终止');
+      }
       cancelAnimation.cancel();
     } else {
-      dog('启动');
+      if (dun) {
+        dog('启动');
+      }
 
       cancelAnimation.render();
     }
@@ -52,7 +58,9 @@ export default function UseAnimationFramePage() {
   const testData = useRef(false);
 
   useEffect(() => {
-    dog('i am coming ', testData.current);
+    if (dun) {
+      dog('i am coming ', testData.current);
+    }
 
     return () => ((testData.current = true), undefined);
   }, []);

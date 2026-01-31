@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { manageCookie, storageStore, sysInfo } from 'zza';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import type { ColorMode, ThemeColorModeProviderProps, ThemeContextType } from './types';
 
 /**  用于判断是否正确放置的  */
@@ -65,10 +65,14 @@ export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorMod
    * @param newColorMode
    */
   const autoChange = (newColorMode: ColorMode) => {
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     // 这是当前的
     const _auto = !storageStore.theme;
-    dog('手动切换当前的模式', _auto);
+    if (dun) {
+      dog('手动切换当前的模式', _auto);
+    }
     if (_auto) {
       manageCookie.deleteItem('theme');
       storageStore.theme = '';
@@ -79,19 +83,25 @@ export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorMod
       }); // 将值同步到 cookie ，以防止水合有误
     window.document.documentElement.setAttribute('data-theme', newColorMode);
     setAuto(_auto);
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
   };
   /**
    *  设置指定的色值
    * @param newColorMode
    */
   const setSpecifiedColorMode = (newColorMode: ColorMode) => {
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
 
-    dog('执行设置当前的主题样式模式', newColorMode);
+      dog('执行设置当前的主题样式模式', newColorMode);
+    }
 
     if (['light', 'dark'].indexOf(newColorMode) < 0) {
-      dog('新设置的模式不正确不允许设置');
+      if (dun) {
+        dog('新设置的模式不正确不允许设置');
+      }
       return colorMode;
     }
 
@@ -100,8 +110,9 @@ export function ThemeColorModeProvider({ children, initialTheme }: ThemeColorMod
     if (newColorMode !== colorMode) setColorMode(newColorMode);
     // 手动触发副作用
     else autoChange(colorMode);
-
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
     return newColorMode;
   };
 

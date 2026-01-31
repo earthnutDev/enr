@@ -1,7 +1,7 @@
 import { isArray } from 'a-type-of-js';
 import { useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import type { Ripples, RipplesOptions } from '../../customHooks/useRipples/index';
 
 /**
@@ -13,14 +13,20 @@ export function useOptionUpdate(
   ripplesRef: RefObject<Ripples | null>,
   option: RipplesOptions | undefined,
 ) {
-  dog('执行打印', option);
+  if (dun) {
+    dog('执行打印', option);
+  }
 
   const oldOption = useRef({ ...option });
   /**  监听数据变化并给值  */
   useEffect(() => {
-    dog.type = false;
+    if (dun) {
+      dog.type = false;
+    }
     if (!option || !ripplesRef.current) {
-      dog.type = true;
+      if (dun) {
+        dog.type = true;
+      }
       return;
     }
     (Object.keys(ripplesRef.current.defaults) as unknown as (keyof RipplesOptions)[]).forEach(e => {
@@ -31,15 +37,21 @@ export function useOptionUpdate(
         (isArray(v) && isArray(ov) && (v.length !== ov.length || v.some((k, i) => k !== ov[i]))) ||
         ((!isArray(v) || !isArray(ov)) && v !== ov))(value, oldOption.current[e]);
 
-      dog('我在这里', value, oldOption.current[e]);
+      if (dun) {
+        dog('我在这里', value, oldOption.current[e]);
+      }
 
       if (ripplesRef.current && checkArr) {
-        dog('设置值', e, value);
+        if (dun) {
+          dog('设置值', e, value);
+        }
         // 使用转化后的值
         oldOption.current[e] = isArray(value) ? ([...value] as never) : (option[e] as never);
         ripplesRef.current.set(e, value);
       }
     });
-    dog.type = true;
+    if (dun) {
+      dog.type = true;
+    }
   }, [option]);
 }

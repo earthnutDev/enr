@@ -1,7 +1,4 @@
 {
-  "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
-  "types": "dist/es/src/index.d.ts",
   "author": {
     "name": "泥豆君",
     "email": "Mr.MudBean@outlook.com",
@@ -9,12 +6,16 @@
   },
   "description": "enr 内部共享方法",
   "sideEffects": false,
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/es/src/index.d.ts",
   "name": "zza",
   "version": "0.0.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "b": "rollup --config rollup.config.js && tsc -p tsconfig.types.json",
+    "b": "rollup --config rollup.config.js && pnpm run build:tsc",
+    "build:tsc": " tsc -p tsconfig.types.json",
     "build": "jja cls rm dist && jja run NODE_ENV=production 'pnpm run b' run node ./scripts/clean-package-json.js",
     "test": "jja cls rm dist && jja run NODE_ENV=development 'pnpm run b' run node ./scripts/clean-package-json.js",
     "diff": "jja pkg --diff",
@@ -44,10 +45,10 @@
       "types": "./dist/es/src/cookie.d.ts"
     },
     "./log": {
-      "default": "./dist/es/log-development.js",
-      "import": "./dist/es/log-development.js",
-      "require": "./dist/cjs/log-development.js",
-      "types": "./dist/es/src/log-development.d.ts"
+      "default": "./dist/es/log-production.js",
+      "import": "./dist/es/log-production.js",
+      "require": "./dist/cjs/log-production.js",
+      "types": "./dist/es/src/log-production.d.ts"
     },
     "./storage-store": {
       "default": "./dist/es/storage-store.js",

@@ -1,5 +1,5 @@
 import { _en, useColorMode, type ColorMode } from 'enr';
-import { dog } from 'zza/log';
+import { dog, dun } from 'zza/log';
 import type { TabListItem } from '@/theme/Sidebar/types';
 
 const id = 'toggle-theme-mode';
@@ -19,7 +19,9 @@ export function ToggleThemeColorMode() {
    * @param e
    */
   function clickFn(e: ColorMode | 'system') {
-    dog('执行了更改当前的主题色模式', e);
+    if (dun) {
+      dog('执行了更改当前的主题色模式', e);
+    }
     if (e !== 'system') setColorMode(e);
     else clearColorMode();
   }
