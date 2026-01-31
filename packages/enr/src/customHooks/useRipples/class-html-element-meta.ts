@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-21 21:32
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-01 05:40
+ * @lastModified 2026-02-01 06:49
  */
 
 import type { StateManager } from '@qqi/state';

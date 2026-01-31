@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-23 01:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-01 06:00
+ * @lastModified 2026-02-01 06:42
  */
 
 import { debounce, getRandomInt } from 'a-js-tools';
@@ -230,6 +230,7 @@ export class EventAction {
     const { parentNode } = element;
     const { isTransitioning } = renderData;
     const { running, idleFluctuations, lastRunningState } = options;
+
     // 渲染
     renderData.animationFrameId = requestAnimationFrame(() => this.beginWork());
 

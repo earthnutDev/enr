@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 12:07
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-01 05:40
+ * @lastModified 2026-02-01 06:33
  */
 
 import { isBusinessEmptyString, isEmptyArray, isNull, isUndefined, isZero } from 'a-type-of-js';
@@ -34,7 +34,7 @@ export class RenderAction {
   /** 动画执行快慢的节奏，值越大，执行越快。默认值 18 */
   private readonly drawProgressStep = 18;
 
-  private readonly firstDrawProgressStep = 6;
+  private readonly firstDrawProgressStep = 0.25;
 
   /**
    *
