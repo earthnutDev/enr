@@ -1,7 +1,6 @@
 import { ThemeColorModeProvider } from 'enr';
 import type { Metadata } from 'next';
 import '../css/common.scss';
-import '../css/reset.scss';
 import './product.scss';
 import { cookies } from 'next/headers';
 import type { ReactNode } from 'react';
@@ -29,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang="zh-CN" data-theme={colorMode}>
-      <body className="enr-dark">
+      <body>
         <ThemeColorModeProvider initialTheme={'dark'}>
           <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
         </ThemeColorModeProvider>

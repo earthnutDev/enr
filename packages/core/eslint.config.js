@@ -33,7 +33,7 @@ const ignorePattern = [
   'yarn.lock',
   '.docusaurus',
   '.wrangler',
-  '.next',
+  '.rollup.cache',
 ];
 
 export default [
@@ -48,7 +48,9 @@ export default [
       globals: {
         ...globals.browser, // 浏览器全局变量
         ...globals.node, // Node.js 全局变量
-        React: 'readonly',
+        React: 'readonly', // 避免出现 `'React' is not defined.<eslint·no-undef>` 提示
+        NodeJS: 'readonly',
+        HTMLWebViewElement: 'readonly',
       },
     },
   },
@@ -56,7 +58,7 @@ export default [
   // 2. TypeScript 配置（必须）
   ...tseslint.configs.recommended.map(config => ({
     ...config,
-    files: ['src/**/*.{ts,tsx}', 'env.d.ts'], // 按需配置
+    files: ['src/**/*.{ts,tsx}', 'types.d.ts', 'scripts/**/*.{js,ts}'], // 按需配置
     languageOptions: {
       ...config.languageOptions,
       globals: {
@@ -132,7 +134,7 @@ export default [
 
   // 3. React 配置（必须，React 项目）
   {
-    files: ['**/*.{jsx,tsx}'], // 处理 JSX/TSX 文件
+    files: ['**/*.{jsx,tsx,js,ts}'], // 处理 JSX/TSX 文件
     languageOptions: {
       parserOptions: { ecmaFeatures: { jsx: true } }, // 启用 JSX
     },
@@ -160,8 +162,13 @@ export default [
     rules: {
       // 基础规则
       'jsdoc/check-alignment': 'error',
-      'jsdoc/require-param': 'error',
-      'jsdoc/check-param-names': 'warn',
+      'jsdoc/require-param': [
+        'error',
+        {
+          unnamedRootBase: ['props', 'options', 'arg'],
+        },
+      ],
+      'jsdoc/check-param-names': 'error',
       'jsdoc/check-tag-names': [
         'error',
         {
@@ -195,7 +202,7 @@ export default [
       ],
     },
     // settings: {
-    //   jsdoc: {
+    // jsdoc: {
     //   // 用于配置首选项别名设置一个 JSDoc 标签
     //     tagNamePreference: {
     //       // eg.
@@ -204,7 +211,7 @@ export default [
     //       // todo: false, // 禁用 todo
     //       // todo: "禁用原因", // 禁用 todo ，并展示友好原因
     //     },
-    //   },
+    // },
     // },
   },
 

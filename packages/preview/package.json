@@ -7,7 +7,7 @@
     "diff": "jja pkg -d=淘宝",
     "push": "gvv",
     "prepublishOnly": "pjj",
-    "lint": "eslint src",
+    "lint": "eslint . --fix",
     "dev": "next dev --turbopack",
     "build:view": "next build --turbopack",
     "deploy:cloudflare": "jja cls rm && pnpm build:only && wrangler pages deploy build",

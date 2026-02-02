@@ -105,6 +105,14 @@ export default [
           varsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          disallowTypeAnnotations: true, // 禁用 在单个 import 中混合值与类型
+          fixStyle: 'separate-type-imports',
+        },
+      ],
       'import/order': [
         'error',
         {
