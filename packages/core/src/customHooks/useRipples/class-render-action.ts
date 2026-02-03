@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 12:07
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 14:22
+ * @lastModified 2026-02-03 14:44
  */
 
 import { isBusinessEmptyString, isEmptyArray, isNull, isUndefined, isZero } from 'a-type-of-js';
@@ -119,9 +119,12 @@ export class RenderAction {
     if (renderData.drawProgress === 0) {
       if (dun) {
         dog('开始执行渐变，当前尚有可执行', toBeList.length);
-        toBeList.forEach(e => dog(e));
+        toBeList.forEach((e, i) => dog(`待执行 ${i} ： `, e));
       }
       // TODO
+    }
+    if (dun) {
+      dog('当前执行的进度，', renderData.drawProgress);
     }
     // 进度完成则结束当前的进度
     if (renderData.drawProgress > 1000) {
@@ -213,12 +216,13 @@ export class RenderAction {
       tag: `${buildBackground.lastDrawImage.tag} >> ${toBeList[0].tag}`,
       isDark: this.elementMeta.isDark,
     };
-    buildBackground.lastDrawImage = currentDrawImage;
+    buildBackground.currentDrawImage = currentDrawImage;
     // 渲染渐变过程中的纹理
     this.rippleGl.bindImage();
     // 当前执行的列表中有两个（两个以上的可能性比较小）
     if (toBeList.length > 1) {
-      toBeList.shift();
+      buildBackground.lastDrawImage = currentDrawImage;
+      toBeList.shift(); // 直接丢弃第一个
       renderData.drawProgress = 0;
     }
   }
@@ -416,7 +420,7 @@ export class RenderAction {
     gl.disable(gl.BLEND);
   }
   /**
-   * ## 更新
+   * ## 更新数据
    */
   update() {
     const { element, options, rippleGl } = this;

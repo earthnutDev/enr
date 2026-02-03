@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-21 21:32
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 17:25
+ * @lastModified 2026-02-03 12:53
  */
 
 import type { StateManager } from '@qqi/state';
@@ -148,7 +148,7 @@ export class ElementMeta {
    * ## 初始化尺寸变化监听
    */
   private initializeResizeObserve() {
-    this.hideCssBackground(); /// 这里注释了隐藏
+    this.showCanvas(); /// 这里注释了隐藏
     const { options, element } = this;
     const { parentNode } = element;
     if (dun) {
@@ -202,7 +202,7 @@ export class ElementMeta {
           {
             // 放到消息订阅中触发事件
             // TODO ： 校验更改是否有误
-            // this.hideCssBackground(); // 触发隐藏元素的
+            // this.showCanvas(); // 触发隐藏元素的
             this.state.dispatch({
               type: 'styleChange',
             });
@@ -250,7 +250,7 @@ export class ElementMeta {
    * - 初始化时隐藏
    * - 父级样式属性发生变更的时候
    */
-  hideCssBackground() {
+  showCanvas() {
     const { parentNode, canvas } = this.element;
     if (!parentNode) return;
     this.options.visible = true;
@@ -261,6 +261,7 @@ export class ElementMeta {
     // renderData.dropProgram = [];
     // 检测是否更改了行内样式或是重写了该样式
     // 不再重置父级元素的样式属性
+    // eslint-disable-next-line no-constant-condition
     if (false) {
       [
         // ['background', 'transparent'],
@@ -307,13 +308,14 @@ export class ElementMeta {
    *
    * 在使用过程中，可能会切换 webGL 的显隐状态，而手动处理背景的更替
    */
-  restoreCssBackground() {
+  hideCanvas() {
     const { parentNode, canvas } = this.element;
     const { originStyle } = this;
     if (!originStyle) return; // 尚未设定保存的元素样式
     this.options.visible = false;
     canvas.style.visibility = 'hidden';
     // 因不再重写父级元素的样式，也无需进行恢复
+    // eslint-disable-next-line no-constant-condition
     if (false) {
       // parentElement.style.setProperty('background', originStyle.inlineBackground);
       parentNode.style.setProperty('background-image', originStyle.inlineBackgroundImage);
@@ -348,7 +350,7 @@ export class ElementMeta {
    * ## 注销事件
    */
   destroy() {
-    this.restoreCssBackground(); /// 恢复父级节点的背景样式
+    this.hideCanvas(); /// 恢复父级节点的背景样式
     this.mediaQuery?.removeEventListener('change', this.mediaQueryChange);
     {
       // 移除父级元素的监听，防止内存泄露

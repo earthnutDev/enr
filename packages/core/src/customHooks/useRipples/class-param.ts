@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:40
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 17:44
+ * @lastModified 2026-02-03 14:08
  */
 
 import { isBoolean, isUndefined } from 'a-type-of-js';
@@ -37,12 +37,15 @@ export class RippleParam {
 
   /** 动画执行快慢的节奏，值越大，执行越快。默认值 18 */
   readonly drawProgressStep = 18;
-
-  readonly firstDrawProgressStep = 0.25;
+  /** 第一次加载时的步长 */
+  readonly firstDrawProgressStep = 12;
+  /**  canvas 的显隐  */
+  visible: boolean = false;
 
   // ++++++++++++++++++++++ 配置数据 《〈《〈《〈《 ++++++++++++++++++++++
 
   // ++++++++++++++++++++++ 》〉》〉》〉》 用户控制变量 ++++++++++++++++++++++
+  // 这些变量通过 Ripple 类的 set 方法设定
 
   /**  倍级触发光标事件（值）  */
   private _accelerating: number = defaultData.accelerating;
@@ -126,7 +129,7 @@ export class RippleParam {
     this._idleFluctuations = value;
   }
   /**
-   * 闲置波动
+   * ## 闲置波动
    */
   get idleFluctuations(): boolean {
     return this._idleFluctuations;
@@ -148,10 +151,9 @@ export class RippleParam {
 
   /**  crossOrigin  （是否跨域） */
   crossOrigin: ImageCrossOrigin = 'no-cors';
-  /**  canvas 的显隐  */
-  visible: boolean = false;
+
   /**  当前执行的状态  */
-  running: boolean = false;
+  private running: boolean = false;
 
   /**  当前执行的状态  */
   set playingState(value: boolean) {
@@ -203,7 +205,7 @@ export class RippleParam {
   }
 
   /**
-   * 切换最后一次执行的状态
+   * ## 切换最后一次执行的状态
    */
   toggleLastRunningState() {
     this._lastRunningState = !this._lastRunningState;

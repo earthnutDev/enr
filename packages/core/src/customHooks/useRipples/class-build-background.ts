@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 14:17
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 13:54
+ * @lastModified 2026-02-03 17:35
  */
 
 import { getRandomInt, getRandomString } from 'a-js-tools';
@@ -48,8 +48,10 @@ export class BuildBackground {
    * 如果没有 toBeList 为空值，则当前渲染的为此纹理）绘制的图像
    */
   lastDrawImage: DrawImage;
+  /**  */
+  currentDrawImage: DrawImage;
   /**
-   * ## 当前绘制的图像
+   * ## 将渲染的绘制图像列表
    * 该值仅出现在需要渐变过程中，一旦渐变完成，实际渲染的值就成了最后渲染的值
    */
   readonly toBeList: DrawImage[] = [];
@@ -96,23 +98,13 @@ export class BuildBackground {
     private readonly renderData: RenderData,
   ) {
     this.defaultBackgroundData = this.buildCircleData();
-    const { backgroundInfo } = this.elementMeta;
-    const { width, height } = backgroundInfo;
     /**
      * ## 最后使用的渲染项
      * ~这里其实是第一次渲染的项，但由于该项是直接贴上去的，所以，现在要做一些修整。~
      * ~让第一张背景渲染不那么突兀~
      *
      */
-
-    this.lastDrawImage = {
-      resource: this.createCanvasByColor(this.defaultColor) ?? this.createCanvasElementBySize(),
-      width,
-      height,
-      kind: 'background-color',
-      tag: '',
-      isDark: elementMeta.isDark,
-    };
+    this.currentDrawImage = this.lastDrawImage = this.createTransparentTexture('first-run');
   }
 
   /**
@@ -490,7 +482,7 @@ export class BuildBackground {
    */
   setImage() {
     if (dun) {
-      dog.type = true;
+      dog.type = false;
       dog('开始下载图片');
     }
     const { options, elementMeta, renderData } = this;
@@ -506,7 +498,7 @@ export class BuildBackground {
     // 虚假来源意味着没有背景。
     if (!newImageSource) {
       if (dun) {
-        dog('没有原始图像，开始使用空白自绘');
+        dog('没有原始图像，尝试使用渐变');
       }
       this.setLinearGradient();
       if (dun) {
@@ -625,6 +617,23 @@ export class BuildBackground {
       }
     }
     return false;
+  }
+
+  /**
+   * 虽然叫构建透明纹理，但是个 `setTransparentTexture` 没有任何关系
+   * @param tag 标签
+   */
+  createTransparentTexture(tag: string = ''): DrawImage {
+    const { elementMeta } = this;
+    const { width, height } = elementMeta.backgroundInfo;
+    return {
+      resource: this.createCanvasByColor(this.defaultColor) ?? this.createCanvasElementBySize(),
+      width,
+      height,
+      kind: 'background-color',
+      tag,
+      isDark: elementMeta.isDark,
+    };
   }
 
   /**

@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:56
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-01 05:25
+ * @lastModified 2026-02-03 17:52
  */
 
 import { dog, dun } from 'zza/log';
@@ -43,7 +43,7 @@ export class RenderData {
 
   /**  缺省背景图时的 id  */
   transparentId: NodeJS.Timeout = setTimeout(Boolean);
-  /**  绘制进度  */
+  /**  绘制进度 (千分制)*/
   drawProgress: number = 0;
   /**  是否处于绘制过渡状态  */
   isTransitioning: boolean = false;
@@ -51,6 +51,7 @@ export class RenderData {
   /**
    * ## 执行渐变
    * **非实际工作执行更新**，仅更新变量状态，在 requestAnimationFrame 中判定这些变量执行
+   * 本来想以强制归 0 的方式让动画更流畅，但是这里（曾尝试在逆向渐变开始前直接归 0）归 0 又导致了渐变的不连贯，甚至是直接变白的效果
    */
   run() {
     //如果当前正处于渐变过程，直接退出，让渐变自己处理当前的状态

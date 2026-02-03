@@ -1,14 +1,15 @@
 /**
- * @packageDocumentation
  * @module @enr/decoration-observable
  * @file decoration-observable.ts
- * @description 监听者装饰器 「由于决定采用更麻烦的状态管理模式，所以该文件并未被使用」
+ * @description 监听者装饰器 「由于决定采用更*麻烦*的状态管理模式（@qqi/state），所以该文件并未被使用」
  * @author MrMudBean <Mr.MudBean@outlook.com>
  * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-26 10:01
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-26 11:09
+ * @lastModified 2026-02-03 12:50
+ *
+ *
  */
 
 /**

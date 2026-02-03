@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:44
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-01 05:23
+ * @lastModified 2026-02-03 05:27
  */
 
 import { isNull, isZero } from 'a-type-of-js';
@@ -268,10 +268,6 @@ export class RippleGl {
     gl.clearColor(0, 0, 0, 0);
     // 设置颜色的混合方式
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
-    // 插件初始化成功
-    options.visible = true;
-    options.running = true;
   }
 
   /**
@@ -361,14 +357,14 @@ export class RippleGl {
 
   /**
    * ## 绑定图片
-   * 默认绑定的是 `buildBackground.lastDrawImage`，且不再接受参数，请调用前保证已设定 `buildBackground.lastDrawImage`
+   * 默认绑定的是 `buildBackground.currentDrawImage`，且不再接受参数，请调用前**保证已设定 `buildBackground.currentDrawImage`**
    */
   bindImage() {
     if (dun) {
       dog.type = false;
     }
     const { gl, buildBackground, elementMeta, backgroundTexture } = this;
-    const { lastDrawImage } = buildBackground;
+    const { currentDrawImage } = buildBackground;
     const { backgroundInfo } = elementMeta;
     const { width, height } = backgroundInfo;
 
@@ -407,14 +403,14 @@ export class RippleGl {
     if (dun) {
       // dog('即将创建的图像', image);
       dog.type = false;
-      dog('本次使用的纹理为', dog.type, lastDrawImage.tag, lastDrawImage.resource);
+      dog('本次使用的纹理为', dog.type, currentDrawImage.tag, currentDrawImage.resource);
     }
     /// 指定二维纹理图像
     // parentElement.dataset['render_img'] = textImageSource.tag;
     // parentElement.dataset['render_width'] = textImageSource.width + 'px';
     // parentElement.dataset['render_height'] = textImageSource.height + 'px';
 
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, lastDrawImage.resource);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, currentDrawImage.resource);
     if (dun) {
       dog.type = true;
     }

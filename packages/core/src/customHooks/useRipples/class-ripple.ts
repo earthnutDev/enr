@@ -8,7 +8,8 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 03:03
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 16:19
+ * @lastModified 2026-02-03 17:28
+ *
  */
 
 import { loggerMiddleware, StateManager, type Reducer } from '@qqi/state';
@@ -83,18 +84,19 @@ export class Ripples {
       configurable: false,
     });
     this.options = new RippleParam(options);
-
+    // 实际上，被监听的那些属性被没有被注入到初始化对象上，可能是 babel 使用转义时显式的将属性的描述符 enumerable 设定成了 false（默认值就是 false）
     const initData = {
       ...this.options,
       sizeChange: 0,
       styleChange: 0,
     } as unknown as RippleState;
-
     this.state = new StateManager(this.reducer, initData, {
       middleware: dun ? [loggerMiddleware] : [],
       afterDispatch(action, state) {
         if (dun) {
+          dog.type = !1;
           dog.warn('执行', action, state);
+          dog.type = !0;
         }
       },
     });
@@ -103,6 +105,13 @@ export class Ripples {
     this.renderData = new RenderData(); // 数据初始化
     this.buildBackground = new BuildBackground(this.options, this.elementMeta, this.renderData);
     this.gl = new RippleGl(this.element, this.options, this.elementMeta, this.buildBackground);
+    {
+      if (this.options.playingState) {
+        // 插件初始化成功 // ? 什么插件？什么鬼注释
+        this.options.visible = true;
+        this.options.playingState = true;
+      }
+    }
     this.renderAction = new RenderAction(
       this.element,
       this.options,
@@ -120,8 +129,8 @@ export class Ripples {
       this.gl,
       this.renderAction,
     );
-
-    this.gl.bindImage();
+    // 不知道这里为什么要手动绑定图片
+    // this.gl.bindImage();
     this.state.subscribe({
       imgUrl: newValue => {
         if (dun) {
@@ -153,6 +162,14 @@ export class Ripples {
         }
         this.eventAction.reloadBackground();
       },
+      playingState: newValue => {
+        if (dun) {
+          dog('哇，订阅来消息了耶！', 'playingState:', newValue);
+        }
+        if (newValue) {
+          this.eventAction.reloadBackground();
+        }
+      },
     });
     this.state.subscribeAll(state => console.log(state));
     this.eventAction.beginWork();
@@ -177,7 +194,7 @@ export class Ripples {
     this.eventAction.drop(x, y, radius, strength);
   }
   /**
-   * 缓进缓出
+   * ## 缓进缓出
    */
   fade() {
     this.renderAction.fade();
@@ -211,7 +228,7 @@ export class Ripples {
    * 暂时不考虑 canvas 的手动显示。仅有涟漪状态的停启
    */
   // show() {
-  //   this.elementMeta.hideCssBackground();
+  //   this.elementMeta.showCanvas();
   // }
 
   // 该方法并没有被使用
@@ -221,29 +238,34 @@ export class Ripples {
    * 暂时不考虑 canvas 的手动显示。仅有涟漪状态的停启
    */
   // hide() {
-  //   this.elementMeta.restoreCssBackground(); /// 恢复父级节点的背景样式
+  //   this.elementMeta.hideCanvas(); /// 恢复父级节点的背景样式
   // }
 
   /** 暂停动画涟漪状态   */
   pause() {
-    this.options.running = false;
+    // this.options.running = false;
+    this.set('playingState', false);
   }
 
   /**  播放动画涟漪状态  */
   play() {
-    this.options.running = true;
+    // this.options.running = true;
+    this.set('playingState', true);
   }
 
   /** 切换当前状态   */
   changePlayingState(): boolean {
     const { options } = this;
     if (dun) {
+      dog.type = !1;
       dog('当前执行切换状态');
     }
-    const newState = !options.running;
-    options.running = newState;
+    const newState = !options.playingState;
+    // options.running = newState;
+    this.set('playingState', newState);
     if (dun) {
-      dog('更新后的状态', options.running);
+      dog('更新后的状态', options.playingState);
+      dog.type = !0;
     }
     return newState;
   }
@@ -254,7 +276,7 @@ export class Ripples {
    */
   set(property: keyof RipplesOptions, value: unknown) {
     if (dun) {
-      dog.type = true;
+      dog.type = !1;
       dog('设置属性', property);
     }
     this.options[property] = value as never;
@@ -266,6 +288,7 @@ export class Ripples {
     });
     if (dun) {
       dog('已通知家属');
+      dog.type = !0;
     }
   }
 
@@ -278,7 +301,7 @@ export class Ripples {
     switch (action.type) {
       case 'sizeChange':
       case 'styleChange':
-        return { ...state, [action.type]: this.state.getState()[action.type] + 1 };
+        return { ...state, [action.type]: (this.state.getState()?.[action.type] || 0) + 1 };
       case 'darkMode':
       case 'imgUrl':
       case 'resolution':

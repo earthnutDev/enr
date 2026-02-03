@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-23 01:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 17:52
+ * @lastModified 2026-02-03 17:55
  */
 
 import { debounce, getRandomInt } from 'a-js-tools';
@@ -33,7 +33,7 @@ export class EventAction {
    * @param renderData 渲染数据
    * @param buildBackground 构建背景数据
    * @param rippleGl WebGl 支持
-   * @param renderActon 渲染动作
+   * @param renderAction 渲染动作
    */
   constructor(
     private readonly element: ElementEnvironment,
@@ -42,9 +42,9 @@ export class EventAction {
     private readonly renderData: RenderData,
     private readonly buildBackground: BuildBackground,
     private readonly rippleGl: RippleGl,
-    private readonly renderActon: RenderAction,
+    private readonly renderAction: RenderAction,
   ) {
-    this.beginWork = this.beginWork.bind(this);
+    this.beginWork = this.beginWork.bind(this); // 防丢
     this.setupPointerEvents();
   }
 
@@ -57,7 +57,8 @@ export class EventAction {
     const { events } = renderData;
     /// visible、running 的值应当取当前值而不是提前取到固定值
     /**  当前是否允许鼠标操作  */
-    const pointerEventsEnabled = () => options.visible && options.running && options.interactive;
+    const pointerEventsEnabled = () =>
+      options.visible && options.playingState && options.interactive;
     /**
      *  触发滴落效果
      * @param pointer
@@ -226,13 +227,16 @@ export class EventAction {
    * ## 开启绘制
    */
   beginWork() {
-    const { renderData, options } = this;
-    const { isTransitioning } = renderData;
-    const { running, idleFluctuations, lastRunningState } = options;
+    if (dun) {
+      dog.type = false;
+    }
+    const { renderData, options, renderAction } = this;
+    const { playingState, lastRunningState } = options;
 
-    // 渲染
     renderData.animationFrameId = requestAnimationFrame(() => this.beginWork());
-
+    if (dun) {
+      dog('测试执行', playingState, lastRunningState);
+    }
     // TODO：不知道为什么以前这么写，但是感觉没有道理先注释了
     // {
     //   // 获取边界尺寸
@@ -243,32 +247,89 @@ export class EventAction {
     //   };
     // }
     ///  计算当前的纹理边界及背景图
-    this.renderActon.computeTextureBoundaries();
+    renderAction.computeTextureBoundaries();
+
     // 当前状态为执行
-    if (running) {
+    if (playingState) {
       // 上一次状态为不执行
       // 当前是初次执行、重新开始执行涟漪动画
       if (!lastRunningState) {
         options.toggleLastRunningState(); // 更新下次执行状态
       }
-      // 是否设置了闲时动画
-      if (idleFluctuations) this.raindropsFall();
-      /**
-       *  TODO  这里调用触发了错误
-       *
-       *  可能是值  isTransitioning 出现了故障
-       *
-       *  Cannot read properties of undefined (reading 'resource')
-       */
-      if (isTransitioning) this.renderActon.fade(); // 当前绘制图像间转换
-      this.renderActon.update(); // 数据更新
-      this.renderActon.draw(); // 渲染
-    }
-    // 当前状态为未执行但是上一次是在执行（清理状态）
-    else if (lastRunningState) {
-      options.toggleLastRunningState();
+      if (!options.visible) {
+        // TODO： 再这里更新此状态不知道会不会影响第一次渲染
+        this.elementMeta.showCanvas(); // 如果当前元素被隐藏则显示元素
+      }
+      this.rendering();
+    } else if (lastRunningState) {
+      this.coasting(); // 当前状态为未执行但是上一次是在执行（清理状态）
     } else {
       // 上一次是停止状态，当前依旧是停止状态
+    }
+  }
+
+  /** 执行（无状态，管你是正常执行还是反向销毁） */
+  private rendering() {
+    const { renderData, renderAction, options } = this;
+    const { isTransitioning } = renderData;
+    const { idleFluctuations } = options;
+    // 是否设置了闲时动画
+    if (idleFluctuations) {
+      this.raindropsFall();
+    }
+    /**
+     *  TODO  这里调用触发了错误
+     *  可能是值  isTransitioning 出现了故障
+     *  Cannot read properties of undefined (reading 'resource')
+     */
+    if (isTransitioning) {
+      renderAction.fade(); // 当前绘制图像间转换（更新背景图）
+    }
+    renderAction.update(); // 数据更新
+    renderAction.draw(); // 渲染
+  }
+
+  /**
+   * ## 缓停
+   *
+   * 暂停时逆向加载
+   */
+  private coasting() {
+    const { options, renderData, buildBackground: bbg } = this;
+    const lastTag = 'last-run-tag';
+    if (dun) {
+      dog.type = false;
+      dog('当前执行');
+    }
+    // 当当前是第一次执行，且执行已经有了 30% 的执行进度，那么直接切换隐藏当前的显示
+    if (bbg.lastDrawImage.tag === lastTag) {
+      if (dun) {
+        dog.type = true;
+        dog('当前执行的进度', renderData.drawProgress);
+        dog('当前是否是第一次执行:', options.firstRun);
+        dog('当前执行是否是设置的最后图', bbg.lastDrawImage);
+        dog.type = false;
+      }
+      options.firstRun = true; // 重置首次加载的状态（重新加载是缓渐变）
+      options.toggleLastRunningState(); // 更新上一次执行状态
+      bbg.lastDrawImage.tag = 'first-run'; // 重要：下次开头可能因误判直接隐藏 Canvas
+      this.elementMeta.hideCanvas(); // 隐藏 canvas
+    } else {
+      if (dun) {
+        dog.type = true;
+        dog('当前显示的状态', bbg.lastDrawImage);
+      }
+      // 当前不是第一次执行，或当前为首次执行且已经初见影像
+      // 不能直接通过隐藏背景来让背景消失，这样会导致背景在视觉上的突变
+      if (!bbg.currentDrawImage.tag.endsWith(lastTag)) {
+        bbg.toBeList.push(bbg.createTransparentTexture(lastTag));
+        renderData.run(); // 开启执行渐变
+        // 曾尝试在这里调用状态时强制让渐变归零，而这导致了下一个状态直接渲染了跳跃式背景，而导致页面突变
+      }
+      this.rendering();
+    }
+    if (dun) {
+      dog.type = true;
     }
   }
 
