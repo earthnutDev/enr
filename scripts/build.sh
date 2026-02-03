@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 该文件已废弃 ⚠️
+
 buildResult() {
   # 清空dist
   pnpm jja rm dist 

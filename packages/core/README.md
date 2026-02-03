@@ -1,4 +1,4 @@
-# enReact UI
+# en React
 
 ## 一、安装
 
@@ -19,7 +19,7 @@ npm install  --save earthnut
 - 在同时配置了 `imgUrl`、`background-image`、`background-color` 时仅会显示一个效果（混合效果暂时并未实现）。优先展示 `imgUrl`，然后是 `background-image`，之后是 `background-color` 。如果都未设置则会展示默认的老式地板砖背景图
 - 尽量不要是使用透明色或是当前的主背景色，否则导致涟漪的效果不明显
 
-开发者提示：**切换背景最好不要通过设置**
+开发者提示：**切换背景最好不要通过设置样式，显示使用 `param.imgUrl` 效果更佳**
 
 ## 三、自定义钩子
 
@@ -27,25 +27,25 @@ npm install  --save earthnut
 
 就是 `useRef` 和 `useEffect` 的简单使用。
 
-```tsx
+```jsx
 import { useTimeId } from 'enr';
 
 export function Home() {
   const timeId = useTimeId();
 
+  const cf = () => {
+    timeId.current = setTimeout(
+      () => console.log('没有感情的按钮 A 打印了一条没有感情的消息'),
+      2500,
+    );
+  };
+
+  const clearTimeoutId = () => clearTimeout(timeId.current);
+
   return (
     <>
-      <button
-        onclick={() => {
-          timeId.current = setTimeout(
-            () => console.log('没有感情的按钮 A 打印了一条没有感情的消息'),
-            2500,
-          );
-        }}
-      >
-        没有感情的按钮 A
-      </button>
-      <button onclick={() => clearTimeout(timeId.current)}>没有感情的按钮 B</button>
+      <button onclick={cf}>没有感情的按钮 A</button>
+      <button onclick={clearTimeoutId}>没有感情的按钮 B</button>
     </>
   );
 }
@@ -112,15 +112,18 @@ export default defineConfig({
 });
 ```
 
-为了防止意外覆盖别人的自定义 css 属性，该样式皆以 `en-` 为前缀。譬如：
+为了防止意外覆盖别人的自定义 css 属性，该样式皆以 `en-` 为前缀。但是如果使用 `en()` 函数导入，可能不需要显式的添加 `en-` 前缀。譬如：
 
 ```tsx
+import { xcn } from 'xcn';
 import { _en } from 'enr';
 
 export function Home() {
   return (
     <div>
-      <p className={_en('text-in-one-line')}>无论我字数多少，仅会会在同一行就行打印。</p>
+      <p className={xcn(_en('text-in-one-line'), 'en-light')}>
+        无论我字数多少，仅会会在同一行就行打印。
+      </p>
     </div>
   );
 }
@@ -130,7 +133,6 @@ export function Home() {
 
 - `css`、`scss` 的直接导出仅是 `common.css`、`common.scss` 的别名
 - `reset.css`、`reset.scss` 不建议在非项目中使用，因为使用 `*` 修改了所有元素为 `border-box` 且定位为 `relative`。旧项目引入该文件可能会覆盖所有的已配置好的盒样式
-- 为了方便使用，包装了
 
 ## 文档
 
