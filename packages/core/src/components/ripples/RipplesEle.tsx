@@ -7,18 +7,15 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2024-12-12 12:18
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 17:07
+ * @lastModified 2026-02-04 08:18
  */
 
 'use client';
 
-import { isUndefined } from 'a-type-of-js';
-import { useImperativeHandle, useRef } from 'react';
+import { useRef } from 'react';
 import { useRipples } from '../../customHooks/useRipples';
-import type { RipplesOptions } from '../../customHooks/useRipples/types';
-import { Content } from './Content';
+import { ComponentContent } from './Content';
 import type { BackgroundRipplesProps } from './types';
-import { useOptionUpdate } from './useOptionUpdate';
 
 /**
  *
@@ -37,9 +34,9 @@ import { useOptionUpdate } from './useOptionUpdate';
  * 使用：
  *
  * ```ts
- *  import { BackgroundRipple } from 'earthnut';
+ *  import { BackgroundRipple } from 'enr/';
  *  // 也可以全量导入
- *  // import { BackgroundRipple } from 'earthnut';
+ *  // import { BackgroundRipple } from 'enr';
  *  ...
  *  const animationFrameId = useAnimationFrame();
  *
@@ -50,51 +47,12 @@ import { useOptionUpdate } from './useOptionUpdate';
  *
  */
 const BackgroundRipple = ({ option, ...props }: BackgroundRipplesProps) => {
-  const { children, style, ref, ..._props } = props;
   /**  canvas 元素  */
   const canvas = useRef<HTMLCanvasElement>(null);
   /**  使用 ripples  */
   const ripplesRef = useRipples(canvas, option);
 
-  ///  使用 配置更新
-  useOptionUpdate(ripplesRef, option);
-
-  // 抛出事件 (自定义抛出事件)
-  useImperativeHandle(ref, () => ({
-    toggleState: () => ripplesRef.current?.changePlayingState() ?? false,
-    get state(): boolean {
-      return ripplesRef.current?.options.playingState ?? false;
-    },
-    pause(): void {
-      ripplesRef.current?.pause();
-    },
-    play(): void {
-      ripplesRef.current?.play();
-    },
-    set(options?: RipplesOptions): void {
-      if (isUndefined(options)) return;
-      const keys = Object.keys(options) as (keyof RipplesOptions)[];
-      for (let i = 0, j = keys.length; i < j; i++) {
-        const key = keys[i];
-        ripplesRef.current?.set(key, options[key] as unknown);
-      }
-    },
-  }));
-
-  return (
-    <Content
-      style={{
-        backgroundRepeat: 'round',
-        // backgroundSize: 'cover',
-        // backgroundPosition: 'center',
-        ...style,
-      }}
-      {..._props}
-    >
-      <canvas ref={canvas} data-earthnut-ui="canvas" width={0} height={0} />
-      {children}
-    </Content>
-  );
+  return <ComponentContent ripplesRef={ripplesRef} canvas={canvas} option={option} {...props} />;
 };
 
 BackgroundRipple.displayName = 'enr-background-ripple';

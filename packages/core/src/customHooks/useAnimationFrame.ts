@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-01 06:12
+ * @lastModified 2026-02-04 08:18
  */
 
 'use client';
@@ -68,7 +68,7 @@ export type AnimationFrameOption =
  * 使用：
  *
  * ```ts
- *  // import { useAnimationFrame } from 'earthnut';
+ *  // import { useAnimationFrame } from 'enr';
  *  ...
  *
  *  export function Home () {

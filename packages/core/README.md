@@ -10,6 +10,9 @@ npm install  --save earthnut
 
 ## 二、涟漪背景
 
+> [!Note]
+> 该模块魔改自 [jquery.ripples](https://github.com/sirxemic/jquery.ripples)
+
 - 尽管接受所有的 style 属性，但是 `position` 还是期待是非 'static' 值，否则将影响涟漪背景的渲染位置和显示状态；
 - 当前如果设置了 `background` 的话，有可能在恢复时使得其覆盖其他子属性；
 - 当前期待使用 `background-color` 设置背景色，而不是在上面的 `background` 中设置背景色。譬如：`background-color: #f0f6;`

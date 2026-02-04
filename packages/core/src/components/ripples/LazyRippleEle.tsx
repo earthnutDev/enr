@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  * @module @enr/LazyRippleEle
  * @file LazyRippleEle.tsx
  * @description 涟漪
@@ -8,18 +7,15 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2024-12-12 12:11
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 17:07
+ * @lastModified 2026-02-04 08:18
  */
 
 'use client';
 
-import { isUndefined } from 'a-type-of-js';
-import { useImperativeHandle, useRef } from 'react';
-import type { RipplesOptions } from '../../customHooks/useRipples/types';
+import { useRef } from 'react';
 import { useLazyRipples } from '../../customHooks/useRipples/use-lazy-ripple';
-import { Content } from './Content';
+import { ComponentContent } from './Content';
 import type { BackgroundRipplesProps } from './types';
-import { useOptionUpdate } from './useOptionUpdate';
 
 /**
  *
@@ -40,63 +36,25 @@ import { useOptionUpdate } from './useOptionUpdate';
  * 使用：
  *
  * ```ts
- *  import { BackgroundRipple } from 'earthnut/BackgroundRipple';
+ *  import { LazyBackgroundRipple } from 'enr/LazyBackgroundRipple';
  *  // 也可以全量导入
- *  // import { BackgroundRipple } from 'earthnut';
+ *  // import { LazyBackgroundRipple } from 'enr';
  *  ...
  *  const animationFrameId = useAnimationFrame();
  *
- *  return <BackgroundRipple>
+ *  return <LazyBackgroundRipple>
  *            ...
- *         </BackgroundRipple>
+ *         </LazyBackgroundRipple>
  * ```
  *
  */
 const LazyBackgroundRipple = ({ option, ...props }: BackgroundRipplesProps) => {
-  const { children, style, ref, ..._props } = props;
   /**  canvas 元素  */
   const canvas = useRef<HTMLCanvasElement>(null);
   /**  使用 ripples  */
   const { ripples } = useLazyRipples(canvas, option);
-  /**  初始状态  */
 
-  ///  使用 配置更新
-  useOptionUpdate(ripples, option);
-
-  // 抛出事件 (自定义抛出事件)
-  useImperativeHandle(ref, () => ({
-    toggleState: () => ripples.current?.changePlayingState() ?? false,
-    get state() {
-      return ripples.current?.options.playingState ?? false;
-    },
-    pause() {
-      ripples.current?.pause();
-    },
-    play(): void {
-      ripples.current?.play();
-    },
-    set(options?: RipplesOptions): void {
-      if (isUndefined(options)) return;
-      const keys = Object.keys(options) as (keyof RipplesOptions)[];
-      for (let i = 0, j = keys.length; i < j; i++) {
-        const key = keys[i];
-        ripples.current?.set(key, options[key] as unknown);
-      }
-    },
-  }));
-
-  return (
-    <Content
-      style={{
-        backgroundRepeat: 'round',
-        ...style,
-      }}
-      {..._props}
-    >
-      <canvas ref={canvas} data-earthnut-ui="canvas" width={0} height={0} />
-      {children}
-    </Content>
-  );
+  return <ComponentContent ripplesRef={ripples} canvas={canvas} option={option} {...props} />;
 };
 
 LazyBackgroundRipple.displayName = 'enr-lazy-background-ripple';

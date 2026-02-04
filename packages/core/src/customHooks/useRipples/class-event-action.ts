@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  * @module @enr/class-event-action
  * @file class-event-action.ts
  * @description 交互事件
@@ -8,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-23 01:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 17:55
+ * @lastModified 2026-02-04 06:46
  */
 
 import { debounce, getRandomInt } from 'a-js-tools';
@@ -173,8 +172,8 @@ export class EventAction {
 
   /**
    *  触发滴落效果
-   * @param x
-   * @param y
+   * @param x 横坐标
+   * @param y 纵坐标
    * @param radius
    * @param strength
    */

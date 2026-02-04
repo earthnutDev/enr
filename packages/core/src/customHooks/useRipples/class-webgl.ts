@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:44
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 05:27
+ * @lastModified 2026-02-04 06:51
  */
 
 import { isNull, isZero } from 'a-type-of-js';
@@ -31,7 +31,10 @@ export class RippleGl {
    */
   quad: WebGLBuffer = null as never;
 
-  /**  该值于初始化着色器时初始化  */
+  /**
+   * ## [着色器](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLProgram)
+   *
+   *  该值于初始化着色器时初始化  */
   dropProgram!: Program;
 
   /**  更新流  */
@@ -292,6 +295,11 @@ export class RippleGl {
       this.vertexShader,
       this.updateProgramFragmentSource,
     ));
+    /**
+     * ### [指定了 uniform 变量的值](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/uniform)
+     *
+     *
+     */
     gl.uniform2fv(updateProgram.locations!.delta, this.textureDelta);
     this.renderProgram = this.createProgram(
       this.renderVertexSource,

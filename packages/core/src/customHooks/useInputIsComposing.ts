@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-24 11:23
+ * @lastModified 2026-02-04 08:19
  */
 
 'use client';
@@ -30,7 +30,7 @@ import type { RefObject } from 'react';
  * 使用：
  *
  * ```ts
- *  import { useInputIsComposing } from 'earthnut';
+ *  import { useInputIsComposing } from 'enr';
  *
  *  ...
  *  const inputRef = useRef<HTMLInputElement>(null);

@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 14:17
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 17:35
+ * @lastModified 2026-02-04 07:49
  */
 
 import { getRandomInt, getRandomString } from 'a-js-tools';
@@ -195,7 +195,7 @@ export class BuildBackground {
    */
   setTransparentTexture(executeImmediately: boolean = true) {
     if (dun) {
-      dog.error('当前触发设置默认背景', executeImmediately);
+      dog('当前触发设置默认背景', executeImmediately);
     }
     const { renderData } = this;
     const { backgroundInfo } = this.elementMeta;

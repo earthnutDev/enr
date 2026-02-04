@@ -159,7 +159,7 @@ export interface RipplesDefaultData {
 }
 
 /**
- * ## 绘制图像
+ * ## 绘制图像 （内部使用）
  */
 export type DrawImage = {
   /**  资源  */
@@ -177,11 +177,13 @@ export type DrawImage = {
 };
 
 /**
- * ## 纹理
+ * ## 纹理（内部使用）
  */
 export type Textures = WebGLTexture[];
 
-/**  原使用的样式  */
+/**
+ * ## 原使用的样式 (内部使用)
+ */
 export type OriginStyle = {
   /**  原始使用行内背景样式  */
   inlineBackground: string;
@@ -214,7 +216,8 @@ export type OriginStyle = {
 };
 
 /**
- * ## Ripple 状态管理
+ * ## Ripple 状态管理（内部使用）
+ *
  */
 export interface RippleState extends RipplesUseOptions {
   /** 尺寸发生变化 (计数的方式触发更新) */

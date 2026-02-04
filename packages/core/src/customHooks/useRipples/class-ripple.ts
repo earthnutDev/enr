@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 03:03
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 17:28
+ * @lastModified 2026-02-04 07:42
  *
  */
 
@@ -33,29 +33,29 @@ import type { RipplesOptions, RippleState } from './types';
  */
 export class Ripples {
   /** 状态管理 */
-  state: StateManager<RippleState>;
+  private state: StateManager<RippleState>;
   /** 节点环境 */
-  element: ElementEnvironment;
+  private element: ElementEnvironment;
   /**  使用参数  */
-  options: RippleParam;
+  private options: RippleParam;
   /** canvas 元素及其他数据信息 */
-  elementMeta: ElementMeta;
+  private elementMeta: ElementMeta;
   /**  渲染数据  */
-  renderData: RenderData;
+  private renderData: RenderData;
   /** 构建背景逻辑 */
-  buildBackground: BuildBackground;
+  private buildBackground: BuildBackground;
   /** webGl 支持 */
-  gl: RippleGl;
+  private gl: RippleGl;
   /** 渲染动作 */
-  renderAction: RenderAction;
+  private renderAction: RenderAction;
 
   /** 事件动作 */
-  eventAction: EventAction;
+  private eventAction: EventAction;
 
   /**  初始化状态  */
-  initialized: boolean = false;
+  private initialized: boolean = false;
 
-  defaults = defaultData;
+  private defaults = defaultData;
 
   /**
    * ## 构建 Ripple 对象
@@ -290,6 +290,13 @@ export class Ripples {
       dog('已通知家属');
       dog.type = !0;
     }
+  }
+  /**
+   * 获取某一个参数的当前值
+   * @param property 要获取的键
+   */
+  get<T extends keyof RipplesOptions>(property: T): RipplesOptions[T] {
+    return this.options[property];
   }
 
   private readonly reducer: Reducer<RippleState> = (state, action) => {

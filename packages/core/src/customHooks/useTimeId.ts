@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:20
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-24 11:21
+ * @lastModified 2026-02-04 08:19
  */
 
 'use client';
@@ -26,7 +26,7 @@ import { useEffect, useRef } from 'react';
  * 使用：
  *
  * ```ts
- *  // import { useTimeId } from 'earthnut';
+ *  // import { useTimeId } from 'enr';
  *  ...
  *  const timeoutId = useTimeId();
  *

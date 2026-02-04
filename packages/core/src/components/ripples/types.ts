@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ Mr.MudBean
  * @since 2026-02-02 16:55
  * @version 2.0.0-alpha.4
- * @lastModified 2026-02-02 17:06
+ * @lastModified 2026-02-04 06:42
  */
 
 import type { RipplesOptions } from '../../customHooks/useRipples/types';
@@ -53,6 +53,13 @@ export type BackgroundRipplesProps = PropsWithTagNameCustomRef<
      * - darkMode 暗黑模式，仅用于在默认的背景图时更改默认背景图的背景色，如果使用了 `imgUrl` 配置，请执行处理色差异常
      */
     option?: RipplesOptions;
+    /**
+     * ## 渐变过程中可设定参数
+     *
+     * 可设置：
+     * -
+     */
+    // fadeOption?: 1;
   },
   'div',
   RippleEle
@@ -72,4 +79,6 @@ export type RippleEle = {
   pause(): void;
   /**  设置属性 */
   set(options?: RipplesOptions): void;
+  /** 水滴落效果 */
+  drop(x: number, y: number, options?: { radius: number; strength: number }): void;
 };

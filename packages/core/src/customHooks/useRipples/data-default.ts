@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 11:55
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-22 23:57
+ * @lastModified 2026-02-04 07:15
  */
 
 import type { RipplesDefaultData } from './types';
@@ -32,3 +32,5 @@ export const defaultData: RipplesDefaultData = {
 
 /**  冷冻执行  */
 Object.freeze(defaultData);
+
+export const defaultDataKey = Object.keys(defaultData) as (keyof RipplesDefaultData)[];

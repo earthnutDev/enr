@@ -85,8 +85,8 @@
     "typescript-eslint": "^8.54.0",
     "typescript-plugin-styled-components": "^3.0.0",
     "vjj": "^1.0.12",
-    "webpack": "^5.104.1",
-    "wrangler": "^4.61.1",
+    "webpack": "^5.105.0",
+    "wrangler": "^4.62.0",
     "xcn": "^1.1.1"
   }
 }

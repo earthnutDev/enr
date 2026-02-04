@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-06-20 01:37
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-02 16:59
+ * @lastModified 2026-02-04 08:19
  */
 
 'use client';
@@ -35,7 +35,7 @@ import type { RippleImgUrl, RipplesOptions } from './types';
  * 下面是在 <BackgroundRipple> 中使用
  *
  * ```ts
- * import { useRipples } from 'earthnut';
+ * import { useRipples } from 'enr';
  *
  *  export function BackgroundRipple(props: BackgroundRipplesProps) {
  *

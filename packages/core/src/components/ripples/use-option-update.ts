@@ -2,6 +2,7 @@ import { isArray } from 'a-type-of-js';
 import { useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
 import { dog, dun } from 'zza/log';
+import { defaultDataKey } from '../../customHooks/useRipples/data-default';
 import type { Ripples, RipplesOptions } from '../../customHooks/useRipples/index';
 
 /**
@@ -29,7 +30,7 @@ export function useOptionUpdate(
       }
       return;
     }
-    (Object.keys(ripplesRef.current.defaults) as unknown as (keyof RipplesOptions)[]).forEach(e => {
+    defaultDataKey.forEach(e => {
       /**  新的值  */
       const value = option[e] as never;
       /**  测试值是否相等  */

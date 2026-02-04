@@ -1,8 +1,8 @@
 {
   "type": "module",
   "name": "enr",
-  "version": "2.0.0",
-  "description": "一个 earthnut 的 react ui",
+  "version": "2.0.1",
+  "description": "一个 react ui",
   "scripts": {
     "vjj": "vjj",
     "diff": "jja pkg -d=淘宝",
@@ -24,7 +24,7 @@
   },
   "peerDependencies": {
     "react": "^19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "^19.1.0"
   },
   "dependencies": {
     "styled-component": "^2.6.0",
