@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 11:55
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 07:15
+ * @lastModified 2026-02-05 17:22
  */
 
 import type { RipplesDefaultData } from './types';
@@ -28,7 +28,8 @@ export const defaultData: RipplesDefaultData = {
   raindropsTimeInterval: 3600,
   idleFluctuations: true,
   darkMode: undefined,
-} as const;
+  loadingBackgroundColor: ['#00000000', '#00000000'],
+};
 
 /**  冷冻执行  */
 Object.freeze(defaultData);

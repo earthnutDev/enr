@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 03:03
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 07:42
+ * @lastModified 2026-02-05 19:24
  *
  */
 
@@ -279,6 +279,11 @@ export class Ripples {
       dog.type = !1;
       dog('设置属性', property);
     }
+    // 该属性不允许被重新赋值
+    if (property === 'loadingBackgroundColor') {
+      return;
+    }
+
     this.options[property] = value as never;
 
     // 数仓更新
@@ -295,7 +300,7 @@ export class Ripples {
    * 获取某一个参数的当前值
    * @param property 要获取的键
    */
-  get<T extends keyof RipplesOptions>(property: T): RipplesOptions[T] {
+  get<T extends keyof RipplesOptions>(property: T): RippleParam[T] {
     return this.options[property];
   }
 

@@ -8,10 +8,10 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:40
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 14:08
+ * @lastModified 2026-02-05 19:20
  */
 
-import { isBoolean, isUndefined } from 'a-type-of-js';
+import { isArray, isBoolean, isString, isUndefined } from 'a-type-of-js';
 import { dog, dun } from 'zza/log';
 import { defaultData } from './data-default';
 import type { ImageCrossOrigin, RippleImgUrl, RipplesOptions } from './types';
@@ -41,6 +41,9 @@ export class RippleParam {
   readonly firstDrawProgressStep = 12;
   /**  canvas 的显隐  */
   visible: boolean = false;
+
+  /** 初始化设定值，该值由用户设置，但不可修改 */
+  readonly loadingBackgroundColor: [string, string];
 
   // ++++++++++++++++++++++ 配置数据 《〈《〈《〈《 ++++++++++++++++++++++
 
@@ -202,6 +205,7 @@ export class RippleParam {
     this.running = Boolean(options.playingState ?? true);
     this.crossOrigin = options.crossOrigin;
     this.darkMode = options.darkMode;
+    this.loadingBackgroundColor = this.getLoadingBg(options.loadingBackgroundColor);
   }
 
   /**
@@ -209,5 +213,24 @@ export class RippleParam {
    */
   toggleLastRunningState() {
     this._lastRunningState = !this._lastRunningState;
+  }
+
+  /**
+   * ## 获取初始化背景值
+   * @param _v 初始化的值
+   */
+  private getLoadingBg(_v?: string | [string] | [string, string]): [string, string] {
+    if (isArray(_v)) {
+      const len = _v.length;
+      if (len === 1) {
+        const color = _v[0];
+        return [color, color];
+      } else if (len === 2) {
+        return [..._v];
+      }
+    } else if (isString(_v)) {
+      return [_v, _v];
+    }
+    return ['#00000000', '#00000000'];
   }
 }

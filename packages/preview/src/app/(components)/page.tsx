@@ -15,8 +15,9 @@ export default function WebHomePage() {
   return (
     <LazyBackgroundRipple
       option={{
+        loadingBackgroundColor: ['#f00', '#0ff'],
         raindropsTimeInterval: 12000,
-        imgUrl: []
+        imgUrl: [],
       }}
       ref={ref}
     >

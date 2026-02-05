@@ -1,4 +1,4 @@
-# en React
+# enr
 
 ## 一、安装
 
@@ -15,7 +15,7 @@ npm install  --save earthnut
 
 - 尽管接受所有的 style 属性，但是 `position` 还是期待是非 'static' 值，否则将影响涟漪背景的渲染位置和显示状态；
 - 当前如果设置了 `background` 的话，有可能在恢复时使得其覆盖其他子属性；
-- 当前期待使用 `background-color` 设置背景色，而不是在上面的 `background` 中设置背景色。譬如：`background-color: #f0f6;`
+- 当前期待使用 `background-color` 设置背景色，而不是在上面的 `background` 中设置背景色。譬如：<span style="background-color:#f0f6">`background-color: #f0f6;`</span>
 - 当前更期待使用配置参数 `option` 的 'imgUrl' 来配置目标背景图（请注意图源的跨域问题）。譬如：`imgUrl: 'background.png'`
 - 当然，也可以使用标准的 `background-image` 配置符合要求的背景图片（目前仅支持单张图配置）。譬如：`background-image: url(background.png);`
 - 当前可配置 `background-image` 为渐变色，但仅支持从上到下的线性渐变（仅支持单渐变）。譬如： `background-image: linear-gradient(black, transparent);`

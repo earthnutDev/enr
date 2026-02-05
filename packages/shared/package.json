@@ -45,10 +45,10 @@
       "types": "./dist/es/src/cookie.d.ts"
     },
     "./log": {
-      "default": "./dist/es/log-development.js",
-      "import": "./dist/es/log-development.js",
-      "require": "./dist/cjs/log-development.js",
-      "types": "./dist/es/src/log-development.d.ts"
+      "default": "./dist/es/log-production.js",
+      "import": "./dist/es/log-production.js",
+      "require": "./dist/cjs/log-production.js",
+      "types": "./dist/es/src/log-production.d.ts"
     },
     "./storage-store": {
       "default": "./dist/es/storage-store.js",
