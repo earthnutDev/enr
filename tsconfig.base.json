@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true, // 设定为 true 时，模块没有指定显式的默认导出，允许 `import React from "react";` 而不是 `import * as React from "react";`
     "declaration": false, // 生成 .d.ts 类型声明文件
     // "declarationDir": "dist", // 类型声明文件输出目录
-    "downlevelIteration": true, // 迭代器降级
+    // "downlevelIteration": true, // 迭代器降级
     "esModuleInterop": true, // 兼容 CommonJS/ES Module
     "experimentalDecorators": true, // 启用装饰器
     "forceConsistentCasingInFileNames": true, // 机器适配
