@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ Mr.MudBean
  * @since 2026-02-02 16:55
  * @version 2.0.0-alpha.4
- * @lastModified 2026-02-04 06:42
+ * @lastModified 2026-02-07 08:08
  */
 
 import type { RipplesOptions } from '../../customHooks/useRipples/types';
@@ -39,18 +39,19 @@ export type BackgroundRipplesProps = PropsWithTagNameCustomRef<
     /**
      * ## 可设定涟漪的参数
      *
-     * - resolution  波速，值越小，波动越快。缺省为 `360`
-     * - dropRadius  波动强度，值越小，波动效果越大，缺省值为 `12`
-     * - perturbation 扰动系数，值越大，对原背景造成干涉越强，缺省为   `0.01`
-     * - interactive 光标交互，缺省为 `true` ，关闭须显示传入 `false` 值
      * - accelerating  加速光标移动触发，类似于扰动系数，及作用与鼠标或手指触发，缺省为 `1`
      * - crossOrigin 原始样式
+     * - darkMode 暗黑模式，仅用于在默认的背景图时更改默认背景图的背景色，如果使用了 `imgUrl` 配置，请执行处理色差异常
+     * - dropRadius 波动强度，值越小，波动效果越大，缺省值为 `12`
      * - imgUrl    原始背景图片地址
+     * - idleFluctuations  闲置波动，在光标交互不触发时，将触发模拟雨滴，缺省为 `true`
+     * - interactive 光标交互，缺省为 `true` ，关闭须显示传入 `false` 值
+     * - loadingBackgroundColor 初始化加载时背景色，可为单色值或双色值数组（**该值仅在初始化用到，后续更改该值直接舍弃**）
+     * - perturbation 扰动系数，值越大，对原背景造成干涉越强，缺省为   `0.01`
      * - playingState 当前的播放状态，缺省为 `true` ，设定为 `false` 时并不关闭，而是暂停
      * - raindropsTimeInterval 雨滴滴落的间隔，缺省为 `3650`，可设置区间为 `10 ~ 12000`，值越小，雨越大
+     * - resolution 分波速，值越小，波动越快。缺省为 `360`
      *   该值还将影响无背景设置时默认背景的切换频率，几乎每两个雨滴落下就会切换一次背景
-     * - idleFluctuations  闲置波动，在光标交互不触发时，将触发模拟雨滴，缺省为 `true`
-     * - darkMode 暗黑模式，仅用于在默认的背景图时更改默认背景图的背景色，如果使用了 `imgUrl` 配置，请执行处理色差异常
      */
     option?: RipplesOptions;
     /**

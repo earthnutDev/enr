@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2024-12-12 12:18
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 08:18
+ * @lastModified 2026-02-07 08:11
  */
 
 'use client';
@@ -29,7 +29,7 @@ import type { BackgroundRipplesProps } from './types';
  * @param props  使用参数
  * @param props.option 初始化 ripple 的原始数据
  * @version 0.0.1
- * @see https://earthnut.dev/earthnut/background-ripple
+ * @see https://lmssee.com/background-ripple
  * @example
  * 使用：
  *

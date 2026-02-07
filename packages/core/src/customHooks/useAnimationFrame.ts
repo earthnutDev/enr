@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 08:18
+ * @lastModified 2026-02-07 08:11
  */
 
 'use client';
@@ -63,7 +63,7 @@ export type AnimationFrameOption =
  * @param [option=false] 使用第二参数，可指定是否立即执行及是否仅执行一次
  * @returns  返回值包含执行状态
  * @version 0.2.0
- * @see   https://earthnut.dev/custom-hooks/use-animation-frame
+ * @see   https://lmssee.com/custom-hooks/use-animation-frame
  * @example
  * 使用：
  *

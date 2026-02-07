@@ -1,11 +1,10 @@
-/***********************************************
- *  @Author earthnut
- *  @Email earthnut.dev@outlook.com
- *  @ProjectName website
- *  @FileName req.ts
- *  @CreateDate  周四  01/09/2025
- *  @Description req 请求
- **************************************************/
+/**
+ *  @author Mr.MudBean <Mr.MudBean@outlook.com>
+ *  @file req.ts
+ *  @since  周四  01/09/2025
+ *  @lastModified 2026-02-07 08:14
+ *  @description req 请求
+ */
 
 import { typeOf } from 'a-type-of-js';
 // import { global_config_data } from 'data/config';

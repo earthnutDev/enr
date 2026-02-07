@@ -1,11 +1,10 @@
-/*********************************************
- * @Author earthnut
- * @Email earthnut.dev@outlook.com
- * @ProjectName website
- * @FileName copyText.ts
- * @CreateDate  周四  12/19/2024
- * @Description 复制文本到剪切板
- ************************************************/
+/**
+ * @author Mr.MudBean <Mr.MudBean@outlook.com>
+ * @file copyText.ts
+ * @since  周四  12/19/2024
+ * @lastModified 2026-02-07 08:13
+ * @description 复制文本到剪切板
+ */
 
 declare global {
   const clipboardData: {

@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 08:19
+ * @lastModified 2026-02-07 08:11
  */
 
 'use client';
@@ -24,7 +24,7 @@ import type { RefObject } from 'react';
  * @param inputRef [RefObject<HTMLInputElement | HTMLTextAreaElement>] 输入框的 ref
  * @returns  RefObject<boolean>
  * @version 0.0.4
- * @see   https://earthnut.dev/custom-hooks/use-input-is-composing
+ * @see   https://lmssee.com/custom-hooks/use-input-is-composing
  * @example
  *
  * 使用：

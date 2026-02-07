@@ -3,7 +3,7 @@
  * @file types.ts
  * @since  周二  12/17/2024
  * @description BackgroundRipples 的类型声明文件
- * @lastModified 2026-02-05 17:31
+ * @lastModified 2026-02-07 08:06
  */
 
 /**
@@ -132,7 +132,7 @@ export type RipplesUseOptions = {
    *
    * **该值仅在初始化用到，后续更改该值*直接*舍弃**
    */
-  loadingBackgroundColor: string | [string] | [string | string];
+  loadingBackgroundColor: string | [string] | [string, string];
 };
 
 /**

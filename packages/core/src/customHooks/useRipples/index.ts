@@ -8,7 +8,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-06-20 01:37
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 08:19
+ * @lastModified 2026-02-07 08:12
  */
 
 'use client';
@@ -28,7 +28,7 @@ import type { RippleImgUrl, RipplesOptions } from './types';
  * @param canvas `usrRef` 包裹的 `HTMLCanvasElement`，用于绘制图像
  * @param option  初始化的
  * @version 0.0.3
- * @see  https://earthnut.dev/custom-hooks/use-ripples
+ * @see  https://lmssee.com/custom-hooks/use-ripples
  * @see  JQuery https://github.com/sirxemic/jquery.ripples
  * @example
  *

@@ -139,4 +139,4 @@ export function Home() {
 
 ## 文档
 
-更多参阅 [enr](https://earthnut.dev/quickUse/)
+更多参阅 [enr](https://lmssee.com/quickUse/)

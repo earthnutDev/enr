@@ -7,7 +7,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:20
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 08:19
+ * @lastModified 2026-02-07 08:12
  */
 
 'use client';
@@ -20,7 +20,7 @@ import { useEffect, useRef } from 'react';
  * 该数值在组件卸载时会自动调用 `clearTimeout` 清理
  *
  * @version 0.0.3
- * @see   https://earthnut.dev/custom-hooks/use-time-id
+ * @see   https://lmssee.com/custom-hooks/use-time-id
  * @example
  *
  * 使用：
