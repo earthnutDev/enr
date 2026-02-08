@@ -2,7 +2,7 @@ import { pathJoin, readFileToJsonSync, writeJsonFileSync } from 'a-node-tools';
 
 let packageJson = readFileToJsonSync('./package.json');
 
-['scripts', 'devDependencies', 'lint-staged', 'private', 'overrides','exports'].forEach(
+['scripts', 'devDependencies', 'lint-staged', 'private', 'overrides', 'exports'].forEach(
   key => delete packageJson[key],
 );
 
@@ -17,7 +17,6 @@ packageJson = {
     url: 'https://lmssee.com',
   },
   files: ['styles', 'cjs', 'es', 'LICENSE', 'README.md'],
-
   keywords: ['enr'],
   homepage: 'https://lmssee.com/quickUse',
   bugs: {
@@ -34,22 +33,22 @@ packageJson = {
     registry: 'https://registry.npmjs.org/',
   },
   license: 'MIT',
-    "exports": {
-    ".": {
-      "default": "./es/index.js",
-      "require": "./cjs/index.js",
-      "import": "./es/index.js",
-      "types": "./es/src/index.d.ts"
+  exports: {
+    '.': {
+      default: './es/index.js',
+      require: './cjs/index.js',
+      import: './es/index.js',
+      types: './es/src/index.d.ts',
     },
-    "./common.scss": "./styles/common.scss",
-    "./common.css": "./styles/common.css",
-    "./reset.scss": "./styles/reset.scss",
-    "./reset.css": "./styles/reset.css",
-    "./styles/common.scss": "./styles/common.scss",
-    "./styles/common.css": "./styles/common.css",
-    "./styles/reset.scss": "./styles/reset.scss",
-    "./styles/reset.css": "./styles/reset.css"
-  }
+    './common.scss': './styles/common.scss',
+    './common.css': './styles/common.css',
+    './reset.scss': './styles/reset.scss',
+    './reset.css': './styles/reset.css',
+    './styles/common.scss': './styles/common.scss',
+    './styles/common.css': './styles/common.css',
+    './styles/reset.scss': './styles/reset.scss',
+    './styles/reset.css': './styles/reset.css',
+  },
 };
 
 {
