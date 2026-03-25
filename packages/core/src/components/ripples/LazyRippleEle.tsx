@@ -3,11 +3,10 @@
  * @file LazyRippleEle.tsx
  * @description 涟漪
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2024-12-12 12:11
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-07 08:11
+ * @lastModified 2026-03-25 23:29
  */
 
 'use client';
@@ -18,11 +17,12 @@ import { ComponentContent } from './Content';
 import type { BackgroundRipplesProps } from './types';
 
 /**
- *
- * ### 一个 ripple 背景组件
- *
- *
+ * ## 一个 ripple 背景组件
  * *需要为该组件或父组件设置背景，否则即便的渲染了，效果不明显*
+ *
+ * 请**等待组件加载后**再使用其方法，否则可能出现未初始化的可能。
+ *
+ * 所以，可以直接更改初始化参数，而不是在未获取到组件元素节点时使用方法或属性
  *
  *  参数 props 属性：
  * - children 内嵌的 ReactNode
@@ -33,8 +33,6 @@ import type { BackgroundRipplesProps } from './types';
  * @version 0.0.1
  * @see https://lmssee.com/lazy-background-ripple
  * @example
- * 使用：
- *
  * ```ts
  *  import { LazyBackgroundRipple } from 'enr/LazyBackgroundRipple';
  *  // 也可以全量导入
@@ -46,7 +44,6 @@ import type { BackgroundRipplesProps } from './types';
  *            ...
  *         </LazyBackgroundRipple>
  * ```
- *
  */
 const LazyBackgroundRipple = ({ option, ...props }: BackgroundRipplesProps) => {
   /**  canvas 元素  */

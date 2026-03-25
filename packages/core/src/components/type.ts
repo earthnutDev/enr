@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/type
  * @file type.ts
  * @description 组建公用类型声明
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-21 13:00
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-25 17:53
+ * @lastModified 2026-03-25 20:29
  */
 
 import type {

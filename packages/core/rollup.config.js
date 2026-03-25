@@ -27,12 +27,12 @@ export default {
   },
   output: ['es', 'cjs'].map(e => ({
     format: e, // ESM 模式
-    entryFileNames: '[name].js', // 打包文件名
+    entryFileNames: `[name].${e}.js`, // 打包文件名
     preserveModules: true, // 保留独立模块结构（关键）
     preserveModulesRoot: 'src', // 保持 src 目录结构
     sourcemap: false, // 正式环境：关闭 source map
     exports: 'named', // 导出模式
-    dir: `dist/${e}/`,
+    dir: `dist/`,
   })),
   // 配置需要排除的包
   external: external({

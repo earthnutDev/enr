@@ -3,11 +3,10 @@
  * @file useAnimationFrame.ts
  * @description 使用 animationFrame
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-07 08:11
+ * @lastModified 2026-03-25 19:11
  */
 
 'use client';
@@ -54,10 +53,8 @@ export type AnimationFrameOption =
     };
 
 /**
- *
- *  该钩子在组件卸载时会自动调用 `window.cancelAnimationFrame` 清理传入的回调方法。
+ * ## 该钩子在组件卸载时会自动调用 `window.cancelAnimationFrame` 清理传入的回调方法
  *  默认是传入即启动调用方法
- *
  * @description 创建一个会自己关闭（组建卸载时）的 animationFrame。当然，可以通过返回值手动终止
  * @param callback  使用回调函数。回调函数有两个参数，除了默认的时间，还有另一个用于暂停后的记时时间。如果没有主动暂停，两者时间总是趋近于相等的（可能有其他延迟造成时间差越来越大）。如果没有暂停需求，使用第一个默认时间就可以了。
  * @param [option=false] 使用第二参数，可指定是否立即执行及是否仅执行一次
@@ -65,8 +62,6 @@ export type AnimationFrameOption =
  * @version 0.2.0
  * @see   https://lmssee.com/custom-hooks/use-animation-frame
  * @example
- * 使用：
- *
  * ```ts
  *  // import { useAnimationFrame } from 'enr';
  *  ...
@@ -77,7 +72,6 @@ export type AnimationFrameOption =
  *     ... //
  *  });
  *
- *
  * return <>
  *
  *    <button onclick={() => result.cancel()}>暂停</button>
@@ -85,11 +79,8 @@ export type AnimationFrameOption =
  *   </>
  * }
  *  ...
- *
  * ```
- *
  * 当然，可使用第二参数执行立即执行还是仅执行一次（作用不大，不与赘述）
- *
  */
 export function useAnimationFrame(
   callback: (time: number, runtime: number) => void,

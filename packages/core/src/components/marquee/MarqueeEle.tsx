@@ -2,7 +2,7 @@
 
 import { styled } from 'styled-components';
 import type { PropsWithTagName } from '../type';
-import './index.scss';
+// import './index.scss'
 
 /**
  *  外层

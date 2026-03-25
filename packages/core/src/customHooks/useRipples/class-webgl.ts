@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-webgl
  * @file class-webgl.ts
  * @description 构建 webGl
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:44
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 06:51
+ * @lastModified 2026-03-25 20:26
  */
 
 import { isNull, isZero } from 'a-type-of-js';

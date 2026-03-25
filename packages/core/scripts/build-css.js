@@ -3,11 +3,10 @@
  * @file build-css.js
  * @description 构建 css
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-28 14:01
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-29 18:30
+ * @lastModified 2026-03-25 23:13
  */
 
 import { writeFileSync } from 'node:fs';

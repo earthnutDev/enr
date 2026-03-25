@@ -3,20 +3,17 @@
  * @file types.ts
  * @description 类型文件
  * @author Mr.MudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ Mr.MudBean
  * @since 2026-02-02 16:55
  * @version 2.0.0-alpha.4
- * @lastModified 2026-02-07 08:08
+ * @lastModified 2026-03-25 20:30
  */
 
 import type { RipplesOptions } from '../../customHooks/useRipples/types';
 import type { PropsWithTagNameCustomRef } from '../type';
 
 /**
- *
- *  背景涟漪的 props 类型
- *
+ * ## 背景涟漪的 props 类型
  * - children  可选属性，定义子组件或子组件们
  * - style     可选属性，定义自定义外壳的样式，在内含 `children` 时生效
  * - option    可选属性，自定义涟漪的初始化属性

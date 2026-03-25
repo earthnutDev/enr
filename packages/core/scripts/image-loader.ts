@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/image-loader
  * @file image-loader.ts
- * @description base64
+ * @description 图像转 base64
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-20 11:51
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-20 11:55
+ * @lastModified 2026-03-25 23:13
  */
 
 export const loadImageAsBase64 = (path: string): Promise<string> =>

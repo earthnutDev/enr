@@ -5,20 +5,20 @@ import { isUndefined } from 'a-type-of-js';
 /**
  *
  * 构建许可证明及写入 index.mjs 文件内容
- * 
+ *
  * 该文件已废弃  ⚠️
  *
  */
 const __dirname = import.meta.dirname;
 
 const packInfo = readFileToJsonSync(pathJoin(__dirname, '../package.json')) ?? {
-  name: 'earthnut',
+  name: 'Mr.MudBean',
 };
 /**  许可证明头部  */
 const licenseHeader = filePath => `/**
  * @license MIT
  * ${packInfo?.name}${filePath} 
- * Copyright (c) ${new Date().getFullYear()} earthnut.dev
+ * Copyright (c) ${new Date().getFullYear()} Mr.MudBean
  * 请在项目根参看详细许可证明
  */
 `;
@@ -35,7 +35,9 @@ function addLicense(dir) {
     /**  文件的名（不带扩展名）  */
     const fileBashName = basename(filePath, '.mjs');
     /**  是否添加 use client  */
-    const isAddUseClient = ['client', 'layoutUtil'].some(e => fileBashName === e);
+    const isAddUseClient = ['client', 'layoutUtil'].some(
+      e => fileBashName === e,
+    );
     /**  use client 文本 （已校验） */
     const useClientMessage = isAddUseClient ? '\n"use client";\n' : '';
     /**  文件是否存在（其实，一定存在）  */
@@ -86,7 +88,11 @@ const index = readFileSync(indexFile, 'utf8');
       const itemState = fileExist(item);
 
       // 非文件
-      if (!itemState || !itemState.isFile() || !(item.endsWith('.scss') || item.endsWith('.css')))
+      if (
+        !itemState ||
+        !itemState.isFile() ||
+        !(item.endsWith('.scss') || item.endsWith('.css'))
+      )
         return;
       // const fileName = basename(item, '.scss');
 

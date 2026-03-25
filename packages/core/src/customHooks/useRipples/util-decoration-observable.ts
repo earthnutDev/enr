@@ -1,22 +1,18 @@
 /**
  * @module @enr/decoration-observable
- * @file decoration-observable.ts
+ * @file util-decoration-observable.ts
  * @description 监听者装饰器 「由于决定采用更*麻烦*的状态管理模式（@qqi/state），所以该文件并未被使用」
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-26 10:01
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 12:50
- *
- *
+ * @lastModified 2026-03-25 19:11
  */
 
 /**
  * ## 用于订阅模式的监听者装饰器
  * @param target 对象
  * @param key 键
- *
  * @example
  * ```ts
  * // 数据类

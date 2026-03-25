@@ -3,11 +3,10 @@
  * @file tools.ts
  * @description 工具
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2024-12-07 01:36
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-25 01:37
+ * @lastModified 2026-03-25 19:31
  */
 
 import { isNull, isUndefined } from 'a-type-of-js';

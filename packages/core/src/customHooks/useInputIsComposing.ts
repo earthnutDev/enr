@@ -3,11 +3,10 @@
  * @file useInputIsComposing.ts
  * @description 使用输入框是否完成输入状态
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-01-07 11:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-07 08:11
+ * @lastModified 2026-03-25 19:11
  */
 
 'use client';
@@ -16,9 +15,7 @@ import { useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
 
 /**
- *
- * ### 导出一个使用 `useRef` 创建的 `boolean`
- *
+ * ## 导出一个使用 `useRef` 创建的 `boolean`
  *  *由于是包裹在 RefObject 之中，判断时务必使用 `isComposing.current` 进行判断*
  * @description 用于判断当前的输入状态是否结束
  * @param inputRef [RefObject<HTMLInputElement | HTMLTextAreaElement>] 输入框的 ref
@@ -26,9 +23,6 @@ import type { RefObject } from 'react';
  * @version 0.0.4
  * @see   https://lmssee.com/custom-hooks/use-input-is-composing
  * @example
- *
- * 使用：
- *
  * ```ts
  *  import { useInputIsComposing } from 'enr';
  *

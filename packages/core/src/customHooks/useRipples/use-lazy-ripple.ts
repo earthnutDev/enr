@@ -8,7 +8,7 @@ import type { Ripples } from './class-ripple';
 import type { RipplesOptions } from './types';
 
 /**
- *  动态加载包含的自定义的钩子
+ * ## 懒加载使用涟漪 hook
  * @param canvas
  * @param option
  */
@@ -26,6 +26,8 @@ export function useLazyRipples(
   const [isLoading, setIsLoading] = useState(false);
   // 错误状态
   const [error, setError] = useState(null);
+  // 参数
+  const optionRef = useRef(option);
 
   /**  卸载  */
   function unmounted() {
@@ -43,6 +45,10 @@ export function useLazyRipples(
       }
     }, 0);
   }
+  // 更新 option，防止加载 option 为旧数据
+  useEffect(() => {
+    optionRef.current = option;
+  }, [option]);
 
   useEffect(() => {
     isUnmounted.current = false;
@@ -70,7 +76,7 @@ export function useLazyRipples(
         if (dun) {
           dog('加载了该项异步，并初始化了值');
         }
-        ripples.current = new module.Ripples(canvas.current, option);
+        ripples.current = new module.Ripples(canvas.current, optionRef.current);
         return;
       })
       .catch(err => {

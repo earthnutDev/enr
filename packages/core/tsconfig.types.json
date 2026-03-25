@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "dist/es",
+    "rootDir": "src",
+    "declarationDir": "dist/",
     "emitDeclarationOnly": true,
     // 设定为 "node" 时将导致如下问题：
     //  Cannot find module 'zza/log' or its corresponding type declarations.  There are types at '/Users/lm/code/npm/enr/packages/core/node_modules/zza/dist/es/src/log-development.d.ts', but this result could not be resolved under your current 'moduleResolution' setting. Consider updating to 'node16', 'nodenext', or 'bundler'.

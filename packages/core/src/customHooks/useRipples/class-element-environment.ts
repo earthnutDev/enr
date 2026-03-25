@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-test-envelop
  * @file class-element-environment.ts
  * @description _
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-26 01:24
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-01 06:00
+ * @lastModified 2026-03-25 20:28
  */
 
 import { isNull } from 'a-type-of-js';

@@ -1,15 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-ripple
  * @file class-ripple.ts
  * @description ripple 类，整合其他类
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 03:03
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-05 19:24
- *
+ * @lastModified 2026-03-25 20:26
  */
 
 import { loggerMiddleware, StateManager, type Reducer } from '@qqi/state';
@@ -26,9 +23,7 @@ import { defaultData } from './data-default';
 import type { RipplesOptions, RippleState } from './types';
 
 /**
- *
  * ## 水波动涟漪的效果
- *
  * 魔改自大佬的[jQuey 代码](https://github.com/sirxemic/jquery.ripples)
  */
 export class Ripples {

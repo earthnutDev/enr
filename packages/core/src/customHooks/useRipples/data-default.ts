@@ -8,10 +8,21 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 11:55
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-05 17:22
+ * @lastModified 2026-03-25 20:26
  */
 
 import type { RipplesDefaultData } from './types';
+
+/**  TODO ： 对象改函数式编程在下一个阶段进行处理 */
+
+/** 默认的图像 URL */
+export const defaultImgUrl = null;
+/** 默认的波速值 */
+export const defaultResolution = 360;
+/** 默认的波动强度 */
+export const defaultDropRadius = 12;
+/** 默认的扰动系数 */
+export const defaultPerturbation = 0.01;
 
 /**
  * ## 默认值

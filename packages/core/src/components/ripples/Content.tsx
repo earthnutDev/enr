@@ -19,7 +19,7 @@ export const Content: JSXComponent = styled.div`
   contain: layout paint style;
   will-change: transform, opacity;
 `;
-
+/** 公共使用部分 */
 export const ComponentContent = ({
   option,
   ripplesRef,

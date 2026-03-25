@@ -1,11 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
+    "rootDir": "src",
     "noEmit": false,
     "emitDeclarationOnly": true,
     "declaration": true,
-    "declarationDir": "dist/es"
+    "declarationDir": "dist/es/types"
   },
   "exclude": ["node_modules", "test", "dist", "eg", "scripts/"]
 }

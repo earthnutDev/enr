@@ -3,11 +3,10 @@
  * @file imperative-handle.ts
  * @description 公共的命令句柄
  * @author Mr.MudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ Mr.MudBean
  * @since 2026-02-04 06:52
  * @version 2.0.1
- * @lastModified 2026-02-04 07:57
+ * @lastModified 2026-03-25 20:31
  */
 
 import { isUndefined } from 'a-type-of-js';

@@ -3,11 +3,10 @@
  * @file RipplesEle.tsx
  * @description 涟漪
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2024-12-12 12:18
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-07 08:11
+ * @lastModified 2026-03-25 20:30
  */
 
 'use client';
@@ -18,10 +17,7 @@ import { ComponentContent } from './Content';
 import type { BackgroundRipplesProps } from './types';
 
 /**
- *
- * ### 一个 ripple 背景组件
- *
- *
+ * ## 一个 ripple 背景组件
  * *需要为该组件或父组件设置背景，否则即便的渲染了，效果不明显*
  *
  *  参数 props 属性：
@@ -31,8 +27,6 @@ import type { BackgroundRipplesProps } from './types';
  * @version 0.0.1
  * @see https://lmssee.com/background-ripple
  * @example
- * 使用：
- *
  * ```ts
  *  import { BackgroundRipple } from 'enr/';
  *  // 也可以全量导入
@@ -44,7 +38,6 @@ import type { BackgroundRipplesProps } from './types';
  *            ...
  *         </BackgroundRipple>
  * ```
- *
  */
 const BackgroundRipple = ({ option, ...props }: BackgroundRipplesProps) => {
   /**  canvas 元素  */

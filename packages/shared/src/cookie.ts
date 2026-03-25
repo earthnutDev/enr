@@ -1,11 +1,13 @@
-/*****************************************************
- *  @Author earthnut
- *  @Email earthnut.dev@outlook.com
- *  @ProjectName nest
- *  @FileName cookie.ts
- *  @CreateDate  周五  01/10/2025
- *  @Description cookie 管理
- ******************************************************/
+/**
+ * @module @zza/cookie
+ * @file cookie.ts
+ * @description cookie 管理
+ * @author Mr.MudBean <Mr.MudBean@outlook.com>
+ * @copyright 2026 ©️ Mr.MudBean
+ * @since  01/10/2025
+ * @version 0.0.0
+ * @lastModified 2026-03-25 16:10
+ */
 import { typeOf } from 'a-type-of-js';
 
 export const manageCookie = {

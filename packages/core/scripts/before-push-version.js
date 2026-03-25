@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/before-push-version
  * @file before-push-version.js
  * @description  执行 push:version 钩子前执行
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-19 21:01
  * @version 2.0.0-alpha.0
- * @lastModified 2026-01-26 11:45
+ * @lastModified 2026-03-25 23:13
  */
 import { dun } from 'zza/log';
 

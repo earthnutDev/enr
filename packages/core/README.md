@@ -136,7 +136,3 @@ export function Home() {
 
 - `css`、`scss` 的直接导出仅是 `common.css`、`common.scss` 的别名
 - `reset.css`、`reset.scss` 不建议在非项目中使用，因为使用 `*` 修改了所有元素为 `border-box` 且定位为 `relative`。旧项目引入该文件可能会覆盖所有的已配置好的盒样式
-
-## 文档
-
-更多参阅 [enr](https://lmssee.com/quickUse/)

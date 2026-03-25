@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "enr",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "一个简单的 ui",
   "scripts": {
     "vjj": "vjj",
@@ -13,7 +13,7 @@
     "lint": "pwd && eslint . --fix",
     "build:css-pre": "node ./scripts/build-css.js pre",
     "build:css": "node ./scripts/build-css.js",
-    "b": "pnpm run build:css-pre && rollup --config rollup.config.js && tsc -p tsconfig.build.json && pnpm run build:css",
+    "b": "pnpm run build:css-pre && rollup --config rollup.config.js && tsc -p tsconfig.types.json && pnpm run build:css",
     "build:test": "jja  run NODE_ENV='development' 'pnpm run b' && cd ../preview && pnpm install",
     "build": "cd ../shared && pnpm build && cd ../core && jja rm dist run NODE_ENV=production 'pnpm run b' && node scripts/clean-package-json.js",
     "test": "cd ../shared && pnpm test && cd ../core && pnpm build:test",
@@ -27,13 +27,13 @@
     "react-dom": "^19.1.0"
   },
   "dependencies": {
-    "styled-component": "^2.6.0",
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@qqi/state": "^0.0.0",
-    "a-element-inline-style": "^1.0.1",
-    "a-js-tools": "^2.0.1",
-    "a-type-of-js": "^2.0.0",
-    "xcn": "^1.1.0"
+    "a-element-inline-style": "^1.0.2",
+    "a-js-tools": "^2.0.2",
+    "a-type-of-js": "^2.0.1",
+    "styled-component": "^2.6.0",
+    "xcn": "^1.1.2"
   },
   "devDependencies": {
     "zza": "workspace:*"

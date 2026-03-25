@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-element-html-meta
  * @file class-html-element-meta.ts
  * @description 构建元素节点数据
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-21 21:32
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 12:53
+ * @lastModified 2026-03-25 20:27
  */
 
 import type { StateManager } from '@qqi/state';

@@ -1,16 +1,13 @@
 /**
- * @packageDocumentation
  * @module @enr/index
  * @file index.ts
  * @description   ripple 的主要核心逻辑
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2025-06-20 01:37
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-07 08:12
+ * @lastModified 2026-03-25 19:59
  */
-
 'use client';
 
 import { isNull } from 'a-type-of-js';
@@ -21,19 +18,14 @@ import { Ripples } from './class-ripple';
 import type { RippleImgUrl, RipplesOptions } from './types';
 
 /**
- *
  * ## 使用绘制 ripples 上一层
- *
- *
  * @param canvas `usrRef` 包裹的 `HTMLCanvasElement`，用于绘制图像
  * @param option  初始化的
  * @version 0.0.3
  * @see  https://lmssee.com/custom-hooks/use-ripples
  * @see  JQuery https://github.com/sirxemic/jquery.ripples
  * @example
- *
  * 下面是在 <BackgroundRipple> 中使用
- *
  * ```ts
  * import { useRipples } from 'enr';
  *
@@ -50,9 +42,7 @@ import type { RippleImgUrl, RipplesOptions } from './types';
  *     {props.children}
  *  </>);
  *  }
- *
  * ```
- *
  */
 export function useRipples(
   canvas: RefObject<HTMLCanvasElement | null>,

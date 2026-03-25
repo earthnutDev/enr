@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-build-background
  * @file class-build-background.ts
  * @description 构建默认的页面
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 14:17
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-05 17:41
+ * @lastModified 2026-03-25 20:28
  */
 
 import { getRandomInt, getRandomString } from 'a-js-tools';
@@ -22,7 +20,6 @@ import type { DrawImage } from './types';
 
 /**
  * ## 构建背景
- *
  * 触发构建：
  *
  * - 通过 {@link setImage()}   方法重新尝试加载图片

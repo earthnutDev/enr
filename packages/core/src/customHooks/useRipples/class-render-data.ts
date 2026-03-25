@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-render-data
  * @file class-render-data.ts
  * @description 渲染数据类
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:56
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 17:52
+ * @lastModified 2026-03-25 20:27
  */
 
 import { dog, dun } from 'zza/log';
@@ -42,7 +40,7 @@ export class RenderData {
   animationFrameId: number = 0;
 
   /**  缺省背景图时的 id  */
-  transparentId: NodeJS.Timeout = setTimeout(Boolean);
+  transparentId: number = setTimeout(Boolean);
   /**  绘制进度 (千分制)*/
   drawProgress: number = 0;
   /**  是否处于绘制过渡状态  */

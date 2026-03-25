@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-render-action
  * @file class-render-action.ts
  * @description 渲染动作类
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 12:07
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-03 14:44
+ * @lastModified 2026-03-25 20:27
  */
 
 import { isBusinessEmptyString, isEmptyArray, isNull, isUndefined, isZero } from 'a-type-of-js';

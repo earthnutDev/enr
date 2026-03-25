@@ -23,7 +23,7 @@ delete packageJson.exports; // 移除旧的构建导出
 // 移除冗余的键
 const esPrefix = 'dist/es'; // es 前缀
 const cjsPrefix = 'dist/cjs'; // cjs 前缀
-const dtsPrefix = 'dist/es/src'; // 类型文件的前缀
+const dtsPrefix = 'dist/es/types'; // 类型文件的前缀
 // <--  !!! -->
 // <--  !!! -->
 // <--  !!! -->
@@ -86,7 +86,7 @@ packageJson = {
   author: {
     name: '泥豆君',
     email: 'Mr.MudBean@outlook.com',
-    url: 'https://earthnut.dev',
+    url: 'https://lmssee.com',
   },
   description: 'enr 内部共享方法',
   sideEffects: false, // 核心：开启 Tree Shaking

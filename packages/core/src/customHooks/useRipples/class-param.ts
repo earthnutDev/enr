@@ -1,14 +1,12 @@
 /**
- * @packageDocumentation
  * @module @enr/class-param
  * @file class-param.ts
  * @description 参数类
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 02:40
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-05 19:20
+ * @lastModified 2026-03-25 20:27
  */
 
 import { isArray, isBoolean, isString, isUndefined } from 'a-type-of-js';

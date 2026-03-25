@@ -2,7 +2,7 @@
   "author": {
     "name": "泥豆君",
     "email": "Mr.MudBean@outlook.com",
-    "url": "https://earthnut.dev"
+    "url": "https://lmssee.com"
   },
   "description": "enr 内部共享方法",
   "sideEffects": false,
@@ -36,37 +36,37 @@
       "import": "./dist/es/index.js",
       "default": "./dist/es/index.js",
       "require": "./dist/cjs/index.js",
-      "types": "./dist/es/src/index.d.ts"
+      "types": "./dist/es/types/index.d.ts"
     },
     "./cookie": {
       "default": "./dist/es/cookie.js",
       "import": "./dist/es/cookie.js",
       "require": "./dist/cjs/cookie.js",
-      "types": "./dist/es/src/cookie.d.ts"
+      "types": "./dist/es/types/cookie.d.ts"
     },
     "./log": {
       "default": "./dist/es/log-production.js",
       "import": "./dist/es/log-production.js",
       "require": "./dist/cjs/log-production.js",
-      "types": "./dist/es/src/log-production.d.ts"
+      "types": "./dist/es/types/log-production.d.ts"
     },
     "./storage-store": {
       "default": "./dist/es/storage-store.js",
       "import": "./dist/es/storage-store.js",
       "require": "./dist/cjs/storage-store.js",
-      "types": "./dist/es/src/storage-store.d.ts"
+      "types": "./dist/es/types/storage-store.d.ts"
     },
     "./storage": {
       "default": "./dist/es/storage.js",
       "import": "./dist/es/storage.js",
       "require": "./dist/cjs/storage.js",
-      "types": "./dist/es/src/storage.d.ts"
+      "types": "./dist/es/types/storage.d.ts"
     },
     "./sys": {
       "default": "./dist/es/sys.js",
       "import": "./dist/es/sys.js",
       "require": "./dist/cjs/sys.js",
-      "types": "./dist/es/src/sys.d.ts"
+      "types": "./dist/es/types/sys.d.ts"
     }
   }
 }

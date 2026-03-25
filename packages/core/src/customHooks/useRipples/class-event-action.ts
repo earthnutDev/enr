@@ -3,11 +3,10 @@
  * @file class-event-action.ts
  * @description 交互事件
  * @author MrMudBean <Mr.MudBean@outlook.com>
- * @license MIT
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-23 01:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-02-04 06:46
+ * @lastModified 2026-03-25 20:27
  */
 
 import { debounce, getRandomInt } from 'a-js-tools';
@@ -21,7 +20,7 @@ import type { RenderData } from './class-render-data';
 import type { RippleGl } from './class-webgl';
 
 /**
- *
+ * 执行动作
  */
 export class EventAction {
   /**
