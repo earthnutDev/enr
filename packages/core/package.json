@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "enr",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "一个简单的 ui",
   "scripts": {
     "vjj": "vjj",

@@ -8,9 +8,9 @@ let packageJson = readFileToJsonSync('./package.json');
 
 packageJson = {
   ...packageJson,
-  main: 'cjs/index.js',
-  module: 'es/index.js',
-  types: 'es/src/index.d.ts',
+  main: 'index.cjs.js',
+  module: 'index.es.js',
+  types: 'index.d.ts',
   author: {
     name: '泥豆君',
     email: 'Mr.MudBean@outlook.com',
