@@ -24,9 +24,18 @@ _p(`当前执行环境为 ${isProduct ? cyanPen`生产环境` : redPen`开发环
 export default {
   input: {
     index: './src/index.ts', // 默认：聚合导出入口
+    // server: './src/index.server.ts',
+    // client: './src/index.client.ts',
   },
   output: ['es', 'cjs'].map(e => ({
     format: e, // ESM 模式
+    // chunkFileNames: '[name].' + e + '.js',
+    // manualChunks(id) {
+    //   console.log(id);
+    //   if (id.includes('packages/shared')) {
+    //     return 'vendor';
+    //   }
+    // },
     entryFileNames: `[name].${e}.js`, // 打包文件名
     preserveModules: true, // 保留独立模块结构（关键）
     preserveModulesRoot: 'src', // 保持 src 目录结构

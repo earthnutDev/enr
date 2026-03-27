@@ -18,8 +18,8 @@ export default {
   output: ['es', 'cjs'].map(e => ({
     format: e, // 打包模式
     entryFileNames: '[name].js', // 打包文件名
-    preserveModules: true, // 保留独立模块结构（关键）
-    preserveModulesRoot: 'src', // 保持 src 目录结构
+    preserveModules: !isProduction, // 保留独立模块结构（关键）
+    // preserveModulesRoot: 'src', // 保持 src 目录结构
     sourcemap: false, // 正式环境：关闭 source map
     // chunkFileNames: '[name]-[hash].js',
     // manualChunks(id) {

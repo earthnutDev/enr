@@ -42,7 +42,7 @@
     "@types/react-dom": "^19.2.3",
     "@types/webxr": "^0.5.24",
     "a-command": "^3.0.1",
-    "a-js-tools": "^2.0.2",
+    "a-js-tools": "^2.0.3",
     "a-node-tools": "^4.4.2",
     "a-type-of-js": "^2.0.1",
     "babel-loader": "^10.1.1",

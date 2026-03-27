@@ -1,5 +1,9 @@
 # 版本日志
 
+## 2.0.7 (2026-3-27)
+
+- 优化 `useRipples` 和 `useLazyRipples` （同样影响了 `<BackgroundRipple />` 及 `<LazyBackgroundRipple />` 组件） 在不同主题模式下默认背景的加载模式
+
 ## 2.0.6 (2026-3-25)
 
 - 修复包导出标识

@@ -6,7 +6,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-23 01:23
  * @version 2.0.0-alpha.0
- * @lastModified 2026-03-25 20:27
+ * @lastModified 2026-03-26 18:09
  */
 
 import { debounce, getRandomInt } from 'a-js-tools';
@@ -303,7 +303,7 @@ export class EventAction {
     if (bbg.lastDrawImage.tag === lastTag) {
       if (dun) {
         dog.type = true;
-        dog('当前执行的进度', renderData.drawProgress);
+        dog('当前执行的进度', renderData.currentProgress);
         dog('当前是否是第一次执行:', options.firstRun);
         dog('当前执行是否是设置的最后图', bbg.lastDrawImage);
         dog.type = false;

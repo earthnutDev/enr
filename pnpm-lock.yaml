@@ -102,8 +102,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       a-js-tools:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.3
+        version: 2.0.3
       a-node-tools:
         specifier: ^4.4.2
         version: 4.4.2
@@ -252,8 +252,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       a-js-tools:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.3
+        version: 2.0.3
       a-type-of-js:
         specifier: ^2.0.1
         version: 2.0.1
@@ -273,36 +273,6 @@ importers:
       zza:
         specifier: workspace:*
         version: link:../shared
-
-  packages/core/dist:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.28.6
-        version: 7.28.6
-      '@qqi/state':
-        specifier: ^0.0.0
-        version: 0.0.0
-      a-element-inline-style:
-        specifier: ^1.0.1
-        version: 1.0.1
-      a-js-tools:
-        specifier: ^2.0.1
-        version: 2.0.1
-      a-type-of-js:
-        specifier: ^2.0.0
-        version: 2.0.0
-      react:
-        specifier: ^19.1.0
-        version: 19.2.4
-      react-dom:
-        specifier: ^19.1.0
-        version: 19.2.4(react@19.2.4)
-      styled-component:
-        specifier: ^2.6.0
-        version: 2.8.0
-      xcn:
-        specifier: ^1.1.0
-        version: 1.1.1
 
   packages/preview:
     dependencies:
@@ -943,10 +913,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
-
-  '@babel/runtime@7.28.6':
-    resolution: {integrity: sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.29.2':
     resolution: {integrity: sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==}
@@ -2373,29 +2339,17 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  a-element-inline-style@1.0.1:
-    resolution: {integrity: sha512-eKljVVI/FG+y4l3ifgzFWAYfoncPbq/uhTbXcX5UKGln+bvaBz7YB4gNKXyHvCTos9HQ21e1Q51J18ZTkHIHFw==}
-    engines: {node: '>=18.0.0'}
-
   a-element-inline-style@1.0.2:
     resolution: {integrity: sha512-KwtSmeycWAhg/P27rUvzE2EQhWkAynkZMcFCeJSXdXsTOpIe1gkIlXrV8+RNARoT5g4y7v6d/54mjz93auTdXg==}
     engines: {node: '>=18.0.0'}
 
-  a-js-tools@2.0.1:
-    resolution: {integrity: sha512-jGQIIaXTeHXRUxKonKXFdFHSI4udcWH37ulrtact4SF5U7gN4gJcEdjdlHEam0b3A0V2RlCxdLZPV99DMVIEuA==}
-    engines: {node: '>=18.0.0'}
-
-  a-js-tools@2.0.2:
-    resolution: {integrity: sha512-pR92oOPU8olqoArPdRCDRxm+MZD11QGzEjBFcsuMH/3dPnyMMVKU5OCpcC5BlqYM21qgw23dYHvVVe9Etfw1eA==}
+  a-js-tools@2.0.3:
+    resolution: {integrity: sha512-MVsnn360IsTdi4vmqLk7jpObkyOuykBK7zbc6bTlI5E1mwMvsic8bQaP4838filIW3F7oPArMtJdJeDSwmURHw==}
     engines: {node: '>=18.0.0'}
 
   a-node-tools@4.4.2:
     resolution: {integrity: sha512-pt+3yl3vhZzkVWHL9fUVooZcpDCFCgOT3TygCWngfVzuVA60tTf/baVNUGL+6+dAO+5O3/+l5XP5s5s5R8Lx4Q==}
     engines: {node: '>=18.0.0'}
-
-  a-type-of-js@2.0.0:
-    resolution: {integrity: sha512-rQdioSQdu8M/DYe2a5k9JN5Kn6BBFy/pDVMP48LeH1MdhuTfm1U+EocJPXFIBtf85HKPRIlO3jIbzByXsRNqRQ==}
-    engines: {node: '>=14.0.0'}
 
   a-type-of-js@2.0.1:
     resolution: {integrity: sha512-sFc9c8P7ft0JiIU/Y1Tz+h7bg5oSSlVLnodwyRgbqPqpCi5LmDAO5u7HMnxYw2osvpnSPdoGOdHnxaCNBS7cHQ==}
@@ -7224,9 +7178,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  xcn@1.1.1:
-    resolution: {integrity: sha512-Q8jY9HPPrhdbXTX60a8TNsABk1HHOy/+9h9cQYpzXJDDSm8uxq0T1EUwsyldEYkaSeM2F0fQzuyO3nfJet7SNA==}
-
   xcn@1.1.2:
     resolution: {integrity: sha512-k8wqJ4/2wIjU6kJuCxGWHKzhv9Ex8tbeQx/PKmQB1UWHRRu7NE1alVUd8Ye9GkNGv5P+kK9MWPvS4MlWv1vQpQ==}
 
@@ -8172,8 +8123,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/runtime@7.28.6': {}
-
   '@babel/runtime@7.29.2': {}
 
   '@babel/template@7.28.6':
@@ -8857,20 +8806,20 @@ snapshots:
 
   '@qqi/copy-text@1.1.0':
     dependencies:
-      a-js-tools: 2.0.2
+      a-js-tools: 2.0.3
       a-node-tools: 4.4.2
 
   '@qqi/dev@1.0.0':
     dependencies:
       '@qqi/log': 1.1.4
-      a-js-tools: 2.0.2
+      a-js-tools: 2.0.3
       a-type-of-js: 2.0.1
       color-pen: 3.0.0
 
   '@qqi/log@1.1.4':
     dependencies:
       '@color-pen/static': 1.1.1
-      a-js-tools: 2.0.2
+      a-js-tools: 2.0.3
       a-type-of-js: 2.0.1
       color-pen: 3.0.0
 
@@ -9515,24 +9464,16 @@ snapshots:
     dependencies:
       '@color-pen/static': 1.1.1
       '@qqi/log': 1.1.4
-      a-js-tools: 2.0.2
+      a-js-tools: 2.0.3
       a-node-tools: 4.4.2
       a-type-of-js: 2.0.1
       color-pen: 3.0.0
-
-  a-element-inline-style@1.0.1:
-    dependencies:
-      a-type-of-js: 2.0.1
 
   a-element-inline-style@1.0.2:
     dependencies:
       a-type-of-js: 2.0.1
 
-  a-js-tools@2.0.1:
-    dependencies:
-      a-type-of-js: 2.0.1
-
-  a-js-tools@2.0.2:
+  a-js-tools@2.0.3:
     dependencies:
       a-type-of-js: 2.0.1
 
@@ -9540,11 +9481,9 @@ snapshots:
     dependencies:
       '@color-pen/static': 1.1.1
       '@qqi/log': 1.1.4
-      a-js-tools: 2.0.2
+      a-js-tools: 2.0.3
       a-type-of-js: 2.0.1
       color-pen: 3.0.0
-
-  a-type-of-js@2.0.0: {}
 
   a-type-of-js@2.0.1: {}
 
@@ -10360,7 +10299,7 @@ snapshots:
   color-pen@3.0.0:
     dependencies:
       '@color-pen/static': 1.1.1
-      a-js-tools: 2.0.2
+      a-js-tools: 2.0.3
       a-type-of-js: 2.0.1
 
   colorette@1.4.0: {}
@@ -15439,10 +15378,6 @@ snapshots:
   ws@7.5.10: {}
 
   ws@8.18.0: {}
-
-  xcn@1.1.1:
-    dependencies:
-      a-type-of-js: 2.0.1
 
   xcn@1.1.2:
     dependencies:

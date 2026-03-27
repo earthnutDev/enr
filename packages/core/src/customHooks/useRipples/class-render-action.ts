@@ -6,7 +6,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 12:07
  * @version 2.0.0-alpha.0
- * @lastModified 2026-03-25 20:27
+ * @lastModified 2026-03-27 11:42
  */
 
 import { isBusinessEmptyString, isEmptyArray, isNull, isUndefined, isZero } from 'a-type-of-js';
@@ -114,7 +114,7 @@ export class RenderAction {
       return this.exitFade('由于缺少当前渲染背景，退出');
     }
 
-    if (renderData.drawProgress === 0) {
+    if (renderData.currentProgress === 0) {
       if (dun) {
         dog('开始执行渐变，当前尚有可执行', toBeList.length);
         toBeList.forEach((e, i) => dog(`待执行 ${i} ： `, e));
@@ -122,38 +122,15 @@ export class RenderAction {
       // TODO
     }
     if (dun) {
-      dog('当前执行的进度，', renderData.drawProgress);
+      dog('当前执行的进度，', renderData.currentProgress);
     }
     // 进度完成则结束当前的进度
-    if (renderData.drawProgress > 1000) {
-      this.options.firstRun = false; // 已经经历过一次渐变，之后不再缓慢渐变
-      buildBackground.lastDrawImage = toBeList.shift()!; // 更新最后渲染的纹理图
-      if (dun) {
-        dog('执行渐变背景完毕，剩余可执行', toBeList);
-      }
-      this.rippleGl.bindImage(); // 渲染到背景图
-      // 尚有未执行完毕的
-      if (isEmptyArray(toBeList)) {
-        const { lastUseStyle } = this.elementMeta;
-        // 没有设置背景色或是背景图
-        if (
-          (isNull(options.imgUrl) ||
-            isBusinessEmptyString(options.imgUrl) ||
-            isZero(options.imgUrl.length)) &&
-          isNoneBackGroundColor(lastUseStyle.backgroundColor) &&
-          isNoneBackgroundImage(lastUseStyle.backgroundImage)
-        ) {
-          // 因为此时渲染为空，需要手动添加一个默认渲染
-          buildBackground.setTransparentTexture(false); // 是否 false，将下次循环执行权交回 `runFade()` 方法
-        }
-      }
-      // 启用下一轮的循环
-      return this.exitFade('当前执行完毕，开启下次执行');
+    if (renderData.isEnd()) {
+      this.fadeEnd();
+      return; // 结束当前的渐变
     }
 
-    renderData.drawProgress += options.firstRun
-      ? options.firstDrawProgressStep
-      : options.drawProgressStep;
+    renderData.dPAdd();
     if (dun) {
       // dog('当前的渲染进度', fadeData.drawProgress, fadeData.lastDrawImage);
     }
@@ -187,7 +164,7 @@ export class RenderAction {
     {
       // ctx.globalAlpha = 1 - drawProgress;
       ctx.drawImage(this.buildBackground.lastDrawImage.resource, 0, 0, width, height); // 绘制上一次的图案
-      ctx.globalAlpha = renderData.drawProgress / 1000; // 设置透明度
+      ctx.globalAlpha = renderData.currentTransparency; // 设置透明度
       /**
        * bug: 2508021258（1）
        *
@@ -221,8 +198,37 @@ export class RenderAction {
     if (toBeList.length > 1) {
       buildBackground.lastDrawImage = currentDrawImage;
       toBeList.shift(); // 直接丢弃第一个
-      renderData.drawProgress = 0;
+      renderData.resetDP();
     }
+  }
+
+  /** 渐变结束 */
+  private fadeEnd() {
+    const { buildBackground, options } = this;
+    const { toBeList } = buildBackground;
+    this.options.firstRun = false; // 已经经历过一次渐变，之后不再缓慢渐变
+    buildBackground.lastDrawImage = toBeList.shift()!; // 更新最后渲染的纹理图
+    if (dun) {
+      dog('执行渐变背景完毕，剩余可执行', toBeList);
+    }
+    this.rippleGl.bindImage(); // 渲染到背景图
+    // 尚有未执行完毕的
+    if (isEmptyArray(toBeList)) {
+      const { lastUseStyle } = this.elementMeta;
+      // 没有设置背景色或是背景图
+      if (
+        (isNull(options.imgUrl) ||
+          isBusinessEmptyString(options.imgUrl) ||
+          isZero(options.imgUrl.length)) &&
+        isNoneBackGroundColor(lastUseStyle.backgroundColor) &&
+        isNoneBackgroundImage(lastUseStyle.backgroundImage)
+      ) {
+        // 因为此时渲染为空，需要手动添加一个默认渲染
+        buildBackground.setTransparentTexture(false); // 是否 false，将下次循环执行权交回 `runFade()` 方法
+      }
+    }
+    // 启用下一轮的循环
+    return this.exitFade('当前执行完毕，开启下次执行');
   }
 
   /**

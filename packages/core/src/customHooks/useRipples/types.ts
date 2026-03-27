@@ -3,7 +3,7 @@
  * @file types.ts
  * @since  周二  12/17/2024
  * @description BackgroundRipples 的类型声明文件
- * @lastModified 2026-02-07 08:06
+ * @lastModified 2026-03-26 17:34
  */
 
 /**

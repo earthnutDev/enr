@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "enr",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "一个简单的 ui",
   "scripts": {
     "vjj": "vjj",
@@ -30,7 +30,7 @@
     "@babel/runtime": "^7.29.2",
     "@qqi/state": "^0.0.0",
     "a-element-inline-style": "^1.0.2",
-    "a-js-tools": "^2.0.2",
+    "a-js-tools": "^2.0.3",
     "a-type-of-js": "^2.0.1",
     "styled-component": "^2.6.0",
     "xcn": "^1.1.2"
@@ -44,10 +44,10 @@
   ],
   "exports": {
     ".": {
-      "default": "./dist/es/index.js",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/es/index.js",
-      "types": "./dist/es/src/index.d.ts"
+      "default": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.d.ts"
     },
     "./common.scss": "./dist/styles/common.scss",
     "./common.css": "./dist/styles/common.css",

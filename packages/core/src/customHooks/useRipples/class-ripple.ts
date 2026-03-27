@@ -6,7 +6,7 @@
  * @copyright 2026 ©️ MrMudBean
  * @since 2026-01-22 03:03
  * @version 2.0.0-alpha.0
- * @lastModified 2026-03-25 20:26
+ * @lastModified 2026-03-26 18:32
  */
 
 import { loggerMiddleware, StateManager, type Reducer } from '@qqi/state';
@@ -97,7 +97,7 @@ export class Ripples {
     });
     this.elementMeta = new ElementMeta(this.options, this.element, this.state);
     /** 初始化带 this 指向的重加载回调  */
-    this.renderData = new RenderData(); // 数据初始化
+    this.renderData = new RenderData(this.options, this.elementMeta); // 数据初始化
     this.buildBackground = new BuildBackground(this.options, this.elementMeta, this.renderData);
     this.gl = new RippleGl(this.element, this.options, this.elementMeta, this.buildBackground);
     {
